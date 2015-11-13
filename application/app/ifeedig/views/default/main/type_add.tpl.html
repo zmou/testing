@@ -1,0 +1,13 @@
+<div class="app_top"><h4>添加分类</h4>
+<div>添加Feed分类</div></div>
+<!-- 标题 -->
+<div class="tabs">
+	<li class="out"><a href="/app/native/<?=$GLOBALS['app']?>/type_modify/<?=$tid?>">添加分类</a></li>
+</div>
+<form action="/app/native/<?=$GLOBALS['app']?>/type_save" method="post">
+<div class="feed_bottom">
+<input type="text"  name="tname" class="text">
+<input type="submit" class="button" value="提交">
+<input type="button" class="button" value="返回" onclick="javascript:window.history.go(-1)">
+</div>
+</form>

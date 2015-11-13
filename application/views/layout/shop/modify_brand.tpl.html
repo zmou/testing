@@ -1,0 +1,82 @@
+<SCRIPT LANGUAGE="JavaScript" src="/js/index/set.js"></SCRIPT>
+<div class="box">
+	<p class="admin_title"><?=_text('admin_shop_title')?></p>
+
+	<ul class="tabs">
+	<li><a href="/admin/shop/"><?=_text('admin_shop_situation')?></a></li>
+	<li class="out"><?=_text('admin_shop_item_title')?></li>
+	<li><a href="/admin/shop/list/orders">订单</a></li>
+	</ul>
+	<br/>
+	<?=join(' | ', $nav_links);?>
+	<br/><br/>
+		
+		<form action="/admin/shop/update/brand/<?=$line['id']?>" method="post" id="shop_add_type">
+
+		<div class="l"  style="width:200px">
+			<div class="box">品牌列表</div>
+			<?php if( $brands ):?>
+			<div class="hd">
+				<ul id="brands" class="shop">
+					<?php foreach($brands as $v):?>
+					<li id="brand_id_<?=$v['id']?>"><span class="r"><a href="JavaScript:void(0)" onclick="admin_shop_del('brands',<?=$v['id']?>)"><img src="/static/images/cross.gif"></a></span><img src="/static/images/movearrow.gif" class="m" /><a href="/admin/shop/modify/brand/<?=$v['id']?>"><?=$v['name']?></a></li>
+					<?php endforeach;?>
+				</ul>
+			</div>
+			<script>
+			new Sortables($('brands') , {handles:$('brands').getElementsByClassName('m') ,  onComplete:function()
+			{
+				var order =( this.serialize( function(el)
+					{ 
+						return el.id.replace("brand_id_" , "" );
+					} ));
+				var url = '/ajax/save_shop_order/brands/'+order ;
+				var myajax = new Ajax(url,
+				{
+					data:foodata,
+					method:'post' ,
+					evalScripts:true,
+					onComplete:function()
+					{ 
+					}
+				}).request();
+			}}
+			);
+			</script>
+			<?php else:?>
+			<div class="notice">
+			暂无品牌
+			</div>
+			<?php endif;?>
+		</div>
+		<div class="l leftline">
+		<b>修改品牌</b><br/>
+		<div style="margin:10px;">
+		<TABLE>
+		<TR>
+			<TD width="70px">品牌名称</TD>
+			<TD><INPUT TYPE="text" NAME="name" id="name" class="text" value="<?=$line['name']?>"></TD>
+		</TR>
+		<TR>
+			<TD>品牌别名</TD>
+			<TD><INPUT TYPE="text" NAME="subname" id="subname" class="text" value="<?=$line['subname']?>"></TD>
+		</TR>
+		<TR>
+			<TD>网址</TD>
+			<TD><INPUT TYPE="text" NAME="url" id="url" class="text" value="<?=$line['url']?>"></TD>
+		</TR>
+		<TR>
+			<TD>logo</TD>
+			<TD><IMG id="blogo_pic"  src="<?=$line['logo']?>" alt="logo" border="0"><br/>
+			<span id="blogo_txt" style="CURSOR: pointer" onclick="window.open('/upload/pic/system/blogo','_blank','scrollbars=no,width=475,height=150,left=75,top=80,status=no,resizable=yes')">点击这里上传logo，也可以直接在下边填写URL</span><br/>
+			<INPUT class="text" id="blogo" onchange="blogo_pic.src=this.value" name="blogo" value="<?=$line['logo']?>"></TD>
+		</TR>
+		<TR>
+			<TD></TD>
+			<TD><INPUT TYPE="submit" class="button" value=" 修改 "></TD>
+		</TR>
+		</TABLE>
+		</div>
+		<br clear="all"/>
+			
+</div>

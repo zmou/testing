@@ -1,0 +1,56 @@
+<script type="text/javascript" src="/js/fck/fckeditor.js"></script>
+<div class="app_top"><h4><?=$forum['name']?></h4>
+<?=$forum['desp']?>
+</div>
+<div class="l">
+		<div class="tabs">
+			
+			<?php foreach( $tab_array  as $key=>$tab ) : ?>
+			<?php if( $tab_type == $key ): ?>
+			<li class="out"><?php echo $tab; ?></li>
+			<?php else: ?>
+			<li ><?php echo $tab; ?></li>
+			<?php endif; ?>		
+			<?php endforeach; ?>	
+			<li class="link"><a href="JavaScript:history.back(1)">返回</a></li>
+		</div>
+		<div class="p2">
+		搜索结果
+		<form action="/app/native/<?=$GLOBALS['app']?>/action/" method="post" name="iforum_ids" id="iforum_ids">
+		<INPUT TYPE="hidden" NAME="action" id="action">
+		<?php if($list):?>
+		<TABLE width="100%">
+		<TR>
+		<TD><b>标题</b></TD>
+		<TD width="100px;"><b>作者</b></TD>
+		<TD width="100px;"><b>回复/阅读</b></TD>
+		<TD width="100px;"><b>最后回复</b></TD>
+		</TR>
+		
+		<?php foreach($list as $v):?>
+		<TR>
+		<TD>
+		
+		<a href="/app/native/<?=$GLOBALS['app']?>/display/<?=$v['id']?>/1/" <?=$class;?>><?=$v['title']?></a><?php if($v['is_selected']):?>&nbsp;&nbsp;<img src="/static/images/is_selected.gif"/><?php endif;?><span class="post_time"><?=date("m-d H:i",strtotime( $v['time'] ) )?></span>
+		<?php if( $tab_type < 1  && $v['type'] > 0 && $tab_array[$v['type']]):?>
+		<br/><span class="post_time"><?=$tab_array[$v['type']];?></span>
+		<?php endif;?>
+		</TD>
+		<TD><a href="/user/space/<?=$v['uid']?>" target="_blank"><?=$names[$v['uid']]?></a></TD>
+		<TD><?=$v['reply']?>/<?=$v['hit']?></TD>
+		<TD><a href="/user/space/<?=$v['uid']?>" target="_blank"><?=$names[$v['last_uid']]?></a><span class="post_time"><?=date("m-d",strtotime( $v['last_post_time'] ) )?></span></TD>
+		</TR>
+		<?php endforeach;?>
+		</TABLE>
+		<?=$pager;?>
+		<?php else:?>
+		<div class="notice">
+		暂无文章
+		</div>
+		<?php endif;?>
+		</form> 
+		</div>		
+
+</div>
+
+		

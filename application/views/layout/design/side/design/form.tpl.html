@@ -1,0 +1,20 @@
+<div class="boxes" id="f-left">
+<div class="hd">字段类型</div>
+<div class="bd" style="line-height:200%;text-align:left">
+<ul class="form_design_component">
+	<li><a href="javascript:design_item_add( <?=$finfo['id']?> ,  'line');void(0)"><img src="/static/images/text.gif" />&nbsp;单行文字&nbsp;<img src="/static/images/plus.gif" /></a></li>
+	<li><a href="javascript:design_item_add( <?=$finfo['id']?> , 'multi-line');void(0)"><img src="/static/images/pilcrow.png" />&nbsp;多行文字&nbsp;<img src="/static/images/plus.gif" /></a></li>
+	<li><a href="javascript:design_item_add( <?=$finfo['id']?> , 'radio');void(0)"><img src="/static/images/radio.png" />&nbsp;单选&nbsp;<img src="/static/images/plus.gif" /></a></li>
+	<li><a href="javascript:design_item_add( <?=$finfo['id']?> , 'checkbox');void(0)"><img src="/static/images/checkbox.png" />&nbsp;多选&nbsp;<img src="/static/images/plus.gif" /></a></li>
+	<li><a href="javascript:design_item_add( <?=$finfo['id']?> , 'dropdown');void(0)"><img src="/static/images/dropdown.png" />&nbsp;下拉框&nbsp;<img src="/static/images/plus.gif" /></a></li>
+	<li><a href="javascript:design_item_add( <?=$finfo['id']?> , 'file');void(0)"><img src="/static/images/fileupload.png" />&nbsp;文件上传框&nbsp;<img src="/static/images/plus.gif" /></a></li>
+	<li><a href="javascript:design_item_add( <?=$finfo['id']?> , 'pic');void(0)"><img src="/static/images/image.png" />&nbsp;图片上传框&nbsp;<img src="/static/images/plus.gif" /></a></li>
+	<li><a href="javascript:design_item_add( <?=$finfo['id']?> , 'multi-pic');void(0)"><img src="/static/images/images.png" />&nbsp;多图上传框&nbsp;<img src="/static/images/plus.gif" /></a></li>
+</ul>	
+</div>
+</div>
+<script>
+$('f-left').setStyle( 'width' , '160px' );
+$('f-left').setStyle( 'position' , 'absolute' );
+setInterval( function(){ make_div_top('f-left'); } , 20 ); 
+</script>

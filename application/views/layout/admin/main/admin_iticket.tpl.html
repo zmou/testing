@@ -1,0 +1,32 @@
+<div class="box">
+	<p class="admin_title"><?=_text('admin_iticket_title')?></p>
+
+	<div  id="data_extra">
+		<?php if( $list ):?>
+		<TABLE width="100%">
+		<TR>
+			<TD><?=_text('admin_iticket_content_title');?></TD>	
+			<TD width="100px;"><?=_text('admin_iticket_state');?></TD>
+			<TD width="120px;"><?=_text('admin_iticket_action');?></TD>
+		</TR>
+		<?php foreach($list as $v):?>
+		<TR>
+			<TD><a href="/app/native/iticket/show/<?=$v['id']?>"><?=$v['title']?></a></TD>
+			<TD width="100px;"><?=_text('admin_iticket_state_'.$v['action'])?></TD>
+			<TD width="120px;">
+				<?php if($v['action'] != '2' ):?><a href="JavaScript:void(0)" onclick="ajax_do_ticket('<?=$v['id']?>')"><?=_text('admin_iticket_action_'.$v['action'])?></a><?php else:?>
+				<a href="/app/native/iticket/sendfaq/<?=$v['id']?>" target="_blank"><?=_text('admin_iticket_action_'.$v['action'])?></a><?php endif;?>&nbsp;&nbsp;<a href="JavaScript:void(0);" onclick="javascript:ajax_del_confirm('/app/native/iticket/del/<?=$v['id']?>');"><img src="/static/images/cross.gif"></a></TD>
+		</TR>
+		<?php endforeach;?>
+		</TABLE>
+		<br clear="all">
+		<?=$pager;?>
+		<?php else:?>
+		<div class="notice">
+		<p><?=_text('admin_plist_no_data')?></p>
+		</div>
+		<?php endif;?>
+		
+	</div>
+
+</div>

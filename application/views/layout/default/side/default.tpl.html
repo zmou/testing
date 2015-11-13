@@ -1,0 +1,84 @@
+<?php if( is_login() ): ?>
+<div class="boxes">
+	<div class="hd">- <?=_sess('u2_nickname')?> -</div>
+	<div class="bd">
+	<div id="status_display">
+	<TABLE>
+	<TR>
+		<TD><a href="/user/uploadpic"><img src="<?=show_user_icon('normal', format_uid() )?>" class="icon" /></a></TD>
+		<TD><span id="status_display_span"><? if( _sess('u2_desp') == '' ){ echo '我今天...'; }else{ echo _sess('u2_desp'); } ?></span><br/>
+		<a href="javascript:$('status_edit').setStyle('display' , 'block');$('status_display').setStyle('display' , 'none');void(0)">修改</a></TD>
+	</TR>
+	</TABLE>
+	
+	</div>
+	<div id="status_edit"><TEXTAREA id="status_value" name="status_value" ROWS="" COLS="" style="width:140px;height:50px;overflow:auto;margin:3px;" ><?=_sess('u2_desp')?></TEXTAREA><br/>[<a href="javascript:if($('status_value').value.trim().replace(/<\/?.+?>/g,'') == '' ){ alert('还是写点东西吧');void(0); }else{ $('status_edit').setStyle('display' , 'none');$('status_display_span').setHTML($('status_value').value.trim().replace(/<\/?.+?>/g,''));$('status_display').setStyle('display' , 'block');ajax_update_status( $('status_value').value );void(0) }">保存</a>]&nbsp;[<a href="javascript:$('status_edit').setStyle('display' , 'none');$('status_display').setStyle('display' , 'block');void(0)">取消</a>]</div>
+	</div>
+</div>
+
+	<div class="sides_hd">快捷菜单</div>
+	<ul  id="my_app_list" class="sides">
+	<?php
+	$now = NULL;
+	$apps = get_left_apps();
+	if( isset( $apps[0] ) ): ?>
+	<?php $app_toolbar= is_admin()?'<span id=\"move_icon_{$app[id]}\" style=\"display:none;padding-right:10px;float:right;\"><img src=\"/static/images/movearrow.gif\" class=\"m\" /></span>':NULL; ?>
+	<?php $onover= is_admin()?' onmouseover=\"show_m_icon({$app[id]})\"':NULL; ?>
+	<?php $onout= is_admin()?' onmouseout=\"close_m_icon({$app[id]})\"':NULL; ?>
+	<?php foreach( $apps as $app ): ?>
+	<li id="applist_id_<?=$app['id']?>" <?php if( $GLOBALS['app'] == $app['u2_folder'] ): ?> class="out" <?php $now = $app['u2_folder']; ?><?php endif;?>><a href="/app/native/<?=$app['u2_folder']?>"  <?php eval("\$over = \"$onover\";"); echo $over;?> <?php eval("\$out = \"$onout\";"); echo $out;?> ><?php eval("\$toolbar = \"$app_toolbar\";"); echo $toolbar;?><img src="<?=$app['u2_icon']?>" />&nbsp;<?=$app['u2_title']?></a></li>	
+	<?php endforeach; ?>
+	<?php else: ?>
+	<li><a href="/admin/applist">尚未安装应用,→设置</a></li>
+	<?php endif; ?></ul>
+	<ul class="sides">
+	<?php if( $now == NULL ): ?>
+	<li class="out"><a href="/app/native/imap/"><img src="/static/icon/system.png" />&nbsp;系统功能</a></li>	
+	<?php endif; ?>
+	
+	</ul>
+	
+	
+
+<?php else: ?>
+<div class="boxes">
+	<div class="hd">欢迎来到<?=c('site_name')?></div>
+	<div class="bd">
+	<p>这里有:</p>
+	<ul class="hline">
+		<li>时刻和你在一起的朋友</li>
+	</ul>	
+	</div>
+</div>
+<?php endif; ?>
+<?php if( is_admin() ):?>
+<script>
+	function show_m_icon( id )
+	{
+		$('move_icon_'+id).style.display= '' ;
+	}
+	function close_m_icon(id)
+	{
+		$('move_icon_'+id).style.display= 'none' ;
+	}
+	new Sortables($('my_app_list') , {handles:$('my_app_list').getElementsByClassName('m') ,  onComplete:function()
+	{
+		var order =( this.serialize( function(el)
+			{ 
+				return el.id.replace("applist_id_" , "" );
+			} ));
+		var url = '/ajax/save_app_order/'+order ;
+		//alert(order);
+		var myajax = new Ajax(url,
+		{
+			data:foodata,
+			method:'post' ,
+			evalScripts:true,
+			onComplete:function( )
+			{ 
+			}
+		}).request();
+	}}
+	);
+	</script>
+<?php endif;?>

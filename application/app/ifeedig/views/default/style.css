@@ -1,0 +1,220 @@
+.bline
+{
+	padding:10px;
+	border-bottom:1px solid #ddd;
+}
+
+.diggvote
+{ 
+	width:55px; 
+	height:50px; 
+	display:block; 
+	background:url(/static/images/digg_vote.gif) no-repeat center center; 
+	font-size:24px; 
+	font-weight:bold; 
+	line-height:50px; 
+	text-align:center;
+}
+
+.diggding
+{
+	width:55px; 
+	height:25px; 
+	display:block;
+	background:url(/static/images/digg_ding.gif) no-repeat center center; 
+	line-height:25px; 
+	text-align:center;
+	margin-top:3px;
+}
+
+.dline
+{
+	padding-top:10px;
+	border-bottom:1px solid #ddd;
+}
+
+.dashed_line
+{
+	padding-top:10px;
+	padding-bottom:10px;
+	border-bottom:1px dashed #ddd;
+}
+
+.tline
+{
+	border-top:1px solid #ddd;
+}	
+
+.feeds
+{ }
+
+
+.Aupdate:link
+{
+	text-decoration:none;
+}
+
+.Aupdate:visited 
+{
+	text-decoration:none;
+}
+
+.Aupdate:hover 
+{
+	text-decoration:none;
+}
+
+.look_date
+{
+	float:right;margin-right:5px;
+}
+
+.lists
+{
+	margin-top:10px;
+}
+
+.pages
+{
+	margin-top:10px;margin-bottom:10px;
+}
+
+.dig_right
+{
+	float:right;width:570px;height:100%;
+}
+
+.dig_right_title
+{
+	padding:4px 2px 8px 2px;
+}
+
+.dig_open_close
+{
+	float:right;margin-right:5px;margin-left:5px;
+}
+
+.dig_left
+{
+	width:80px;height:100%;margin:5px;
+}
+
+.dig_contents_width
+{
+	width:660px;
+}
+
+.dig_contents
+{
+	padding:4px 6px;
+}
+
+.dig_close
+{
+	margin-right:10px;
+}
+
+.dig_num
+{
+	width:80px;
+}
+
+.item_pass_all
+{
+	float:right;
+}
+
+.item_title
+{
+	width:660px;height:100%;
+}
+
+.item_top_line
+{
+	border-bottom:1px dashed #ddd;
+}
+
+.item_open_close
+{
+	float:right;margin-right:5px;margin-left:5px;
+}
+
+.item_margin_top
+{
+	margin-top:5px;
+}
+
+.feed_add
+{
+	margin:20px 20px;
+}
+
+.feed_list_rim
+{
+	margin:10px 10px 30px;width:90%;
+}
+
+.feed_rim
+{
+	height:20px;padding-top:5px
+}
+
+.mouse_img
+{
+	cursor:pointer;
+}
+
+.no_contents
+{
+	margin:10px 10px 30px;
+}
+
+.need_pass_feed
+{
+	margin:0px 7px;width:90%;
+}
+
+.need_pass_feed_list
+{
+	width:100%;height:20px;
+}
+
+.need_feed
+{
+	float:left;margin-right:8px;
+}
+
+.title_right
+{
+	padding-top:10px;padding-left:8px;
+}
+
+.feed_addpage
+{
+	margin-top:20px;margin-left:20px;
+}
+
+.feed_del_rim
+{
+	width:70%;margin:10px 5px;
+}
+
+.feed_remove
+{
+	float:right;padding-right:5px;
+}
+
+.feed_remove_list
+{
+	padding:5px 5px;
+}
+
+.feed_bottom
+{
+	margin:10px 5px;
+}
+
+.feed_content_width
+{
+	width:550px;
+}

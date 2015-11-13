@@ -1,0 +1,28 @@
+<p><label>首页内容显示数目</label><INPUT class="text" TYPE="text" NAME="index_limit" id="index_limit" onchange="format_number('index_limit')"></p>
+<p><label>缩图高度</label><INPUT class="text" TYPE="text" NAME="pic_height" id="pic_height" onchange="format_number('pic_height')"></p>
+<p><label>缩图宽度</label><INPUT class="text" TYPE="text" NAME="pic_width" id="pic_width" onchange="format_number('pic_width')"></p>
+<p><label>提交权限</label><SELECT NAME="add_level">
+	<OPTION VALUE="1"><?=c('level_1')?>
+	<OPTION VALUE="3"><?=c('level_3')?>
+	<OPTION VALUE="5"><?=c('level_5')?>
+	<OPTION VALUE="7"><?=c('level_7')?>
+	<OPTION VALUE="9"><?=c('level_9')?>
+</SELECT></p>
+<p><label>免检权限</label><SELECT NAME="nocheck_level">
+	<OPTION VALUE="1"><?=c('level_1')?>
+	<OPTION VALUE="3"><?=c('level_3')?>
+	<OPTION VALUE="5"><?=c('level_5')?>
+	<OPTION VALUE="7"><?=c('level_7')?>
+	<OPTION VALUE="9"><?=c('level_9')?>
+</SELECT></p>
+<p><label>是否强制图片大小</label><INPUT TYPE="radio" NAME="focus_pic" value="1">是&nbsp;&nbsp;<INPUT TYPE="radio" NAME="focus_pic" value="0">否</p>
+<p><label>应用图标</label><img src="/static/icon/<?=$folder;?>.gif">&nbsp;&nbsp;<a href="JavaScript:void(0)" onclick="change_app_icon('<?=$folder;?>')">更改图标</a>&nbsp;&nbsp;<a href="JavaScript:void(0)" onclick="window.location.reload()">刷新</a></p>
+<p><label>删除缩图</label>
+<?php if( is_dir( ROOT.'static/data/hash/snaps/'.$folder ) ):?>
+<span id="app_snap_control"><a href="JavaScript:void(0)" onclick="del_app_snap('<?=$folder;?>')">删除</a></span>
+<?php else:?>
+<font class="gray">暂无缩图</font>
+<?php endif;?>
+</p>
+
+<br/>

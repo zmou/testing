@@ -1,0 +1,42 @@
+<div class="box">
+	<p class="admin_title"><?=_text('admin_update_title')?></p>
+	<div class="box">
+		<?php if( $error ):?>
+		<img src="/static/images/cross.gif" />&nbsp;&nbsp;<?=$notice;?>
+		<?php else:?>
+			<?php if( !$list ):?>
+			<div class="notice">您的网站已是最新版本</div>
+			<?php else:?>
+				<table width="100%" border="1" cellspacing="1" style="border-collapse: collapse" >
+					<tr style="background:#e8e8e8">
+						<td width="20px"></td>
+						<td width="40px">Id</td>
+						<td>文件名</td>
+						<td>文件大小</td>
+						<td>发布时间</td>
+						<td width="200px">更新情况</td>
+					</tr>
+				<?php foreach( $list as $item ):?>
+				<tr>
+					<td><input type="checkbox" value="<?php echo $item['id'];?>" class="codecheck" id="codecheck<?php echo $item['id'];?>" <?php if( isset( $item['new'] )&& $item['new'] ): ?>disabled<?php else: ?>checked<?php endif; ?>></td>
+					<td align="center"><?php echo $item['id'];?></td>
+					<td><span title="<?php echo  $item['filepath'];?>"><?php echo $item['filename'];?></span></td>
+					<td><?php echo $item['filesize'];?></td>
+					<td><?php echo $item['create'];?></td>
+					<td><span id="codespan<?php echo $item['id'];?>"> <?php if( isset( $item['new'] ) && $item['new'] ): ?><img src="/static/images/tick.gif">&nbsp;已经最新<?php else: ?>---<?php endif; ?></span></td>
+				</tr>
+				<?php endforeach;?>
+				</table>
+				<br/>
+				<input type="button" class="button" value=" 更新选中代码 " onclick="upgrade_code(0)"/>
+				
+			<?php endif;?>
+		<?php endif;?>
+	</div>
+</div>
+
+
+
+
+
+

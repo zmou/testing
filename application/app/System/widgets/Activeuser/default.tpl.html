@@ -1,0 +1,24 @@
+<div class="boxes">
+	<div class="hd"><!--{tool bar}--><?=$title;?></div>
+	<div>
+	<?php if( isset($users) ):?>
+	<table border="0" cellspacing="0" cellpadding="0">
+	<tr>
+	<?php $i=0?>
+	<?php foreach( $users as $k => $v ):?>	
+	<?php $i++;?>
+	<td align="center">
+	<a href="/user/space/<?=$v['id']?>" target="_blank"><img src="<?=show_user_icon('normal',$v['id']);?>" class="icon" />
+	<div><?=$v['u2_nickname'];?></div></a>
+	</td>
+	<?php if(floor($i%$linenum)==0):?>
+	</tr><tr>
+	<?php endif;?>
+	<?php endforeach;?>
+	</tr>
+	</table>
+	<?php else:?>
+	<div>没有记录</div>
+	<?php endif;?>
+	</div>
+</div>

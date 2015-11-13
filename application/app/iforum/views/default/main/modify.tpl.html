@@ -1,0 +1,46 @@
+<script type="text/javascript" src="/js/fck/fckeditor.js"></script>
+<div class="app_top"><h4>修改主题</h4>
+修改主题内容	
+</div>
+<div class="l">
+		<div class="tabs">
+			
+			<?php foreach( $tab_array  as $key=>$tab ) : ?>
+			<?php if( $tab_type == $key ): ?>
+			<li class="out"><a href="/app/native/<?=$GLOBALS['app']?>/<?php echo $key; ?>/<?php echo $line['id']; ?>/<?=$page;?>/<?=$return_page;?>/<?=$return_key;?>"><?php echo $tab; ?></a></li>
+			<?php else: ?>
+			<li ><a href="/app/native/<?=$GLOBALS['app']?>/<?php echo $key; ?>/<?php echo $fid; ?>"><?php echo $tab; ?></a></li>
+			<?php endif; ?>		
+			<?php endforeach; ?>	
+			<li class="link"><a href="/app/native/iforum/display/<?php echo $dis_id; ?>/<?=$page;?>/<?=$return_page;?>/<?=$return_key;?>">返回</a></li>
+		</div>
+		<div class="p2">
+		<form action="/app/native/<?=$GLOBALS['app']?>/update/<?php echo $line['id']; ?>/<?=$page;?>/<?=$return_page;?>/<?=$return_key;?>" method="post">
+		<?php if(!$line['parent_id'] ):?>
+		<TABLE>
+		<TR>
+			<TD>标题</TD>
+			<TD><input type="text" class="ititle_style text" name="title" value="<?php echo $line['title']; ?>"></TD>
+		</TR>
+			<?php if($cate):?>
+			<TR>
+				<TD>分类选择</TD>
+				<TD><SELECT NAME="type">
+					<OPTION VALUE="0">无分类
+					<?php foreach($cate as $v ):?>
+					<OPTION VALUE="<?=$v['key']?>" <?php if( $line['type'] == $v['key'] ) echo 'SELECTED'?> ><?=$v['desp']?>
+					<?php endforeach;?>
+				</SELECT></TD>
+			</TR>
+			<?php endif;?>
+		</TABLE>
+		<?php endif;?>
+		<textarea name="desp" id="desp" wrap="hard" class="itextarea_style"><?php echo $line['desp']; ?></textarea>
+		<br/><br/>
+		<input type="submit" value="保存修改" class="button">&nbsp;&nbsp;&nbsp;&nbsp;
+		</form>
+		</div>		
+
+</div>
+<script>make_rich('desp' , 'Basic');</script>
+		

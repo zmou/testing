@@ -1,0 +1,51 @@
+.dispaly_title
+{
+	background-color:#f7f7f7;
+	color:#6B9F1F;
+	border-bottom:1px solid #D8DFEA;
+	padding:8px;
+}
+#iforum_wait
+{
+	position: absolute; 
+	margin:10px;
+	border:10px solid #eee;
+	width:400px;
+	background:#fff;
+	z-index:99;
+}
+a.top_level
+{
+	background:transparent url('/static/images/top_level.gif') no-repeat scroll 0 3px;
+	color:#CC3300;
+	padding-left:12px;
+}
+.l
+{
+	width:100%;
+}
+
+.forum_post_toolbar
+{
+	padding-bottom:5px;
+}
+
+.display_textarea
+{
+	width:650px;height:150px;
+}
+
+.ititle_style_modify_title
+{
+	width:590px;
+}
+
+.itextarea_style
+{
+	width:650px;height:300px;
+}
+
+.set_miaoshu
+{
+	width:300px;height:150px;
+}

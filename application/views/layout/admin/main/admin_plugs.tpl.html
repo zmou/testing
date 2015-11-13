@@ -1,0 +1,47 @@
+<div class="box">
+	<p class="admin_title">获取组件</p>
+	<div class="box">
+		<?php if( $error ):?>
+		<img src="/static/images/cross.gif" />&nbsp;&nbsp;<?=$notice;?>
+		<?php else:?>
+		<h5 class="w2"><?=$item['name']?></h5>
+		<div class="l" style="border:1px solid #eee;width:99%">
+			<div class="l p10">
+				<img src="<?=$item['pic']?>" class="icon"/>
+			</div>
+			<div class="l p10">
+				作者:<a href="<?=$item['link']?>" target="_blank"><?=$item['developer']?></a><br/>
+				<?=nl2br( $item['desp'] );?><br/>
+				<?php if( $widgets ):?>
+				<?php foreach( $widgets as $v):?>
+				<div class="l p5">
+				<center>
+				<img src="<?=$icon?>" class="icon"/><br/>
+				<?=$v['name']?>
+				</center>
+				</div>
+				<?php endforeach;?>
+				<?=$more;?>
+				<?php endif;?>
+			</div>
+		</div>
+		<br clear="all"/>
+		<form action="/admin/getplugs/" method="post">
+		<INPUT TYPE="hidden" NAME="id" value="<?=$item['id']?>">
+		<INPUT TYPE="hidden" NAME="aid" value="<?=$item['aid']?>">
+		<div class="p10">
+			<center>
+			下载此组件到目录 <INPUT TYPE="text" NAME="folder" value="<?=$item['aid']?>" class="text">
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" class="button" value=" 安装 ">
+			</center>
+		</div>
+		</form>
+		<?php endif;?>
+	</div>
+</div>
+
+
+
+
+
+

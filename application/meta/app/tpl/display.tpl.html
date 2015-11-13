@@ -1,0 +1,56 @@
+<div class="app_top">
+<h4><?=app_config('model_name')?></h4><div><?=app_config('model_subtitle');?></div></div>
+<div class="tabs">
+<li class="out"><a href="/app/native/<?=$GLOBALS['app']?>/display/<?php echo $item['id']; ?>">查看<?=app_config('model_name')?></a></li>
+<li class="link"><a href="/app/native/<?=$GLOBALS['app']?>/">返回<?=app_config('model_name')?>首页</a></li>
+<?php if( level_check( app_config('add_level') ) ):?>
+<li class="link"><a href="/app/native/<?=$GLOBALS['app']?>/add/">发布<?=app_config('model_name')?></a></li>
+<?php endif;?>
+<li class="link"><a href="/app/native/<?=$GLOBALS['app']?>/search/">搜索<?=app_config('model_name')?></a></li>
+</div>
+<br/>
+	<div id="ulist">
+	([if $layout == '2'])
+		<ul class="uitem" style="width:510px;height:auto!important;">
+		([$row_html.0])
+		</ul>
+		<ul class="uitem" style="width:160px;height:auto!important;">
+		([$row_html.1])
+		</ul><br clear="all">
+		<ul class="uitem" style="width:680px;height:auto!important;">
+		([$row_html.2])
+		</ul><br clear="all">
+	([elseif $layout == '3' ])
+		<ul class="uitem" style="width:160px;height:auto!important;">
+		([$row_html.0])
+		</ul>
+		<ul class="uitem" style="width:510px;height:auto!important;">
+		([$row_html.1])
+		</ul><br clear="all">
+		<ul class="uitem" style="width:680px;height:auto!important;">
+		([$row_html.2])
+		</ul><br clear="all">
+	([elseif $layout == '4'])
+		<ul class="uitem" style="width:160px;height:auto!important;">
+		([$row_html.0])
+		</ul>
+		<ul class="uitem" style="width:330px;height:auto!important;">
+		([$row_html.1])
+		</ul>
+		<ul class="uitem" style="width:160px;height:auto!important;">
+		([$row_html.2])
+		</ul><br clear="all">
+		<ul class="uitem" style="width:680px;height:auto!important;">
+		([$row_html.3])
+		</ul><br clear="all">
+	([else])
+		<ul class="uitem" style="width:680px;height:auto!important;">
+		([$row_html.0])
+		</ul>
+		<br clear="all">
+		<ul class="uitem" style="width:680px;height:auto!important;">
+		([$row_html.1])
+		</ul><br clear="all">
+	([/if])
+	</div>
+

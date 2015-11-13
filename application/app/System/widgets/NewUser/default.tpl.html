@@ -1,0 +1,19 @@
+<div class="boxes">
+	<div class="hd"><!--{tool bar}--><?=$title;?></div>
+	<div class="bd">
+		<?php if($members):?>
+		<TABLE width="100%">
+		<?php foreach($members as $row ):?>
+		<TR class="newuser_style">
+			<?php foreach($row as $m ):?>
+			<TD valign="top" class="newuser_style"><div class="warp w-normal">
+			<a href="/user/space/<?=$m['id']?>"><img src="<?=show_user_icon('normal',$m['id']);?>" class="icon" /><br/>
+			<strong><?=$m['u2_nickname']?></strong></a></div>
+			</TD>
+			<?php endforeach;?>
+		</TR>
+		<?php endforeach;?>
+		</TABLE>
+		<?php endif;?>
+	</div>
+</div>

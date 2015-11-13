@@ -1,0 +1,27 @@
+<div class="app_top"><h4>ITEM列表</h4>
+<div>该Feed下文章列表</div></div>
+<!-- 标题 -->
+<div class="tabs">
+	<li class="out"><a href="/app/native/<?=$GLOBALS['app']?>/feed_remove/<?=$fid?>">ITEM列表</a></li>
+</div>
+<div class="l feed_del_rim">
+<?php if( $items ):?>
+<?php foreach( $items as $k => $line ):?>
+<div class="feed_remove_list">
+<div class="feed_remove"><?=$line['dig']?>推荐</div>
+<div class="feed_remove"><?=$line['hit']?>点击&nbsp;&nbsp;/</div>
+<div>
+<img src="/static/images/document.gif">
+<a href="<?=$line['link']?>" target="_black"><?=$line['title']?></a></div>
+</div>
+<?php endforeach;?>
+<?php endif;?>
+<div class="feed_remove_list">该FEED共有(<font color="red"><b><?=$count?></b></font>)篇文章 删除该FEED将删除该feed下所有文章</div>
+<div class="feed_remove_list">
+<form action="/app/native/<?=$GLOBALS['app']?>/feed_remove_del" method="post">
+<INPUT TYPE="hidden" NAME="fid" value="<?=$fid?>">
+<INPUT TYPE="button" class="button" value="确定" onclick="submit();">&nbsp;&nbsp;
+<INPUT TYPE="button" class="button" value="返回" onclick="history.go(-1)">
+</form>
+</div>
+</div>

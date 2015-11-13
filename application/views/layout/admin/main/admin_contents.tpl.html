@@ -1,0 +1,55 @@
+<div class="box">
+	<p class="admin_title"><?=_text('admin_contents_title')?></p>
+
+	<div class="box">
+	<ul class="tabs" >
+	<?php foreach( $nav as $v ):?>
+	<?php if( $v == $key ):?>
+		<li  class="out"><?=_text('admin_contents_nav_'.$v)?></li>
+	<?php else:?>
+		<li><a href="/admin/contents/<?=$v?>"><?=_text('admin_contents_nav_'.$v)?></a></li>
+	<?php endif;?>
+	<?php endforeach;?>
+		<li class="link"><a href="JavaScript:void(0)" onclick="u_do_manage()"><?=_text('admin_contents_u_do')?></a></li>
+	</ul>
+	<?php if($contents):?>
+		<form action="/ajax/contents/" method="post" id="contents_manage">
+		<br/>
+		<TABLE width="100%">
+		<TR>
+			<TD></TD>
+			<TD width="50px">状态</TD>
+			<TD width="40px">图标</TD>
+			<TD width="40px">类型</TD>
+			<TD>标题</TD>
+			<TD width="60px">作者</TD>
+			<TD width="150px">操作</TD>
+		</TR>
+		<?php foreach($contents as $c ):?>
+				<TR>
+					<TD><INPUT TYPE="checkbox" NAME="ids[]" value="<?=$c['id']?>"></TD>
+					<TD><?=_text('admin_contents_nav_'.$c['u2_state'])?></TD>
+					<TD><img src="<?=$c['u2_img']?>"></TD>
+					<TD><?=$c['u2_type']?></TD>
+					<TD><?=$c['u2_desc']?></TD>
+					<TD><a href="/user/space/<?=$c['u2_uid']?>" target="_blank"><?=$names[$c['u2_uid']]['u2_nickname']?></a></TD>
+					<TD>
+					<?php if($c['u2_state'] == 'wait'):?><INPUT TYPE="button" class="button" value="<?=_text('admin_contents_accept')?>" onclick="javascript:do_manage(<?=$c['id']?>,'accept')">&nbsp;&nbsp;<INPUT TYPE="button" class="button" value="<?=_text('admin_contents_forbidden')?>" onclick="javascript:do_manage(<?=$c['id']?>,'forbidden')"><?php elseif($c['u2_state'] == 'accept'):?><INPUT TYPE="button" class="button" value="<?=_text('admin_contents_forbidden')?>" onclick="javascript:do_manage(<?=$c['id']?>,'forbidden')"><?php else:?><INPUT TYPE="button" class="button" value="<?=_text('admin_contents_accept')?>" onclick="javascript:do_manage(<?=$c['id']?>,'accept')"><?php endif;?>
+					</TD>
+				</TR>
+		<?php endforeach;?>
+		</TABLE><br clear="all"/><br/>
+		<?=$pager;?>
+	<?php else:?>
+	<div class="notice">
+	暂无内容.
+	</div>
+	<?php endif;?>
+
+		<INPUT TYPE="hidden" NAME="action" id="action" value="">
+		<p class="contents_list"><a href="javascript:select_all('selectAll','ids[]')"><?=_text('admin_select_all');?></a>&nbsp;&nbsp;<INPUT TYPE="button" class="button" value="<?=_text('admin_contents_accept')?>" onclick="javascript:do_manages('accept')">&nbsp;&nbsp;<INPUT TYPE="button" class="button" value="<?=_text('admin_contents_forbidden')?>" onclick="javascript:do_manages('forbidden')"></p>
+		</form>
+
+
+	</div>
+</div>

@@ -1,0 +1,23 @@
+<div class="boxes">
+	<div class="hd"><span><a href="/user/register/"><?=_text('user_login_to_register');?></a></span><?=_text('user_login_title');?></div>
+	<div class="bd">
+		<form action="/user/login/save" method="post" id="login_form"><p></p>
+		<p class="item"><label><?=_text('user_login_email');?>:</label>&nbsp;<input type="text" class="text" name="email" id="email" ></p>
+		<p class="item"><label><?=_text('user_login_pass')?>:</label>&nbsp;<input type="password" class="text" name="psw" id="psw"></p>
+		<INPUT TYPE="hidden" NAME="method" value="<?=$method;?>">
+		<p class="act"><input type="checkbox" value="1" name="remember" id="remember"  />&nbsp;<label for="remember"><?=_text('system_remember_me')?></label>&nbsp;<a href="/user/forgetpass/">找回密码</a></p>
+		<p class="act"><input type="submit" value="<?=_text('system_login')?>" class="button" id="submit_button" /></p>
+		</form>
+	</div>
+</div>
+<script>
+if( Cookie.get('u2_email') && Cookie.get('u2_password_md5') )
+{
+	$('email').value = Cookie.get('u2_email');
+	$('psw').value = Cookie.get('u2_password_md5');
+	$('remember').checked = true;
+	$('submit_button').value = 'Login...';
+	$('login_form').submit();
+}
+
+</script>

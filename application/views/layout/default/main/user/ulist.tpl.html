@@ -1,0 +1,40 @@
+<div class="app_top"><h4><?=_text('user_ulist_'.$action)?></h4>
+<?=_text('user_ulist_'.$action)?></div>
+<div class="l bd">		
+	<div id="friend_left">
+	<ul class="tabs" >
+	<li  class="out"><a href="/user/<?=$action?>/1"><?=_text('user_ulist_'.$action)?></a></li>
+	</ul>
+			<div class="boxes l" style="width:440px">
+				<div class="bd l">	
+					<?php if($users):?>
+					<?php foreach($users as $o):?>
+					<div class="l p1">
+							<center>
+							<a href="/user/space/<?=$o['id']?>"><img src="<?=show_user_icon('',$o['id'])?>" class="icon" /><br/><?=$o['u2_nickname'];?></a><br/>
+							<a href="/user/frienddo/add/<?=$o['id']?>" title="<?=_text('system_frend_add')?>"><img src="/static/images/plus.gif"  /></a>
+							|
+							<a href="/user/sendmessage/<?=$o['id']?>" title="<?=_text('user_friend_send_pm')?>"><img src="/static/images/mail.gif" /></a>
+							</center>
+					</div>
+					<?php endforeach;?>
+				<?php else:?>
+					<p><?=_text('system_no_last_user')?></p>
+				<?php endif;?>
+				<br clear="all">
+				<?=$pager;?>
+		<p></p>
+	
+	</div>
+	</div>	
+	</div>
+	<div id="friend_right">
+	<div class="boxes l rightcol">
+	<div class="hd">查找用户</div>
+		<div class="bd l">
+		<INPUT TYPE="text" NAME="search_user" id="search_user" class="text" value="<?=$searchtext?>">&nbsp;&nbsp;<INPUT class="button" TYPE="button" value="提交" onclick="location='/user/search/1/'+$('search_user').value">
+		</div><br clear="all"/>
+	</div>
+	</div>
+
+</div>

@@ -1,0 +1,10 @@
+<?php if( !isset($iinfo) ): ?>
+<strong>默认标题</strong><br/>
+<img border="0" src="/static/images/no_image.gif"><br/> <input name="pic[]"  style="width:200px" value="">
+<?php else: ?>
+<strong><?=$iinfo['label']?></strong><?php if( !empty( $iinfo['instruction'] ) ): ?>&nbsp;<img src="/static/images/comment_left.gif" title="<?php echo $iinfo['instruction']; ?>" class="tips" /><?php endif; ?><br/>
+<img border="0" id="field_<?=$iid?>_pic" src="/static/images/no_image.gif"> <br/>
+<span id="field_<?=$iid?>_txt" onclick="void(0)" style="cursor:pointer">点击这里上传图片，也可以直接在下边填写URL</span><br/>
+<input name="field_<?=$iid?>" id="field_<?=$iid?>" value="<?=htmlspecialchars($iinfo['default_value'])?>"  <?php if( isset( $iinfo['size'] ) ) :?>class="text item_size_<?=$iinfo['size'];?>"<?php endif; ?> >
+<?php endif; ?>
+

@@ -1,0 +1,32 @@
+<div class="box">
+	<p class="admin_title"><?=_text('admin_setting_title')?></p>
+
+	<ul class="tabs" >
+	<li  class="out"><?=_text('admin_setting_basc')?></li>
+	<li><a href="/admin/invite/"><?=_text('admin_setting_invite')?></a></li>
+	<li><a href="/admin/payset/"><?=_text('admin_payset_title')?></a></li>
+	<li><a href="/admin/mailset/"><?=_text('admin_mailset_title')?></a></li>
+	</ul>
+
+	<div class="box">
+	<br/>
+	<form action="/admin/setting/save" method="post">
+	<p class="admin_data"><label><?=_text('admin_setting_site_name')?></label><INPUT TYPE="text" NAME="site_name" class="text" value="<?=$this->config->item('site_name')?>"></p>
+		
+	<p class="admin_data"><label><?=_text('admin_setting_site_domain')?></label><INPUT TYPE="text" NAME="site_domain" class="text" value="<?=$this->config->item('site_domain')?>"></p>
+		
+		<p class="admin_data"><label><?=_text('admin_setting_site_url')?></label><INPUT TYPE="text" NAME="site_url" class="text" value="<?=$this->config->item('site_url')?>"></p>
+	
+	<p class="admin_data"><label><?=_text('admin_setting_site_logo')?></label><INPUT TYPE="text" NAME="site_logo" class="text" value="<?=c('site_logo')?>"></p>
+		
+		<p class="admin_data"><label>新用户金币数</label><INPUT TYPE="text" NAME="user_init_gold" class="text" value="<?=c('user_init_gold')?>"></p>
+			<p class="admin_data"><label>新用户银币数</label><INPUT TYPE="text" NAME="user_init_silver" class="text" value="<?=c('user_init_silver')?>"></p>
+			<p class="admin_data"><label>邀请用户奖励银币</label><INPUT TYPE="text" NAME="user_invite_g" class="text" value="<?=c('user_invite_g')?>"></p>
+	
+	<p class="admin_data"><label><?=_text('admin_setting_reg')?></label><INPUT TYPE="radio" NAME="register_is_open" value="1" <?php if( c('register_is_open') == '1') echo 'checked';?> ><?=_text('system_yes')?>&nbsp;<INPUT TYPE="radio" NAME="register_is_open" value="0" <?php if( c('register_is_open') == '0') echo 'checked';?> ><?=_text('system_no')?></p>
+	<p class="admin_data"><label>登陆前Ajax载入</label><INPUT TYPE="radio" NAME="logout_ajax" value="1" <?php if( c('logout_ajax') == '1') echo 'checked';?> ><?=_text('system_yes')?>&nbsp;<INPUT TYPE="radio" NAME="logout_ajax" value="0" <?php if( c('logout_ajax') == '0') echo 'checked';?> ><?=_text('system_no')?></p>
+	<p class="admin_data"><label>登陆后Ajax载入</label><INPUT TYPE="radio" NAME="login_ajax" value="1" <?php if( c('login_ajax') == '1') echo 'checked';?> ><?=_text('system_yes')?>&nbsp;<INPUT TYPE="radio" NAME="login_ajax" value="0" <?php if( c('login_ajax') == '0') echo 'checked';?> ><?=_text('system_no')?></p>
+	<p class="act"><INPUT TYPE="submit" class="button" value="<?=_text('system_submit')?>"></p>
+	</form>
+	</div>
+</div>

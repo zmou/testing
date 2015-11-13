@@ -1,0 +1,115 @@
+<div class="app_top"><h4>悦读管理</h4>
+<div>Feed管理</div></div>
+<!-- 标题 -->
+<div class="l">
+	<div id="pm_left">
+		<div class="tabs">
+		<?php if( $view == 'add' ):?>
+			<li><a href="/app/native/<?=$GLOBALS['app']?>/feed/">Feed列表</a></li>
+			<li class="out"><a href="/app/native/<?=$GLOBALS['app']?>/feed/add">Feed添加</a></li>
+		<?php else:?>
+			<li class="out"><a href="/app/native/<?=$GLOBALS['app']?>/feed/">Feed列表</a></li>
+			<li><a href="/app/native/<?=$GLOBALS['app']?>/feed/add">Feed添加</a></li>
+			<li class="link"><a href="javascript:f_refresh(0)">
+			<img src="/static/images/arrow_collapse.gif">现在更新</a></li>
+			<li class="link"><a href="/app/native/<?=$GLOBALS['app']?>/item">文章管理</a></li>
+		<?php endif;?>
+		</div>
+		<?php if( isset( $view ) && $view == 'add' ):?>
+		<!-- add -->
+			<div class="feed_add">
+			<form action="/app/native/<?=$GLOBALS['app']?>/feed_add" method="post">
+			<INPUT TYPE="text" NAME="fblog" style="width:200px" value="http://" class="text">
+			<INPUT TYPE="submit" class="button" value="添加Feed">
+			</form>
+			</div>
+		<?php else:?>
+		<!-- 列表 -->
+			<?php if( $list ):?>
+				<div class="feed_list_rim">
+				<?php foreach( $list as $k => $line ):?>	
+					<div id="feed-<?=$line['id']?>" class="feeds feed_rim">
+					<div class="item_pass_all">
+					<span id="feed-text-<?=$line['id']?>" align="left"></span>
+					<a href="/app/native/<?=$GLOBALS['app']?>/feed_remove/<?=$line['id']?>"><img src="/static/images/cross.gif"></a>
+					</div>
+					<?php if( !isset( $tnum ) || $tnum < 1 ):?>
+						<?php if( in_array( $line['tid'] , $tits ) ):?>
+						<a href="/app/native/<?=$GLOBALS['app']?>/feed/<?=$line['tid']?>">[ <?=$fselect[$line['tid']]?> ]</a>&nbsp;
+						<?php else:?>
+						<a href="#">[ 未分类 ]</a>&nbsp;
+						<?php endif;?>
+					<?php endif;?>
+					<!-- 强制图片引用 -->
+					<span id="feed_<?=$line['id'];?>">
+					<?php if( isset($snap[$line['id']]) ):?>
+					<img src="/static/images/plus.gif" alt="强制图片引用已开启" onclick="Change_img( <?=$line['id'];?> )"  class="mouse_img">		
+					<?php else:?>
+					<img src="/static/images/minus.gif" alt="强制图片引用已关闭" onclick="Change_img( <?=$line['id'];?> )" class="mouse_img">
+					<?php endif;?>
+					</span>
+					<a href="<?=$line['feed']?>" target="_black" title="<?=$line['feed']?>"><?=$line['title'];?></a>
+					<!-- <a href=""><img src="/static/images/star.gif" alt=""></a> -->
+					<!-- <a href=""><img src="/static/images/image.gif" alt=""></a> -->
+					<a href="/app/native/<?=$GLOBALS['app']?>/feed_modify/<?=$line['id']?>"><img src="/static/images/document.gif" alt="修改Feed"></a>
+					</div>
+				<?php endforeach;?>
+				</div>
+			<?php else:?>
+				<div class="no_contents" align="center">暂无内容</div>
+			<?php endif;?>
+		<?php endif;?>
+		
+		
+		<?php if( $waiting && $view != 'add' ):?>
+		<div class="tline need_pass_feed">
+			<div class="sides_hd lists"><h4>待处理的Feed</h4></div>
+			<?php if( isset($content) && !empty($content) ):?>
+				<?php foreach( $content as $k => $line ):?>
+				<div class="need_pass_feed_list">
+
+				<!-- 通过 -->
+				<div class="item_pass_all"><a href="/app/native/<?=$GLOBALS['app']?>/feed_add/<?=$line['id']?>"><img src="/static/images/plus.gif"></a></div>
+
+				<!-- Feed地址 -->
+				<div class="need_feed">
+				<a href="<?=$line['feed'];?>" target="_black" title="<?=$line['feed']?>">
+				<?php echo str_replace( 'http://' , '' , $line['feed']);?></a>
+				</div>
+
+				<!-- 时间 -->
+				<div class="need_feed">
+				<img src="/static/images/clock.gif">&nbsp;<?php echo $times[$line['id']];?>
+				</div>
+
+				<!-- 用户 -->
+				<div class="item_pass_all">
+				<img src="/static/images/person.gif"><a href="/user/space/<?=$line['uid']?>"><?php echo $unames[$line['uid']]['u2_nickname'];?></a>
+				</div>
+			
+				<!-- 删除 -->
+				<div style="float:left">
+				<a href="/app/native/<?=$GLOBALS['app']?>/waiting_del/<?=$line['id']?>"><img src="/static/images/cross.gif"></a>
+				</div>
+
+				</div>
+				<?php endforeach;?>
+			<?php else:?>
+				<div align="center" style="margin-top:20px">暂无需要处理的Feed</div>
+			<?php endif;?>
+		</div>
+		<?php endif;?>
+	</div>
+
+	<div id="pm_right">
+	<div class="sides_hd"><h4>全部分类</h4></div>
+	<?php foreach( $fselect as $k => $line):?>
+	<div class="title_right">
+	<a href="/app/native/<?=$GLOBALS['app']?>/feed/<?=$k;?>"><?=$line;?></a>
+	<a href="/app/native/<?=$GLOBALS['app']?>/type_modify/<?=$k?>"><img src="/static/images/document.gif" alt="修改分类"></a>
+	<a href="#" onclick="if( confirm( '确定删除此条分类?' ) == true ){ window.location='/app/native/<?=$GLOBALS['app']?>/type_remove/<?=$k?>' }"><img src="/static/images/cross.gif" alt="删除分类"></a></div>
+	<?php endforeach;?>
+	<br/>
+	<a href="/app/native/<?=$GLOBALS['app']?>/type_add/"><img src="/static/images/plus.gif">&nbsp;添加新分类</a>
+	</div>
+</div>

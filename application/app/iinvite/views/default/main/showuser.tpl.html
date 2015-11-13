@@ -1,0 +1,32 @@
+<div class="app_top"><h4>邀请好友</h4>
+邀请好友	
+</div>
+<div class="l">
+	<div id="pm_left">
+		<div class="tabs">
+			<?php foreach( $tab_array  as $key=>$tab ) : ?>
+			<?php if( $tab_type == $key ): ?>
+			<li class="out"><a href="/app/native/<?=$GLOBALS['app']?>/<?php echo $key; ?>"><?php echo $tab; ?></a></li>
+			<?php else: ?>
+			<li ><a href="/app/native/<?=$GLOBALS['app']?>/<?php echo $key; ?>"><?php echo $tab; ?></a></li>
+			<?php endif; ?>		
+			<?php endforeach; ?>	
+
+		</div>
+		<div class="p2">
+			<br/>你有以下好友已经加入<?=c('site_name');?><br/><br/>
+			<form action="/app/native/iinvite/addfriends" method="post">
+			<?php foreach($user as $v ):?>
+			<p><INPUT TYPE="checkbox" NAME="uids[]" <?php if( $v['is_friend'] ) echo 'disabled';?>  value="<?=$v['id']?>" checked />&nbsp;&nbsp;<img src="<?=show_user_icon('small',$v['id']);?>">&nbsp;&nbsp;<a href="/user/space/<?php echo $v['id'] ?>"><span class="nickname"><?=$v['u2_nickname'];?></span></a></p>
+			<?php endforeach;?>
+			<br/>
+			<p class="act"><INPUT TYPE="submit" class="button" value="加为好友">&nbsp;&nbsp;&nbsp;&nbsp;<INPUT TYPE="button" class="button" value="下一步" onclick="location='/app/native/iinvite/showmail'"></p>
+			</form>
+		</div>		
+	</div>
+	<div id="pm_right">
+	<?php @include_once( dirname( __FILE__ ) . '/public.tpl.html' ); ?>
+	</div>
+
+</div>
+		

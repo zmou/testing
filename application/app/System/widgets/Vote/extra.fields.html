@@ -1,0 +1,68 @@
+<script language="javascript">
+
+var vote = 0;
+function additem(id)
+{
+   var row,cell,str;
+   row = document.getElementById(id).insertRow(-1);
+   if(row != null )
+   {
+		x = row.insertCell(0);
+		y = row.insertCell(1);
+		x.align = 'left';
+		x.width = '77';
+		y.align = 'left';
+		y.width = '300';
+		x.innerHTML ='选项:';
+		y.innerHTML ="&nbsp;&nbsp;&nbsp;<input type=\"text\" class=\"text\" name=\"vote[" + vote + "]\" ><a href=\"#\" onclick=\'deleteitem(this);\'>删除</a>";
+		document.getElementsByName("totalNumber")[0].value = vote++;
+   }
+}
+
+function deleteitem(obj)
+{
+   var curRow = obj.parentNode.parentNode;
+   $('tb').deleteRow(curRow.rowIndex);
+   document.getElementsByName("totalNumber")[0].value = eval(document.getElementsByName("totalNumber")[0].value) - 1;
+}
+
+</script>
+<center>
+<table border="0" cellspacing="0" cellpadding="0" width="400px">
+<tr>
+<td align="left" width="100px">
+<label>&nbsp;标题:</label>
+</td><td align="left">
+<label><INPUT TYPE="text" NAME="title" class="text" value="<? if( isset($title)){ echo $title; } ?>"></label><br clear="all"/>
+</td></tr>
+<tr><td align="left">
+<label>&nbsp;选项题目:</label>
+</td><td align="left">
+<label><INPUT TYPE="text" NAME="vote_name" class="text" value="<? if( isset($vote_name)){ echo $vote_name; } ?>"></label><br clear="all"/>
+</td></tr>
+<tr>
+<td colspan="2" align="center">
+<table id="tb" cellspacing="0" cellpadding="0" border="0"  width="400px" align="center">
+<?php if( isset($vote) ):?>
+<?php foreach( $vote as $k => $v ):?>
+<tr>
+<td width="77px" align="left">选项:</td>
+<td align="left" width="300">&nbsp;&nbsp;&nbsp;<input type="text" class="text" value="<?=$v?>" name="vote[<?=$k+1;?>]" ><a href="#" onclick='deleteitem(this);'>删除</a></td>
+</tr>	
+<?php endforeach;?>
+<?php endif;?>
+</table>
+<input type="hidden" name="totalNumber" value=""></td></tr>
+<tr><td align="left">
+<label>&nbsp;类型:</label>
+</td><td align="left">
+
+单选<INPUT TYPE="radio" NAME="dan" value="1" class="text" <? if( isset($types) && $types == "1" ){ echo "checked"; } ?> >
+多选<INPUT TYPE="radio" NAME="dan" value="2" class="text" <? if( isset($types) && $types == "2" ){ echo "checked"; } ?> >
+<br clear="all"/>
+</td></tr>
+<tr><td colspan="2" align="center">
+<label><a href="#" onClick='additem("tb")'>增加选项</a></label>
+</td></tr>
+</table>
+</center>

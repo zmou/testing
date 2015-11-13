@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+<head>
+<title> {title} </title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="StyleSheet" href="style.css" type="text/css" />
+<style type="text/css">
+</style>
+</head>
+<body>
+<div id="bodyWrap">
+	<div class="pageWrapper">
+		<div id="header">
+			<div id="logo">
+				<h1>Logo &trade;</h1>
+			</div>
+			<div id="heading">
+				<div class="head"></div>
+				<div class="top">
+					<a href="index.html">首页</a>
+					<a href="article.html">文章</a>
+					<a href="faq.html">FAQ</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="pageWrapper" id="main">
+
+		<div id="mainOuter">
+			<div id="mainInner">
+				<div class="left">
+					<div class="titleSide">
+						关于本站
+					</div>
+					<div style="padding:5px;padding-bottom:10px;padding-top:0px;padding-left:20px;">
+					{about}
+					</div>
+
+					<div class="titleSide">
+						栏目分类
+					</div>
+					
+					<ul>
+						{cates}
+						<li><a href="keyword_{id}.html">{keyword}</a></li>
+						{/cates}
+						
+					</ul>
+					<div class="titleSide">
+						FAQ
+					</div>
+					<ul>
+						{faq}<li><a href="faq.html#faq-{fid}" target="_blank">{ftitle}</a></li>{/faq}
+					</ul>
+					
+					<div class="titleSide">
+						友情链接
+					</div>
+					<ul>
+						<li><a href="http://seowords.cn" target="_blank">SeoWords.cn</a></li>
+						<li><a href="http://seowords.cn" target="_blank">Your place!</a></li>
+					</ul>
+
+					
+				</div>
+				<div class="right">
+				</div>
+				<div class="content">
+					<div class="titleMain">
+						<a href="index.html">首页</a> &gt;
+						<a href="article.html">文章</a> &gt; {wtitle}
+					</div>
+					<h1>{wtitle}</h1>
+					<h3>{time}</h3>
+					<div style="padding:20px;line-height:150%">
+					{wcontent}
+					<p style="color:gray">文章整理自互联网，如有任何版权问题，请及时和站长联系</p>
+					</div>
+					<br/>
+				</div>
+				<div class="clear mozclear"></div>
+			</div>
+		</div>
+		<div class="hide" id="nsFooterClear"><!-- for NS4's sake --></div>
+		<div id="footer" class="gap">
+			&nbsp;Design &copy; 2005, <a href="http://virtualfunction.net/" title="Virtual Function: specialists in Web Design, Ruby on Rails programming, Database development, and bespoke solutions">Virtual Function Web Development</a> &nbsp;&nbsp; {tongji}
+		</div>
+	</div>
+</div>
+</body>
+</html>

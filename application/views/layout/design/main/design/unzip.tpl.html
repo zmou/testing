@@ -1,0 +1,27 @@
+<SCRIPT LANGUAGE="JavaScript">
+function confirm_update_sql()
+{
+	if(!confirm('确认更新数据库信息?') )
+	{
+		return;
+	}
+	location = '/design/upsql/<?=$id;?>';
+}
+</SCRIPT>
+<div class="boxes">
+<div class="hd">更新组件代码</div>
+<div class="bd">
+<br/>
+<img src="/static/images/tick.gif" /><?php if(  !$update && !$installed ):?>组件代码已更新 || <a href="/admin/applist">管理插件</a>
+<?php elseif( !$update && $installed ):?>
+组件代码已更新 || 您可以更新<a href="/admin/app_settings/<?=$folder;?>">组件设置</a> 或者<a href="/app/native/<?=$folder;?>">访问应用</a>
+<?php else:?>
+更新代码成功,插件已安装 请更新数据库代码<br/>
+<br/>
+&nbsp;&nbsp;<span class="install_red">注意:请备份数据表 "app_content_<?=$id?>之后再进行更新</span>
+<br/><br/>
+<input type="button" class="button" onclick="confirm_update_sql();" value=" 更新数据库结构 >>">
+<?php endif;?>
+</form>
+</div>
+</div>

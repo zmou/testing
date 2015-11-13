@@ -1,0 +1,39 @@
+<div class="app_top"><h4>站内消息</h4>
+查看私信,交友请求和系统通知的地方	
+</div>
+<div class="l">
+<div id="pm_left">
+		<ul class="tabs" >
+			<li><a href="/user/message/inbox"><?=_text('user_message_inbox')?><?php if( $pm = get_unread_pm() > 0 ){ echo "($pm)"; }?></a></li>
+			<li><a href="/user/message/sendbox"><?=_text('user_message_sendbox')?></a></li>
+			<li class="out"><?=_text('user_notifications_title')?><?php if( ($count = get_unread_notice()) > 0 ){ echo "($count)"; }?></li>
+			<li><a href="/user/friendrequest"><?=_text('user_friendrequest_title')?><?php if( ($request = get_unread_request()) > 0 ){ echo "($request)"; }?></a></li>
+		</ul>
+		<div class="p2">
+		<?php if( isset( $notice[0] ) ): ?>
+		<p>最近的通知</p>
+		<?php foreach( $notice as $n):?>
+		<?php $key = $n['u2_is_read'] == '0'?'item':'old'; ?>
+		<div class="notice_<?=$key;?>" >
+		
+		<img src="/static/icon/<?=$n['u2_app_aid']?>.gif" />&nbsp;<?=$n['u2_notice_title']?>&nbsp;<?=related_time($n['u2_time']);?><br clear="all"/>
+		<?php if( $n['u2_notice_content'] != '' ): ?>
+		<div class="notice_item_content"><?=$n['u2_notice_content'];?></div>
+		<?php endif; ?>	
+		</div>	
+		<?php endforeach;?>	
+		<br clear="all"/>
+		<?=$pager;?>
+		<?php else: ?>
+				<br/><p><strong>没有通知</strong></p>
+		<?php endif; ?>		
+		</div>	
+			
+</div>		
+
+<div id="pm_right">
+<?php @include( dirname(__FILE__) .'/message_public_block.tpl.html' ); ?>
+</div>
+</div>
+
+

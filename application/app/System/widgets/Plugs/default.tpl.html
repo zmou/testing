@@ -1,0 +1,92 @@
+<div class="boxes">
+	<div class="hd"><!--{tool bar}--><?=$title;?>
+	<?php if( is_admin() ):?>
+	<a href="/plugs/add/"><img src="/static/images/plus.gif" alt="添加组件"></a><?php endif;?>
+	</div>
+	<div>
+	<?php if( isset( $apps ) && !empty( $apps ) ):?>
+		<?php foreach( $apps as $k => $line ):?>
+		<div class="plugs_item_rim">
+			<div class="plugs_item_right_rim">
+					<span class="r plugs_install_button">
+					<?php if( isset( $is_login ) && isset($domain) ):?>
+					<input type="button" value="立即安装" class="button" onclick="window.open('http://<?=$domain;?>/admin/plugs/<?=$line['id']?>')">
+					<?php else:?>
+					<input type="button" value="立即安装" class="button" disabled />
+					<?php endif;?>
+					</span>
+					<div class="plugs_name"><a href="#"><b><?=$line['name']?></b></a>
+					<?php if( $line['big_pic'] != '' ):?>
+					[<a href="<?=$line['big_pic']?>" target="_blank">预览</a>]
+					<?php endif;?>
+					<?php if( is_admin() ):?>
+					[<a href="/plugs/modify/<?=$line['id']?>">编辑</a>]
+					[<a href="#" onclick="if( confirm('确定删除么?')==true ){ window.location='/plugs/del/<?=$line['id']?>'; }">删除</a>]
+					[<a href="/plugs/widgets_add/<?=$line['id']?>">添加微件</a>]
+					<?php endif;?>
+					</div>
+					<div class="plugs_developer"><strong>作者</strong>:
+					<?php if( $line['deve_type'] == '1' ):?>
+						<?php if( $line['link'] != '' ):?>
+						<a href="<?=$line['link'];?>" target="_black">
+						<?php if( $line['developer'] == '' ):?>
+						<?=$names[$line['uid']]['u2_nickname'];?>
+						<?php else:?>
+						<?=$line['developer'];?>
+						<?php endif;?>
+						</a>
+						<?php else:?>
+						<a href="/user/space/<?=$line['uid'];?>" target="_black">
+						<?php if( $line['developer'] == '' ):?>
+						<?=$names[$line['uid']]['u2_nickname'];?>
+						<?php else:?>
+						<?=$line['developer'];?>
+						<?php endif;?>
+						</a>
+						<?php endif;?>
+					<?php else:?>
+					<a href="#">easysns</a>
+					<?php endif;?>
+					</div>
+					<?php if( $line['money'] > 0 ):?>
+					<div class="plugs_developer"><strong>价格</strong>:&nbsp;<?=$line['money']?></div>
+					<?php endif;?>
+					<div class="plugs_developer"><?=$line['desp'];?></div>
+				<div class="plugs_widgets_big_rim">
+				<?php if( isset($wids) ):?>
+					<?php $i=0;?>
+					<?php foreach( $wids as $k => $list ):?>
+					<?php if( $i < $lines ):?>
+						<?php if( $list['mid'] == $line['id'] ):?>
+						<div class="plugs_widgets_rim" align="center">
+						<a href="/plugs/index/<?=$line['id']?>">
+						<img src="/static/images/plugs/icon.png" class="icon">
+						<br/><?=$list['name']?></a>
+						</div>
+						<?php $i++;?>
+						<?php endif;?>
+					<?php endif;?>
+					<?php endforeach;?>
+					<div class="plugs_widgets_more">
+					<?php if( $line['has_widget'] > $lines ):?>
+					 <a href="/plugs/index/<?=$line['id']?>"><img src="/static/images/arrow_collapse.gif" />&nbsp;更多</a>
+					<?php endif;?>
+					</div>				
+				<?php endif;?>
+					<div style="padding-top:34px;float:right;margin-right:5px">
+					更新时间:<?=$line['time'];?>
+					</div>	
+				</div>			
+			</div>
+			<div class="plugs_left_img" style="margin:5px 2px"><?php if( $line['pic'] ):?><img src="<?=$line['pic'];?>" width="110px" class="icon"><?php else:?><img src="/static/images/plugs/default.png" class="icon"><?php endif;?>
+			</div>
+		</div>
+		<?php endforeach;?>
+		<br clear="all"/>
+		<center><?=$pager;?></center>
+	<?php else:?>
+	暂无组件
+	<?php endif;?>
+	</div>
+	<br clear="all"/>
+</div> 

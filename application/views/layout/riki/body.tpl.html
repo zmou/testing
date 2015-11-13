@@ -1,0 +1,153 @@
+<div id="doc4" class="yui-t7" >
+	<div id="hd">
+		<!--header-->
+		<?php require(  APPPATH.'views/layout/default/header.tpl.html' ); ?>
+		<ul class="tabs" >
+		<?=pages_tabs($tag);?>
+		<?php if( is_admin() ):?>
+	
+		
+			<?php if($is_system):?>
+				<li class="link"><a href="javascript:void(0)" onclick="add_new_mod()" id="u2_add_mod"><img src="/static/images/plugin.gif">&nbsp;<?=_text('riki_add_mod');?></a></li>
+			<li class="link"><a href="javascript:void(0)" onclick="initialize_page(<?=$pid;?>)"><img src="/static/images/document.gif">&nbsp;<?=_text('system_initialize_page');?></a></li>
+			<?php else:?>
+			<li class="link"><a href="javascript:void(0)" onclick="add_page()"><img src="/static/images/plus.gif">&nbsp;<?=_text('riki_add_page');?></a></li>
+			<li class="link"><a href="javascript:void(0)" onclick="add_new_mod()" id="u2_add_mod"><img src="/static/images/plugin.gif">&nbsp;<?=_text('riki_add_mod');?></a></li>
+			<li class="link"><a href="javascript:void(0)" onclick="modify_page('<?=_Page('type')?>','<?=_Page('layout')?>','<?=_Page('cid')?>','<?=_Page('pid')?>')">
+			<img src="/static/images/document.gif">&nbsp;<?=_text('riki_modify_page');?></a></li>
+			<?php endif;?>
+			
+		<?php endif;?>
+		</ul>
+	</div><div style="margin-bottom:10px"></div>
+
+	<?php if( is_admin() ):?>
+	<div id="div-newPage" style="display:none;padding:10px" >
+		<div class="newMod_title"><span class="newMod_close"><a href="javascript:void(0)" onclick="close_new_page()"><img src="/static/images/cross.gif"/></a></span><img src="/static/images/movearrow.gif" class="imove" id="imove" style="cursor:pointer">&nbsp;<?=_text('riki_update_page');?>
+		</div>
+		<div id="page_list">
+			
+			<div class="left">
+				
+			<?=_text('riki_page_layout')?>
+			<table>
+			<tr>
+			<td valign="top">
+				<div id="page_layout_left">
+					<img src="/static/images/div-2.gif">
+				</div>
+				<center>当前布局</center>
+			</td>
+			<td valign="top">
+					<div id="page_layout_right" style="padding-top:8px">
+						<div class="layout_set_right">
+						<a href="javascript:void(0)" onclick="set_layout('2')">
+						<img src="/static/images/div-2_s.gif"></a>
+						</div>
+						<div class="layout_set_right">
+						<a href="javascript:void(0)" onclick="set_layout('2-1')">
+						<img src="/static/images/div-2-1_s.gif"></a>
+						</div>
+						<div class="layout_set_right">
+						<a href="javascript:void(0)" onclick="set_layout('3')">
+						<img src="/static/images/div-3_s.gif"></a>
+						</div>
+					</div>	
+			</td>	
+			</tr>		
+			</table>	
+			
+			
+			</div>
+			<div class="right">
+			<p><?=_text('riki_page_type')?></p>
+			<p></p>
+			<form action="/riki/page_action/<?=$pid;?>" method="post">
+			<span onclick="add_page_input('','');void(0);">
+			<INPUT TYPE="radio" NAME="page_type"  id="page_type" value="1" checked >&nbsp;<?=_text('riki_page_type_index')?>&nbsp;<INPUT TYPE="radio" NAME="page_type" value="2" >&nbsp;<?=_text('riki_page_type_cate')?>&nbsp;<INPUT TYPE="radio" NAME="page_type" value="3" >&nbsp;<?=_text('riki_page_type_display')?>&nbsp;<INPUT TYPE="radio" NAME="page_type" value="4" >&nbsp;<?=_text('riki_page_type_link')?>
+			</span>
+			<p></p>
+			<p class="item"><?=_text('riki_page_type_title')?>&nbsp;&nbsp;&nbsp;&nbsp;<INPUT TYPE="text" id="page_title" NAME="page_title" class="text"  id="page_title"  onkeydown="check_page_input();void(0);"></p>
+			<p></p>
+			<div id="page_extra_data"></div>
+			<p></p>
+			<p class="act"><INPUT TYPE="submit" id="page_submit" class="button" value="<?=_text('system_submit')?>" disabled>&nbsp;&nbsp;<INPUT TYPE="button" class="button" value="<?=_text('system_cancel');?>" onclick="close_new_page()"></p>
+			<INPUT TYPE="hidden" NAME="page_layout" id="page_layout" value="2">
+			<INPUT TYPE="hidden" NAME="page_action" id="page_action" value="">
+			</form>
+			</div>
+		</div>
+	</div>
+
+	<div id="div-newMod" style="display:none;padding:10px" >
+		<div class="newMod_title"><span class="newMod_close"><a href="javascript:void(0)" onclick="javascript:close_new_mod()"><img src="/static/images/cross.gif"/></a></span><?=_text('riki_add_mod');?>
+		</div>
+		<div id="mod_list"></div>
+	</div>
+	
+	<script>new Drag.Move('div-newPage', { 'handle': $('imove')});</script>
+	<?php endif;?>
+
+
+	<div id="bd" class="riki_body">
+		<!--main & side-->
+		<div id="ucontainer">
+				<div id="ulist">	
+
+					<?php if($GLOBALS['Page_info']['layout'] == '2'):?>
+
+					<ul class="uitem" style="width:227px;">
+						<?php format_widget_row(0,$widgets);?>
+					</ul>
+				
+					<ul class="uitem" style="width:640px;">
+						<?php format_widget_row(1,$widgets);?>
+					</ul>
+					<br clear="all">
+					<?php elseif($GLOBALS['Page_info']['layout'] == '2-1'):?>
+		
+					<ul class="uitem" style="width:640px;">
+						<?php format_widget_row(0,$widgets);?>
+					</ul>
+				
+					<ul class="uitem" style="width:227px;">
+						<?php format_widget_row(1,$widgets);?>
+					</ul>
+					<br clear="all">
+
+					<?php elseif($GLOBALS['Page_info']['layout'] == '3'):?>
+
+					<ul class="uitem" style="width:280px;">
+					<?php format_widget_row(0,$widgets);?>
+					</ul>
+				
+					<ul class="uitem" style="width:280px;">
+						<?php format_widget_row(1,$widgets);?>
+					</ul>
+
+					<ul class="uitem" style="width:280px;">
+						<?php format_widget_row(2,$widgets);?>
+					</ul>
+
+					<br clear="all">
+					<?php endif;?>
+
+				</div>
+				
+				
+					
+
+		</div>
+				
+		
+	</div>
+	<div id="fd">
+	  	<!--footer-->
+		<?php 	require(  APPPATH.'views/layout/default/footer.tpl.html' ); ?>			
+	</div>
+</div>	
+<?php if( $GLOBALS['auto_drag'] ):?>
+<SCRIPT LANGUAGE="JavaScript">
+auto_drag();
+</SCRIPT>
+<?php endif;?>

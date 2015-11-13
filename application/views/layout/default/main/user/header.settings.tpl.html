@@ -1,0 +1,11 @@
+<div class="app_top"><h4>我的设定</h4>
+添加和更新你的个人信息,设置你的个人偏好	
+</div>
+<?php $header = array( 'setting' , 'uploadpic' , 'resetpass' ); ?>
+<ul class="tabs" >
+	<?php foreach( $header as $h ): ?>
+	<?php if( method() == $h ): ?><li  class="out"><?=_text('user_' . $h . '_title')?></li><?php else: ?>
+	<li><a href="/user/<?=$h?>"><?=_text('user_' . $h . '_title')?></a></li>
+	<?php endif; ?>	
+	<?php endforeach; ?>
+</ul>

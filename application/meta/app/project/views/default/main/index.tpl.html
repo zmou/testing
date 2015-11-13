@@ -1,0 +1,70 @@
+<div class="app_top"><h4><?=app_config('model_name')?></h4><div><?=app_config('model_subtitle');?></div></div>
+<div class="tabs">
+<?php foreach( $index_title as $k => $titles ):?>
+<?php if( $index_order == $k ): ?>
+<li class="out"><a href="/app/native/<?=$GLOBALS['app']?>/index/<?php echo $k; ?>"><?php echo $titles; ?></a></li>
+<?php else: ?>
+<li ><a href="/app/native/<?=$GLOBALS['app']?>/index/<?php echo $k; ?>"><?php echo $titles; ?></a></li>
+<?php endif; ?>	
+<?php endforeach;?>
+<?php if( level_check( app_config('add_level') ) ):?>
+<li class="link"><a href="/app/native/<?=$GLOBALS['app']?>/add/">发布<?=app_config('model_name')?></a></li>
+<?php endif;?>
+<li class="link"><a href="/app/native/<?=$GLOBALS['app']?>/search/">搜索<?=app_config('model_name')?></a></li>
+</div>
+<?php if( $bind['pic'] == 'extra' ):?>
+<?php foreach( $list_top as $k => $v ):?>
+<div align="left" class="image_no_pic gline" style="padding:10px;line-height:20px">
+<a href="/app/native/<?=$GLOBALS['app']?>/display/<?=$v['id'];?>"><?=$v['title'];?></a><br/>
+<?=short_content( $v['desp'] , 250 , '<a href="/app/native/'.$GLOBALS['app'].'/com_display/">  继续阅读</a>' )?>
+</div>
+<?php endforeach;?>
+<?php else:?>
+
+<?php foreach( $list_top as $k => $v ):?>
+<div class="item_pic" align="center" style="margin-top:15px">
+<a href="/app/native/<?=$GLOBALS['app']?>/display/<?=$v['id'];?>">
+<img src="/upload/snap/<?=$GLOBALS['app']?>/<?=base64_encode($v['pic']);?>" class="icon" <?=$pic_style?> /></a><br/>
+<a href="/app/native/<?=$GLOBALS['app']?>/display/<?=$v['id'];?>"><?=$v['title'];?></a>
+</div>
+<?php endforeach;?>
+<br clear="all"/>
+<?php endif;?>
+<div class="l" style="width:100%;">
+	<div id="pm_left" style="width:100%; margin-top:10px; margin-right:10px;">
+		<div class="sides_hd"><h4>最新评论</h4></div>
+		<?php foreach( $coms as $k => $line):?>
+		<table border="0" cellspacing="0" cellpadding="0" width="100%" class="top_gline">
+		<tr>
+		<td width="10%" valign="top">
+		<?php if( $bind['pic'] == 'extra' ):?>
+		<a href="/user/space/<?=$line['uid']?>" target="_blank">
+		<img src="<?=show_user_icon('normal',$line['uid'])?>" class="icon" style="margin-top:6px" /></a>
+		<?php else:?>
+		<a href="/app/native/<?=$GLOBALS['app']?>/display/<?=$line['tid'];?>">
+		<img src="/upload/snap/<?=$GLOBALS['app']?>/<?=base64_encode( $contents[$line['tid']]['pic']);?>" class="icon" alt="<?=$contents[$line['tid']]['title'];?>" <?=$pic_style?> /></a>
+		<?php endif;?>
+		</td>
+		<td align="left" valign="top">
+		<div class="comment_div" style="margin-right:5px;">
+		<table border="0"  cellspacing="0" cellpadding="0" width="620" >
+		<tr>
+		<td><a href="/app/native/<?=$GLOBALS['app']?>/com_display/<?=$line['id'];?>"><b><?=$line['title'];?></b></a><span class="post_time"><?=date( "Y-m-d H:i" ,strtotime($line['time']));?></span></td>
+		<td align="right">
+		<div style="float:right" align="right"><img src="/static/images/star<?=$line['step'];?>.gif"></div>
+		</td>
+		</tr>
+		</table>
+		<span class="app_com" style="margin-right:10px"><?php if($line['dig'] == '0'):?>暂无推荐<?php else:?><?=$line['dig'];?>人推荐该评论<?php endif;?></span><div class="app_user_time"><a href="/user/space/<?=$line['uid']?>" target="_blank"><?php if( $bind['pic'] != 'extra' ):?><img src="<?=show_user_icon('small',$line['uid'])?>">&nbsp;<?php endif;?><?=$names[$line['uid']]['u2_nickname'];?></a>
+		&nbsp;评论 <a href="/app/native/<?=$GLOBALS['app']?>/display/<?=$line['tid'];?>"><?=$contents[$line['tid']]['title'];?></a>
+		</div>
+		<div class="left6" style="padding:5px;margin-right:10px">
+		<?=short_content( $line['content'] , 180 , '<a href="/app/native/'.$GLOBALS['app'].'/com_display/'.$line['id'].'">  继续阅读</a>' )?>
+		<span class="post_time"><?php if($line['rcount'] != '0'):?><a href="/app/native/<?=$GLOBALS['app']?>/com_display/<?=$line['id'];?>">(<?=$line['rcount'];?>条回复)</a><?php else:?>(暂无回复)<?php endif;?></span>
+		</div></div>
+		</td></tr>
+		</table>
+		<?php endforeach;?>
+	</div>
+</div>
+		

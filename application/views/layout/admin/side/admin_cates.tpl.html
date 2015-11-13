@@ -1,0 +1,9 @@
+<div class="box">
+	<p class="admin_title"><?=_text('admin_data_cate_list')?></p>
+	<p>&nbsp;<a href="javascript:choose_cate(0);"><?=_text('admin_data_cate_root')?></a></p>
+	<?php if($cates):?>
+	<?php foreach ($cates as $c ):?>
+	<p><?=str_repeat('&nbsp;&nbsp;', ceil( strlen($c['u2_cate_num']) /4) );?>--&nbsp;<a href="javascript:choose_cate(<?=$c['id']?>);"><?=$c['u2_cate_desc']?></a></p>
+	<?php endforeach;?>
+	<?php endif;?>
+</div>

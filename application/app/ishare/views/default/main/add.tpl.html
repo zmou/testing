@@ -1,0 +1,56 @@
+<div class="app_top"><h4>分享</h4>
+分享有趣的网页,音乐和视频	
+</div>
+<div class="l">
+	<div id="pm_left">
+		<div class="tabs">
+				<?php if( $view_type == 'all' ): ?>
+					<li class="out">全站分享</li>
+				<?php else: ?>	
+					<li><a href="/app/native/<?=$GLOBALS['app']?>/index/">全站分享</a></li>
+				<?php endif; ?>
+
+				<?php if( $view_type == 'friends' ): ?>
+					<li class="out">好友分享</li>
+				<?php else: ?>	
+					<li><a href="/app/native/<?=$GLOBALS['app']?>/index/friends">好友分享</a></li>
+				<?php endif; ?>
+					<li class="out"><a href="/app/native/<?=$GLOBALS['app']?>/index/self">我的分享</a></li>
+		</div>	
+		<div class="p2 add_line_height">
+		<form action="/app/native/<?=$GLOBALS['app']?>/save" method="post">	
+		<?php if( $type == MUSIC ): ?>
+		<p>分享音乐到<?=c('site_name')?></p>	
+		<div><embed src="/static/flash/mini_player_mp3.swf?my_mp3=<?php echo u( $link ) ?>&amp;my_text=mini-player&amp;autoplay=no" quality="high" bgcolor="#ffffff" width="331" height="25" name="mini_player_mp3" align="middle" allowScriptAccess="sameDomain" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" /></div><br/>
+			链接地址:<br/>
+			<input type="text" name="url" value="<?=$link?>" class="text add_url_width" /><br/>
+			简介:<br/>
+			<textarea name="desp" class="add_textarea_style"></textarea><br/><br/>
+			<input type="submit" class="button" value="分享" />
+		
+		<?php elseif( $type == VIDEO ): ?>
+		<p>分享视频到<?=c('site_name')?></p>	
+		<div><?php echo $video_player; ?></div><br/>
+			链接地址:<br/>
+			<input type="text" name="url" value="<?=$link?>"  class="text add_url_width" /><br/>
+			简介:<br/>
+			<textarea name="desp" class="add_textarea_style"></textarea><br/><br/>
+			<input type="submit" class="button" value="分享" />		
+		<?php else: ?>
+		<p>分享网页到<?=c('site_name')?></p>	
+			链接地址:<br/>
+			<input type="text" style="width:300px" name="url" value="<?=$link?>" class="add_url_width text" /><br/>
+			简介:<br/>
+			<textarea name="desp" style="width:300px;height:80px"></textarea><br/><br/>
+			<input type="submit" class="button" value="分享" />
+		<?php endif; ?>
+		<input type="hidden" name="type" value="<?=$type;?>"/>		
+		</form>
+		</div>	
+	</div>
+	<div id="pm_right">
+	<?php @include_once( dirname( __FILE__ ) . '/fav.pub.tpl.html' ); ?>
+	</div>
+
+</div>
+		

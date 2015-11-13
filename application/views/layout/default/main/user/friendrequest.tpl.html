@@ -1,0 +1,48 @@
+<div class="app_top"><h4>站内消息</h4>
+查看私信,交友请求和系统通知的地方	
+</div>
+<div class="l">
+<div id="pm_left">
+		<ul class="tabs" >
+			<li><a href="/user/message/inbox"><?=_text('user_message_inbox')?><?php if( $count = get_unread_pm() > 0 ){ echo "($count)"; }?></a></li>
+			<li><a href="/user/message/sendbox"><?=_text('user_message_sendbox')?></a></li>
+			<li><a href="/user/notifications"><?=_text('user_notifications_title')?><?php if( ($count = get_unread_notice()) > 0 ){ echo "($count)"; }?></a></li>
+			<li class="out"><?=_text('user_friendrequest_title')?><?php if( ($count = get_unread_request()) > 0 ){ echo "($count)"; }?></li>
+		</ul>
+		
+			<div class="p2">
+			<?php if( isset( $request[0] ) ): ?>
+			
+			<br/><p><strong>以下用户请求将你加为好友</strong></p>	
+			<?php foreach( $request as $line ): ?>
+			<?php $o = $users[$line['u2_uid1']]; ?>
+				<div class="friend_request l" style="width:400px" id="request_<?=$line['id']?>">
+					<div class="r">
+						<ul>
+							<li><input type="button" class="button" value="通过" onclick="ajax_accept_friend_request( <?php echo $o['id'] ?> , 'request_<?=$line['id']?>' )" /></li>
+							<li><input type="button" class="button" value="忽略" onclick="ajax_refuse_friend_request( <?php echo $o['id'] ?> , 'request_<?=$line['id']?>' )" /></li>
+						</ul>	
+					</div>	
+					<div class="l">
+					<center>
+						<a href="/user/space/<?=$o['id']?>" target="_blank">
+							<img src="<?=show_user_icon('',$o['id'])?>" class="icon" />
+							<br/><?=$o['u2_nickname'];?>
+						</a>
+					</center>
+					</div>	
+				</div>	
+			<?php endforeach; ?>
+			<?php else: ?>
+			<br/><p><strong>没有未处理的好友请求</strong></p>			
+			<?php endif; ?>
+			</div>	
+			
+</div>		
+
+<div id="pm_right">
+<?php @include( dirname(__FILE__) .'/message_public_block.tpl.html' ); ?>
+</div>
+</div>
+
+

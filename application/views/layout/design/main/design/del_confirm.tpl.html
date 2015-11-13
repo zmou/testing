@@ -1,0 +1,16 @@
+<div class="boxes">
+<div class="hd">删除组件</div>
+<div class="bd">
+<br/>
+<form action="/design/del/<?=$finfo['id']?>" method="post">
+<INPUT TYPE="hidden" NAME="infos" value='<?=$forminfo?>'>
+<font color="red">组件删除后不可以恢复,确认删除组件?</font><br/><br/>
+<?php if($extra):?>
+<INPUT TYPE="checkbox" NAME="unlink" <?=$disabled?> >同时删除目录(删除目录前请先卸载该应用)<br/><br/>
+
+<?php endif;?>
+<input type="submit" class="button"  value="删除组件 ">
+
+</form>
+</div>
+</div>

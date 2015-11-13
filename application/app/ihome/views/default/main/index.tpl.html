@@ -1,0 +1,28 @@
+<div class="app_top"><h4>个人中心</h4>
+就是你的家啦	
+</div>
+<div class="l">
+	<div id="pm_left">
+		<div class="tabs">
+			
+			<?php foreach( $tab_array  as $key=>$tab ) : ?>
+			<?php if( $tab_type == $key ): ?>
+			<li class="out"><a href="/app/native/<?=$GLOBALS['app']?>/<?php echo $key; ?>"><?php echo $tab; ?></a></li>
+			<?php else: ?>
+			<li ><a href="/app/native/<?=$GLOBALS['app']?>/<?php echo $key; ?>"><?php echo $tab; ?></a></li>
+			<?php endif; ?>		
+			<?php endforeach; ?>	
+
+		</div>
+		<div class="p2">
+			<br/><p>财务状况</p>
+			<p class="item"><label>银币</label>&nbsp;<?php echo intval($user['g']); ?></p>
+			<p class="item"><label>金币</label>&nbsp;<?php echo intval($user['gold']); ?></p>
+		</div>		
+	</div>
+	<div id="pm_right">
+	<?php @include_once( dirname( __FILE__ ) . '/fav.pub.tpl.html' ); ?>
+	</div>
+
+</div>
+		

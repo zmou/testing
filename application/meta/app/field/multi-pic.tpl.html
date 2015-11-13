@@ -1,0 +1,6 @@
+<strong>([$iinfo.label])</strong>([ if  $iinfo.instruction != '' ])&nbsp;<img src="/static/images/comment_left.gif" title="([$iinfo.instruction])" class="tips" />([/if])<br/>
+<span border="0" id="field_([$iid])_pic" >
+<img src="/static/images/no_image.gif" width="50px" >
+</span><br/><textarea type="text" name="field_([$iid])" id="field_([$iid])" onchange="show_pic_muti_preview( 'field_([$iid])' , 'field_([$iid])_pic');" style="width:400px;height:80px;display:none" ([ if $iinfo.size ]) class="item_size_([$iinfo.size])"([/if]) ></textarea>&nbsp;<br/><span id="field_([$iid])_txt" onclick="window.open('/upload/pics/<?=$GLOBALS['app'];?>/field_([$iid])','_blank','scrollbars=no,width=475,height=150,left=75,top=80,status=no,resizable=yes')" style="cursor:pointer;padding:5px;border:1px solid #e8e8e8;background:#3785E4;color:white"> 
+点击这里上传图片,支持多张.</span>&nbsp;<span style="cursor:pointer;padding:5px;border:1px solid #e8e8e8;background:#3785E4;color:white" onclick="$('field_([$iid])').style.display='block'">编辑图片</span><br clear="all"/><br clear="all"/>
+<?php if( isset( $item[field_([$iid])] ) && $item[field_([$iid])]  ): ?><SCRIPT LANGUAGE="JavaScript">show_pic_muti_preview( 'field_([$iid])' , 'field_([$iid])_pic');</SCRIPT><?php endif;?>

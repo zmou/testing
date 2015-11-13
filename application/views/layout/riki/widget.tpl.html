@@ -1,0 +1,15 @@
+<li>
+	<div id="widget-<?=$widget;?>">
+
+		<div class="boxes">
+			<div class="hd">载入中</div>
+				<h4><img src="/static/images/loading.gif">Loading Please Wait.</h4>
+		</div>
+
+	<SCRIPT LANGUAGE="JavaScript">
+	ajax_get_widget('<?=$widget;?>','<?=$cid;?>','<?=$pid;?>')
+	</SCRIPT>
+	</div>
+	
+<br/>
+</li>

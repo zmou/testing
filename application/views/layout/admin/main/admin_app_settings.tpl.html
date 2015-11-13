@@ -1,0 +1,24 @@
+<SCRIPT LANGUAGE="JavaScript" src="/js/index/set.js"></SCRIPT>
+<div class="box">
+	<p class="admin_title"><?=_text('admin_app_settings_title')?></p>
+	<div class="box">
+		<div class="line">
+		<br/>
+			<p><b><?=$app['u2_title']?></b></p>
+		</div>
+		<div class="appbox">
+		<br/>
+		<form action="/admin/appset/<?=$app['u2_folder']?>/" method="post">
+		<p><label><?=_text('admin_app_on_left')?></label><span><INPUT TYPE="radio" NAME="u2_left_nav" value='0' <?php if($app['u2_left_nav'] == 0 ) echo 'checked'?>><?=_text('system_no')?>&nbsp;&nbsp;<INPUT TYPE="radio" NAME="u2_left_nav" value='1' <?php if($app['u2_left_nav']) echo 'checked'?>><?=_text('system_yes')?></span></p><br/><br clear="all"/>
+		<?php if( isset($config) && $config ):?>
+		<?php @include_once( ROOT.'application/app/'.$folder.'/views/default/main/admin_config.tpl.html' );?>
+		<br clear="all"/>
+		<?php endif;?>
+		<INPUT TYPE="submit" value="<?=_text('system_submit')?>" class="button">&nbsp;&nbsp;&nbsp;&nbsp;<INPUT class="button" TYPE="button" value="<?=_text('system_back')?>" onclick="location='/admin/applist';">
+		</form>
+		</div>
+	</div>
+</div>
+<SCRIPT LANGUAGE="JavaScript">
+<?=$set;?>
+</SCRIPT>

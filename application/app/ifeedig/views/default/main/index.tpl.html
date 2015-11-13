@@ -1,0 +1,93 @@
+<div class="app_top"><h4>悦读</h4>
+<div>博客聚合 + 顶客</div></div>
+<!-- 标题 -->
+<div class="tabs">
+<?php foreach( $titles as $k => $ltitle ):?>
+<?php if( $titleid == $k ): ?>
+<li class="out"><a href="/app/native/<?=$GLOBALS['app']?>/index/<?php echo $k; ?>/<?=$day?>/<?=$hit?>"><?php echo $ltitle; ?></a></li>
+<?php else: ?>
+<li ><a href="/app/native/<?=$GLOBALS['app']?>/index/<?php echo $k; ?>/<?=$day?>/<?=$hit?>"><?php echo $ltitle; ?></a></li>
+<?php endif; ?>	
+<?php endforeach;?>
+<?php if( is_admin() ):?>
+<li class="link"><a href="/app/native/<?=$GLOBALS['app']?>/feed">管理</a></li>
+<?php endif;?>
+<?php if( isset( $hit ) && $hit == 'hit' ):?>
+<li class="link"><a href="/app/native/<?=$GLOBALS['app']?>/index/<?=$titleid?>/<?=$day?>/new">看最新文章</a></li>
+<?php else:?>
+<li class="link"><a href="/app/native/<?=$GLOBALS['app']?>/index/<?=$titleid?>/<?=$day?>/hit">看最热文章</a></li>
+<?php endif;?>
+<!-- <li class="link"><a href="/app/native/<?=$GLOBALS['app']?>/feed_user_add">Feed添加</a></li> -->
+<li class="link"><a href="/app/native/<?=$GLOBALS['app']?>/recommend">推荐</a></li>
+</div>
+
+<!-- 查看日期 -->
+<div class="bline">
+<div class="look_date">
+<?php if( $all != $inum ):?>
+[<a href="/app/native/<?=$GLOBALS['app']?>/index/1/365/<?=$hit?>">查看全部</a>]
+<?php endif;?>
+</div>
+查看:
+<?php foreach( $days as $k => $d ):?>
+<?php if( $day == $k ):?>
+&nbsp;&nbsp;<?=$d?>&nbsp;&nbsp;
+<?php else:?>
+<a href="/app/native/<?=$GLOBALS['app']?>/index/<?=$titleid?>/<?=$k?>/<?=$hit?>"><?=$d?></a> 
+<?php endif;?>
+<?php endforeach;?>
+</div>
+
+<!-- list -->
+<?php if( $item ):?>
+<div class="lists"></div>
+<?php foreach( $item as $k => $line ):?>
+<table>
+<tr><td>
+	
+	<div class="dig_contents_width">
+	<!-- right -->
+	<div class="dig_right">
+		<div class="dig_right_title">
+			<div class="dig_open_close" id="desp_open_<?=$line['id']?>"><a href="javascript:void(0)" onclick="show_desp_all(<?=$line['id']?>);">展开全文</a></div>
+			<div class="dig_open_close" style="display:none" id="desp_closeTOP_<?=$line['id']?>"><a href="javascript:void(0)" onclick="show_desp_all(<?=$line['id']?>)">收起全文</a></div>
+			<div><a href="<?=$line['link']?>" target="_black"><?=$line['title']?></a></div>
+			
+		</div>
+		<div class="dig_contents">来自:<?=$by[$line['fid']]?>
+		&nbsp;&nbsp;<img src="/static/images/clock.gif" alt="">&nbsp;<?=$times[$line['id']]?> </div>
+		<div style="display:''" class="dig_contents" id="desp_breviary_<?=$line['id'];?>"><?php echo f_desp( $line['desp'] , 200 , $line['id']);?></div>
+		<div style="display:none;" class="dig_contents" id="desp_all_<?=$line['id'];?>"><?php echo $line['desp'];?></div>
+		<div align="right" id="desp_close_<?=$line['id']?>" style="display:none;" class="dig_close"><a href="javascript:void(0)" onclick="show_desp_all(<?=$line['id']?>)">收起全文</a></div>
+	</div>
+	<!-- left -->
+	<div align="center" class="dig_left">
+		<div class="diggvote dig_num">
+		<FONT class="green"><SPAN id="digs_<?=$line['id']?>"><?=$line['dig']?></SPAN></FONT>
+		</div>
+		<DIV class="diggding" id="dig_show_<?=$line['id']?>">
+		<?php if(  in_array($line['id']  , $diged ) ):?>
+		已推荐
+		<?php else:?>
+		<A href="javascript:void(0)" onclick="ding( <?=$line['id']?> )">顶一下</A> 
+		<?php endif;?>
+		</DIV>
+	</div>
+	</div>
+</td></tr>
+<tr><td>
+<div class="dline">&nbsp;</div>
+</td></tr>
+</table>
+<?php endforeach;?>
+<div align="center" class="pages"><?=$pager;?></div>
+<?php else:?>
+<div class="lists" align="center">暂无文章
+<?php if( $all != $inum ):?>
+[<a href="/app/native/<?=$GLOBALS['app']?>/index/1/365/<?=$hit?>">查看全部</a>]
+<?php endif;?>
+</div>
+<?php endif;?>
+<SCRIPT LANGUAGE="JavaScript">
+setInterval( "lock_img()", 10000 );
+</SCRIPT>

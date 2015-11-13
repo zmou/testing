@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+<head>
+
+<!-- Meta Data -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="keywords" content="">
+<meta name="description" content="">
+
+<!-- Site Title -->
+<title><?php if( isset($ci_top_title) ){ echo $ci_top_title; }; ?> - <?php echo c('site_name'); ?></title>
+	<link rel="shortcut icon" href="/static/favicon.ico" >
+<!-- Link to Style External Sheet -->
+	<!-- load css-->
+	<link rel="stylesheet" type="text/css" href="/static/css/reset.css"> 
+	<link rel="stylesheet" type="text/css" href="/static/css/base.css"> 
+	<link rel="stylesheet" type="text/css" href="/static/css/fonts.css"> 
+	<link rel="stylesheet" type="text/css" href="/static/css/grids.css"> 
+	<link rel="stylesheet" type="text/css" href="/static/css/admin.css"> 
+	<link rel="stylesheet" type="text/css" href="/static/css/styles.css"> 
+
+
+
+<!-- load js-->
+  <SCRIPT LANGUAGE="JavaScript" src="/js/index/moo.js"></SCRIPT>
+  <SCRIPT LANGUAGE="JavaScript" src="/js/index/core.js"></SCRIPT>
+  <SCRIPT LANGUAGE="JavaScript" src="/js/index/design.js"></SCRIPT>
+
+
+</head>
+
+<body>
+<div id="doc4" class="yui-t2">
+	<div id="hd">
+		<!--header-->
+		<?php include(  APPPATH.'views/layout/admin/header.tpl.html' ); ?>		
+	</div>
+	<div id="bd">
+		<!--main & side-->
+		<div id="ucontainer">
+		<p class="admin_title">自定义组件</p>
+		<div style="border:1px solid #ccc;padding:5px;margin-bottom:10px">
+		<a href="/design">组件列表</a> - 
+		<a href="/help">使用帮助</a> 
+		</div>
+		<div id="yui-main" >
+			<div class="yui-b">	
+				<?php @include(  APPPATH.'views/layout/' . $ci_layout . '/main/'. module() .'/'.$page_name.'.tpl.html' ); ?>
+				
+
+			</div>
+		</div>
+
+		<div class="yui-b">
+			
+				<?php 
+
+				if(file_exists(APPPATH.'views/layout/' . $ci_layout . '/side/'. module() . '/' . $page_name.'.tpl.html'))
+					include(  APPPATH.'views/layout/' . $ci_layout . '/side/'. module() . '/' .$page_name.'.tpl.html' );
+				else
+					@include(  APPPATH.'views/layout/' . $ci_layout . '/side/default.tpl.html' );	
+
+
+				?>
+
+
+		</div>
+		</div>
+				
+		
+	</div>
+	<br clear="all"/>
+	<div id="fd">
+	  	<!--footer-->
+		<?php 	include(  APPPATH.'views/layout/admin/footer.tpl.html' ); ?>			
+	</div>
+	
+	
+</div>
+</body>
+
+
+
+</html>

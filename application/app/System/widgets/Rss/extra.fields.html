@@ -1,0 +1,33 @@
+<center>
+<table>
+<tr>
+<td align="left">模块标题</td>
+<td align="left"><input type="text" name="title" value="<?php if( isset($title) ){ echo $title; }?>" class="text"></td>
+</tr>
+
+<tr>
+<td align="left">博客名称</td>
+<td align="left"><input type="text" name="blog" value="<?php if( isset($blog) ){ echo $blog; }?>" class="text"></td>
+</tr>
+
+<tr>
+<td align="left" valign="top">博客地址</td>
+<td align="left"><input type="text" name="feed" value="<?php if( isset($feed) ){ echo $feed; }?>" class="text"></td>
+</tr>
+
+<tr>
+<td align="left">显示方式</td>
+<td align="left">
+<select name="show">
+<option value="1" <?php if( isset($show) && $show == '1' ){ echo "selected"; }?> >只显示标题</option>
+<option value="2" <?php if( isset($show) && $show == '2' ){ echo "selected"; }?> >标题和内容简略</option>
+</select>
+</td>
+</tr>
+
+<tr>
+<td align="left">总共显示数</td>
+<td align="left"><input type="text" name="limit" value="<?php if( isset($limit) ){ echo $limit; }?>" class="text"></td>
+</tr>
+</table>
+</center>

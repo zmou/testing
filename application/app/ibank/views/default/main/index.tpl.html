@@ -1,0 +1,46 @@
+<div class="app_top"><h4>社区银行</h4>
+银行,充值相关	
+</div>
+<div class="l">
+	<div id="pm_left">
+		<div class="tabs">
+			
+			<?php foreach( $tab_array  as $key=>$tab ) : ?>
+			<?php if( $tab_type == $key ): ?>
+			<li class="out"><a href="/app/native/<?=$GLOBALS['app']?>/<?php echo $key; ?>"><?php echo $tab; ?></a></li>
+			<?php else: ?>
+			<li ><a href="/app/native/<?=$GLOBALS['app']?>/<?php echo $key; ?>"><?php echo $tab; ?></a></li>
+			<?php endif; ?>		
+			<?php endforeach; ?>	
+
+		</div>
+		<div class="p2">
+		<h2>社区银行欢迎你前来理财,你不理财,财不理你~</h2>
+		<p class="green">你当前的财务状况</p>
+		随身携带: 银币 <?php echo intval( $user['g'] ) ?>枚 <!-- &nbsp; 金币 <?php echo intval( $user['gold'] ) ?>枚--><br/>
+		银行帐户: 银币 <?php echo intval( $account['g_count'] ) ?>枚 &nbsp; 金币 <?php echo intval( $account['gold_count'] ) ?>枚<br/>
+		<br/>
+		<p class="green underline">存款</p>
+		<p>无利息,银行收取10%的手续费,50枚以上才受理</p>
+		<form action="/app/native/<?=$GLOBALS['app']?>/money/put" method="POST">
+		<input class="text" name="money" type="text" value="<?php echo intval($user['g']); ?>" /> <br/>
+		<br/><input type="submit" value="存入" class="button" />
+		</form>
+		<p>&nbsp;</p>
+		
+		<form action="/app/native/<?=$GLOBALS['app']?>/money/get" method="POST">
+		<p class="green underline">取款</p>
+		<p>无手续费</p>
+		<input class="text" name="money" type="text" value="<?php echo intval($account['g_count']); ?>" /> <br/>
+		<br/><input type="submit" value="取出" class="button" />
+		</form>
+		<br/><br/>
+		
+		</div>		
+	</div>
+	<div id="pm_right">
+	<?php @include_once( dirname( __FILE__ ) . '/public.tpl.html' ); ?>
+	</div>
+
+</div>
+		

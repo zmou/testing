@@ -1,0 +1,38 @@
+<div class="box">
+	<p class="admin_title"><?=_text('admin_applist_title')?></p>
+	<div class="box">
+		<div class="line">
+		<br/>
+			<p><span class="r"><a href="http://easysns.com/riki/index/4"><img src="/static/images/plus.gif">&nbsp;&nbsp;获取更多组件</a></span><b><?=_text('admin_app_list')?></b></p>
+		</div>
+		<div class="appbox">
+			<div style="border-bottom:1px solid #ccc;margin-bottom:5px;padding:5px">
+				<?php if($list):?>
+				<TABLE width="100%">
+				<TR>
+					<TD width="100px"><?=_text('admin_app_name')?></TD>
+					<TD><?=_text('admin_app_dev')?></TD>
+					<TD width="60px"><?=_text('admin_app_is_active')?></TD>
+					<TD width="150px"><?=_text('admin_app_extra')?></TD>
+				</TR>
+				<?php foreach($list as $a):?>
+				<TR>
+					<TD width="100px"><?=$a['name']?></TD>
+					<TD><?=$a['develop']?></TD>
+					<TD width="60px"><?php  if($a['installed']){ echo '是'; }else{ echo '否'; }?></TD>
+					<TD width="150px">
+					<?php if($a['installed'] == 2):?>
+					&nbsp;<font color="#cccccc">已安装</font>
+					<?php else:?>
+						<a href="/admin/appoper/<?=$a['folder']?>"><?php if($a['installed']):?><?=_text('admin_app_uninstall')?></a>&nbsp;<a href="JavaScript:void(0)" onclick="update_widgets('<?=$a['folder']?>')" title="扫描微件改动"><img src="/static/images/magnify_plus.gif" />扫描</a>&nbsp;<?php if($a['more']):?><a href="/admin/app_settings/<?=$a['folder']?>"><img src="/static/images/list_unordered.gif" />设置</a> <?php endif;?><?php else:?><?=_text('admin_app_install')?></a><?php endif;?>
+					<?php endif;?>
+					</TD>
+				</TR>
+				<?php endforeach;?>
+				</TABLE>
+				<?php endif;?>
+			</div>	
+		
+		</div>
+	</div>
+</div>

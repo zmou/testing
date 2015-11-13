@@ -1,0 +1,48 @@
+<div class="box">
+	<p class="admin_title"><?=_text('admin_members_title')?></p>
+	<div class="admin_members_tabs">
+	<ul class="tabs" >
+	<?php if($is_admin):?>
+	<li><a href="/admin/members/"><?=_text('admin_members_all')?></a></li>
+	<li  class="out"><?=_text('admin_members_admins')?></li>
+	<?php else:?>
+	<li  class="out"><?=_text('admin_members_all')?></li>
+	<li><a href="/admin/admins/"><?=_text('admin_members_admins')?></a></li>
+	<?php endif;?>
+	</ul>
+	</div>
+	<form action="/admin/members/" method="post">
+		<div class="admin_people_search_box">
+		<INPUT TYPE="text" NAME="searchtext" id="searchtext" class="text" value="<?=$searchtext?>">&nbsp;&nbsp;<INPUT TYPE="button" class="button" value="<?=_text('system_search')?>"  onclick="javascript:search_members('<?=$is_admin;?>');">
+	</form>
+	<?php if($members):?>
+	<form name="member_list" id="member_list" action="/admin/changelevel/" method="post">
+
+	<div class="admin_member_item_title">
+	<p><label><?=_text('admin_member_name');?></label><label><?=_text('admin_member_email');?></label><label><?=_text('admin_member_level')?></label><label>操作</label></p>
+	</div>
+	<div class="admin_member_item">
+		<?php foreach($members as $m):?>
+		<label><INPUT TYPE="checkbox" NAME="ids[]" value="<?=$m['id'];?>">&nbsp;<span class="nickname"><?=$m['u2_nickname'];?></span></label><label><?=$m['u2_email'];?></label><label><?=$this->config->item('level_'.$m['u2_level']);?></label><label><a href="/admin/touser/<?=$m['id']?>" target="_blank"><?=_text('admin_members_login_with');?></a></label><br clear="all"/>
+		<?php endforeach;?>
+	</div>
+	<INPUT TYPE="hidden" NAME="clevel" id="clevel" value="0">
+	</form>
+	<br clear="all"/>
+	<br/>
+	<?=$pager;?><br/>
+	<div id="people_level" style="display:none;">
+		<INPUT TYPE="radio" NAME="level" value="1" onclick="javascript:change_level(this.value);"><?=$this->config->item('level_1');?>
+		<INPUT TYPE="radio" NAME="level" value="3" onclick="javascript:change_level(this.value);"><?=$this->config->item('level_3');?>
+		<INPUT TYPE="radio" NAME="level" value="5" onclick="javascript:change_level(this.value);"><?=$this->config->item('level_5');?>
+		<INPUT TYPE="radio" NAME="level" value="7" onclick="javascript:change_level(this.value);"><?=$this->config->item('level_7');?>
+		<INPUT TYPE="radio" NAME="level" value="9" onclick="javascript:change_level(this.value);"><?=$this->config->item('level_9');?>	
+	</div>
+	<br clear="all"/>
+	<div id = "admin_member_action" >
+	&nbsp;<a href="javascript:select_all('selectAll','ids[]')"><?=_text('admin_select_all')?></a>&nbsp;&nbsp;&nbsp;<INPUT TYPE="button" class="button" value="<?=_text('admin_add_to_group')?>" onclick="javascript:show_people_level();" id="button_show_level">&nbsp;<INPUT TYPE="button" value="<?=_text('system_locked')?>" class="button"  onclick="change_level(0)">
+	</div>
+	
+	<?php endif;?>
+
+</div>

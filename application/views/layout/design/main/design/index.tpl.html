@@ -1,0 +1,33 @@
+<div class="boxes">
+<div class="hd">组件列表</div>
+<div class="bd">
+<div class="p2">	
+
+<p><a href="/design/init"><img src="/static/images/plus.gif" />&nbsp;创建新组件</a></p>
+
+<?php if($froms):?>
+	<h2 class="green">已有组件</h2>
+	<TABLE>
+	<?php foreach( $froms as $v):?>	
+	<TR>
+		<TD><img src="/static/images/plugin.gif" />&nbsp;<?=$v['title']?>(<?=$v['name']?>)&nbsp;
+		<a href="/design/modify/<?=$v['id']?>">修改组件设定</a> -
+		<a href="/design/form/<?=$v['id']?>">修改字段设定</a> -
+		<a href="/design/bindkey/<?=$v['id']?>">修改字段绑定</a> -
+		<a href="/design/display/<?=$v['id']?>">修改呈现和布局</a> -
+		<a href="/design/update/<?=$v['id']?>">更新本地应用</a> -
+		<a href="/design/del_confirm/<?=$v['id']?>">删除组件</a>
+		 
+		</TD>
+	</TR>
+	<?php endforeach;?>
+	</TABLE>
+	<br/>
+	<?=$pager;?>
+<?php else: ?>
+	
+
+<?php endif;?>
+</div>
+</div>
+</div>	

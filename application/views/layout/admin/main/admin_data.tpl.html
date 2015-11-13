@@ -1,0 +1,72 @@
+<div class="box">
+	<p class="admin_title"><?=_text('admin_data_title')?></p>
+	<ul class="tabs" >
+	<li><a href="/admin/plist/"><?=_text('admin_plist_title')?></a></li>
+	<li class="out"><?=_text('admin_data_pro_meta')?></li>
+	<li><a href="/admin/cates/"><?=_text('admin_data_pro_cate')?></a></li>
+	<li class="link"><img src="/static/images/plus.gif">&nbsp;<a href="/pro/add/" target="_blank"><?=_text('admin_plist_add');?></a></li>
+	</ul>
+	<p></p>
+	<div  id="data_extra">
+		<?php if( $extras['all'] || $extras['cate'] ):?>
+		<div class="data_extra">
+		<form action = "/admin/data/<?=$cid;?>" method="post" >
+			<?php if($extras['all']):?>	
+			</p><?=_text('admin_data_extra_all')?><p>
+			<?php foreach($extras['all'] as $e):?>
+			<p class="admin_data"><label><?=_text('admin_data_name')?></label><INPUT TYPE="text" id="extra_name_<?=$e['id'];?>" NAME="extra_name_<?=$e['id'];?>" value="<?=$e['u2_cn_name']?>" class="text" disabled></p>
+			<p class="admin_data"><label><?=_text('admin_data_intro')?></label><INPUT TYPE="text" id="extra_desp_<?=$e['id'];?>" NAME="extra_desp_<?=$e['id'];?>" value ="<?=$e['u2_desp']?>" class="text" disabled>&nbsp;&nbsp;<a href="javascript:void(0);"  onclick="admin_modify_extra('<?=$e['id']?>')"><?=_text('system_modify')?></a>  <a href="javascript:void(0);" onclick="admin_del_extra('<?=$e['id']?>')"><?=_text('system_del')?></a></p>
+			<?php endforeach; ?>
+			<?php endif;?>
+
+			<?php if($extras['cate']):?>
+			</p><?=_text('admin_data_extra_cate')?><p>
+			<?php foreach($extras['cate'] as $e):?>
+			<p class="admin_data"><label><?=_text('admin_data_name')?></label><INPUT TYPE="text" id="extra_name_<?=$e['id'];?>" NAME="extra_name_<?=$e['id'];?>" value="<?=$e['u2_cn_name']?>" class="text" disabled></p>
+			<p class="admin_data"><label><?=_text('admin_data_intro')?></label><INPUT TYPE="text" id="extra_desp_<?=$e['id'];?>" NAME="extra_desp_<?=$e['id'];?>" value ="<?=$e['u2_desp']?>" class="text" disabled>&nbsp;&nbsp;<a href="javascript:void(0);"  onclick="admin_modify_extra('<?=$e['id']?>')"><?=_text('system_modify')?></a>  <a href="javascript:void(0);" onclick="admin_del_extra('<?=$e['id']?>')"><?=_text('system_del')?></a></p>
+			<?php endforeach; ?>
+			<?php endif;?>
+			<INPUT TYPE="hidden" NAME="action" value="modify">
+			<p class="act"><INPUT TYPE="submit" value="<?=_text('system_submit')._text('system_modify');?>" id="data_modify_submit" class="button" disabled></p>
+		</form>
+		</div>
+		<?php else:?>
+		<div class="data_extra">
+		<p><?=_text('admin_data_no_extra')?></p>
+		</div>
+		<?php endif;?>
+		
+	</div>
+
+	<p></p>
+	<div class="bd">
+	<p><a href="javascript:void(0)" onclick="admin_magic_display('data_add','data_extra')"><?=_text('admin_data_extra');?></a></p>
+	</div>
+	<div  id="data_add" style="display:none">
+		<div class="bd">
+			<form action = "/admin/data/" method="post">
+			<p class="admin_data"><label><?=_text('admin_data_name')?></label><INPUT TYPE="text" id="name" NAME="name" class="text" onchange="javascript:add_meta_data();"></p>
+			<p class="admin_data"><label><?=_text('admin_data_intro')?></label><INPUT TYPE="text" id="info" NAME="info"  class="text" onchange="javascript:add_meta_data();" ></p>
+		</div>
+		<div class="cate_set">
+			<p></p>
+
+			<p class="admin_data"><label><?=_text('admin_data_cate_choose');?></label><SELECT NAME="cate" class="text" id="cate" onchange="javascript:add_meta_data();">
+			<OPTION VALUE="0" SELECTED><?=_text('admin_data_cate_to_all');?>
+			<?php if($cates):?>
+			<?php foreach ($cates as $c ):?>
+			<OPTION VALUE="<?=$c['id'];?>"><?=$c['u2_cate_desc'];?>
+			<?php endforeach;?>
+			<?php endif;?>
+			</SELECT>
+			</p>
+
+		</div>
+		<p></p>
+		<div class="bd">
+			<INPUT TYPE="hidden" NAME="action" value="save"> 
+			<p><INPUT TYPE="submit" value="<?=_text('system_submit')?>" class="button" id="data_submit" disabled></p>
+			</form>
+		</div>
+	</div>
+</div>

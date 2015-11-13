@@ -1,0 +1,25 @@
+<center>
+<table>
+<tr><td align="left">
+<label>模块标题:</label>
+</td><td align="left">
+<label><INPUT TYPE="text" NAME="title" class="text" value="<? if( isset($title)){ echo $title; } ?>"></label><br clear="all"/>
+</td></tr>
+<tr><td align="left">
+<label>总共显示数:</label>
+</td><td align="left">
+<label><INPUT TYPE="text" NAME="num" class="text" value="<? if( isset($num)){ echo $num; } ?>"></label><br clear="all"/>
+</td></tr>
+<tr><td align="left">
+<label>几天以内的:</label>
+</td><td align="left">
+<label><INPUT TYPE="text" NAME="days" class="text" value="<?php if( isset($days) ){ echo $days; } ?>"></label><br clear="all"/>
+</td></tr>
+<tr><td align="left">
+<label>是否在新窗口打开:</label>
+</td><td align="left">
+<input type="radio" name="new_page" value="1" <?php if( isset( $new_page ) && $new_page == '1' ){ echo 'checked'; }?>>是
+<input type="radio" name="new_page" value="0" <?php if( !isset( $new_page ) || $new_page != '1' ){ echo 'checked'; }?>>否<br clear="all"/>
+</td></tr>
+</table>
+</center>

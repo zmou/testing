@@ -1,0 +1,102 @@
+<SCRIPT LANGUAGE="JavaScript" src="/js/index/set.js"></SCRIPT>
+<div class="box">
+	<p class="admin_title"><?=_text('admin_shop_title')?></p>
+
+	<ul class="tabs">
+	<li><a href="/admin/shop/"><?=_text('admin_shop_situation')?></a></li>
+	<li class="out"><?=_text('admin_shop_item_title')?></li>
+	<li><a href="/admin/shop/list/orders">订单</a></li>
+	</ul>
+	<br/>
+	<?=join(' | ', $nav_links);?>
+	<br/><br/>
+		
+		<form action="/admin/shop/save/type" method="post" id="shop_add_type">
+
+		<div class="l"  style="width:200px">
+			<div class="box">商品类型列表</div>
+			<?php if( $types ):?>
+			<div class="hd">
+				<ul id="types" class="shop">
+					<?php foreach( $types as $v):?>
+					<li id="brand_id_<?=$v['id']?>"><span class="r"><a href="JavaScript:void(0)" onclick="admin_shop_del('type',<?=$v['id']?>)"><img src="/static/images/cross.gif"></a></span><img src="/static/images/movearrow.gif" class="m" /><a href="/admin/shop/modify/type/<?=$v['id']?>"><?=$v['name']?></a></li>
+					<?php endforeach;?>
+				</ul>
+			</div>
+			<script>
+			new Sortables($('types') , {handles:$('types').getElementsByClassName('m') ,  onComplete:function()
+			{
+				var order =( this.serialize( function(el)
+					{ 
+						return el.id.replace("brand_id_" , "" );
+					} ));
+				var url = '/ajax/save_shop_order/type/'+order ;
+				var myajax = new Ajax(url,
+				{
+					data:foodata,
+					method:'post' ,
+					evalScripts:true,
+					onComplete:function()
+					{ 
+					}
+				}).request();
+			}}
+			);
+			</script>
+			<?php else:?>
+			<div class="notice">
+			暂无商品类型
+			</div>
+			<?php endif;?>
+		</div>
+		<div class="l leftline">
+		<b><?=_text('admin_shop_add_type_title')?></b><br/>
+		<div style="margin:10px;">
+		<TABLE>
+		<TR>
+			<TD width="70px">类型名称</TD>
+			<TD><INPUT TYPE="text" NAME="name" id="name" class="text"></TD>
+			<TD></TD>
+		</TR>
+		<TR>
+			<TD>可用品牌</TD>
+			<TD><INPUT TYPE="checkbox" NAME="all_brand" value="1" onclick="shop_check_brand( this.checked )">全部</TD>
+			<TD></TD>
+		</TR>
+		<TR>
+			<TD></TD>
+			<TD>
+			<?php if( $brands ):?>
+			<div style="overflow:auto; height:100px;width:250px;">
+			<?php foreach( $brands as $v ):?>
+			<INPUT TYPE="checkbox" NAME="brand[]" value="<?=$v['id']?>"><?=$v['name']?>
+			<?php endforeach;?>
+			</div>
+			<?php else:?>
+			<div class="notice">
+			暂无品牌
+			</div>
+			<?php endif;?>
+			</TD>
+			<TD></TD>
+		</TR>
+		</TABLE><br/>
+		<b>自定义字段</b><br/>
+		<TABLE id="shop_extra_table">
+		</TABLE>
+		<TABLE>
+		<TR>
+			<TD width="70px"></TD>
+			<TD><span id="shop_type_button"><a href="JavaScript:void(0)" onclick="shop_extra_field(1 ,'line')"><img src="/static/images/plus.gif">&nbsp;添加新字段</a></span></TD>
+		</TR>
+		<TR>
+			<TD width="70px"></TD>
+			<TD><INPUT TYPE="button" class="button" value=" 添加 " onclick="if( $('name').value == '' ){alert('请填写类型名称');return}$('shop_add_type').submit();"></TD>
+		</TR>
+		</TABLE>
+</form>
+		</div>
+			<br/>
+			
+		</div>
+</div>

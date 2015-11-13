@@ -1,0 +1,103 @@
+<?php //print_r($messages);?>
+<div class="app_top"><h4>站内消息</h4>
+查看私信,交友请求和系统通知的地方	
+</div>
+<div class="l">
+	<div id="pm_left">
+	<!-- tab -->
+	<?php if($box=='inbox'):?>
+	<ul class="tabs" >
+		<li  class="out"><?=_text('user_message_inbox')?><?php if( ($count = get_unread_pm()) > 0 ){ echo "($count)"; }?></li>
+		<li><a href="/user/message/sendbox"><?=_text('user_message_sendbox')?></a></li>
+		<li><a href="/user/notifications"><?=_text('user_notifications_title')?><?php if( ($count = get_unread_notice()) > 0 ){ echo "($count)"; }?></a></li>
+		<li><a href="/user/friendrequest"><?=_text('user_friendrequest_title')?><?php if( ($count = get_unread_request()) > 0 ){ echo "($count)"; }?></a></li>
+	</ul>
+	<?php else:?>
+	<ul class="tabs" >
+		<li><a href="/user/message/inbox"><?=_text('user_message_inbox')?><?php if( ($count = get_unread_pm()) > 0 ){ echo "($count)"; }?></a></li>
+		<li class="out"><?=_text('user_message_sendbox')?></li>
+		<li><a href="/user/notifications"><?=_text('user_notifications_title')?><?php if( ($count = get_unread_notice()) > 0 ){ echo "($count)"; }?></a></li>
+		<li><a href="/user/friendrequest"><?=_text('user_friendrequest_title')?><?php if( ($count = get_unread_request()) > 0 ){ echo "($count)"; }?></a></li>
+
+	</ul>
+	<?php endif;?>
+	<!-- /tab -->
+	
+	<!-- message -->
+	<?php if($messages):?>
+	<br/>
+	<!-- message list -->
+	<?php foreach($messages as $m):?>
+
+	<?php $m_uid = $m['u2_uid'];?>
+	<?php $m_name = $m['uname'];?>
+
+		<div class = "message_box" id="message_box_<?=$m['id']?>">
+			<div class="message_box_img">
+				<center>
+				<a href="/user/space/<?=$m_uid;?>" target="_blank"><img src ="<?=show_user_icon('normal', $m_uid)?>" class="icon" /></a>
+				<p class="nickname"><?=$m_name;?></p>	
+				</center>
+			</div>
+
+			<div class="message_box_left">
+				<?php if($box == 'inbox' && $m['u2_is_read'] == 0 ): ?>
+				<p><b><a href="javascript:message_swich('<?=$m['id']?>');"><?=word_substr($m['u2_pm_title'],10)?></a></b></p>
+				<?php else:?>
+				<p><a href="javascript:message_swich('<?=$m['id']?>');"><?=word_substr($m['u2_pm_title'],10)?></a></p>
+				<?php endif;?>
+				<p><?=$m['time']?></p>
+				<p><?=$m['u2_pm_info']?><?php if($box == 'inbox'):?> - [<a href="javascript:message_reply_swich('<?=$m['id']?>');"><?=_text('user_message_reply')?></a>]<?php endif; ?></p>
+			</div>
+
+			<div class="message_box_right">
+				<a href="javascript:ajax_del_mesaage('<?=$m['id']?>','<?=$box?>')"><img src="/static/images/cross.gif"></a>
+			</div>
+
+			<br clear="all"/ >
+
+			<div id="message_info_<?=$m['id']?>" class="p10 m1" >
+
+			<?php if($box == 'inbox'):?>
+			<!--<span class="l"><?=$m['u2_pm_info']?>&nbsp;</span><span class="message_reply_swich"><a href="javascript:message_reply_swich('<?=$m['id']?>');"><?=_text('user_message_reply')?></a></span>
+			<br clear="all"/>-->
+
+			<div id="message_reply_<?=$m['id']?>" class="message_reply p10 m1" style="display:none">
+				<div class="gline"></div>
+				<div class="l bd p10 m1">
+				<img src="<?=show_user_icon()?>" class="icon" />
+				</div>
+				<div class="l bd p10 m1" style="width:300px">
+				<form action="/user/pmsave" method="post">
+					<INPUT TYPE="text" NAME="title" class ="text long" value="RE: <?=word_substr($m['u2_pm_title'],10)?>" style="width:300px"><br/><br/>
+					<TEXTAREA NAME="info" ROWS="3" COLS="50" class ="text" wrap="hard" style="width:300px"></TEXTAREA><br/><br/>
+					<INPUT TYPE="hidden" NAME="sid" value="<?=$m_uid?>"><INPUT TYPE="hidden" NAME="sname" value="<?=$m_name?>">
+					<div class="r">	<INPUT TYPE="button" class="button" value="<?=_text('system_cancel')?>" onclick="message_reply_swich('<?=$m['id']?>');void(0);" /></div>
+					<div class="l">	
+					<INPUT TYPE="submit" value="<?=_text('system_send')?>" class="button"></div>
+				</form>
+				</div>
+			</div>
+			<?php endif?>	
+			</div>
+
+		</div>
+		<br clear="all">
+	<?php endforeach;?>
+	<br/>
+	<?php echo $pager;?>
+	<br/><br/>
+	<!-- /message list -->
+	<?php else:?>
+		<div class="notice"><img src="/static/images/feature_sniffer.gif" />&nbsp;<?=_text('user_message_no_message');?></div>
+	<?php endif;?>
+	<!-- /message -->
+	
+	
+	</div>
+	<div id="pm_right">
+	<?php @include( dirname(__FILE__) .'/message_public_block.tpl.html' ); ?>
+	</div>
+</div>
+
+

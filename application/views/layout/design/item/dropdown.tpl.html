@@ -1,0 +1,13 @@
+<?php if( !isset($iinfo) ): ?>
+<strong>默认标题</strong><br/>	
+<select><option>请选择</option></select>
+<?php else: ?>
+<strong><?=$iinfo['label']?></strong><?php if( !empty( $iinfo['instruction'] ) ): ?>&nbsp;<img src="/static/images/comment_left.gif" title="<?php echo $iinfo['instruction']; ?>" class="tips" /><?php endif; ?><br/>	
+<?php $tvalue = unserialize( $iinfo['type_values'] ); ?>	
+<select name="field_<?=$iid?>"  <?php if( !empty( $iinfo['size'] ) ) :?>class="item_size_<?=$iinfo['size'];?>"<?php endif; ?>   >
+<?php foreach( $tvalue['name'] as $key=>$value ): ?>
+<?php if( empty( $value ) ) continue;  ?>
+<option value="<?=$tvalue['value'][$key]?>"><?=$tvalue['name'][$key]?></option>
+<?php endforeach; ?>		
+</select>
+<?php endif; ?>

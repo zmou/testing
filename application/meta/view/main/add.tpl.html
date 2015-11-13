@@ -1,0 +1,21 @@
+<div class="l">
+	<div id="pm_left">
+		<div class="tabs">
+			<li class="out">全部{$form.item_name}</li>
+			<li><a href="#">好友的{$form.item_name}</a></li>
+			<li class="link"><a href="#">添加{$form.item_name}</a></li>
+		</div>	
+		<div class="p2" style="line-height:200%">
+		<form action="/app/native/<?=$GLOBALS['app']?>/save" method="post">	
+		{foreach from=$items item=item}
+		{$item|uitem}
+		{/foreach}		
+		</form>
+		</div>	
+	</div>
+	<div id="pm_right">
+	
+	</div>
+
+</div>
+		

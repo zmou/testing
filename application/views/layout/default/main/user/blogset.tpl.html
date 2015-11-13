@@ -1,0 +1,21 @@
+<div class="l bd">
+	<div id="miniblog_left">
+		<ul class="tabs" >
+		<li> <a href="/user/miniblog"><?=_text('user_miniblog_title')?></a></li>
+		<li class="out"><?=_text('user_blogset_title')?></li>
+		</ul>
+		<br/><br/>
+		<form action="/user/blogset/save" method="post">
+		<p><INPUT TYPE="checkbox" NAME="type[]" value="1" <?php if(in_array('1',$types)) echo 'CHECKED';?>>&nbsp;<?=_text('user_miniblog_type_1')?></p>
+		<p><INPUT TYPE="checkbox" NAME="type[]" value="2" <?php if(in_array('2',$types)) echo 'CHECKED';?>>&nbsp;<?=_text('user_miniblog_type_2')?></p>
+		<p><INPUT TYPE="checkbox" NAME="type[]" value="3" <?php if(in_array('3',$types)) echo 'CHECKED';?>>&nbsp;<?=_text('user_miniblog_type_3')?></p>
+		<p><INPUT TYPE="checkbox" NAME="type[]" value="4" <?php if(in_array('4',$types)) echo 'CHECKED';?>>&nbsp;<?=_text('user_miniblog_type_4')?></p>
+		<p><INPUT TYPE="checkbox" NAME="type[]" value="5" <?php if(in_array('5',$types)) echo 'CHECKED';?>>&nbsp;<?=_text('user_miniblog_type_5')?></p>
+		<p class="act"><INPUT TYPE="submit" class="button" value="<?=_text('system_submit');?>"></p>
+		</form>
+	
+	</div>
+	<div id="miniblog_right">
+	
+	</div>
+</div>

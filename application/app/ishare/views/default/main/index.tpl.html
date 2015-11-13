@@ -1,0 +1,79 @@
+<div class="app_top"><h4>分享</h4>
+分享有趣的网页,音乐和视频	
+</div>
+<div class="l">
+	<div id="pm_left">
+		<div class="tabs">
+			
+			<?php if( $view_type == 'all' ): ?>
+				<li class="out">全站分享</li>
+			<?php else: ?>	
+				<li><a href="/app/native/<?=$GLOBALS['app']?>/index/">全站分享</a></li>
+			<?php endif; ?>
+			
+			<?php if( $view_type == 'friends' ): ?>
+				<li class="out">好友分享</li>
+			<?php else: ?>	
+				<li><a href="/app/native/<?=$GLOBALS['app']?>/index/friends">好友分享</a></li>
+			<?php endif; ?>
+			
+			<?php if( $view_type == 'self' ): ?>
+				<li class="out">我的分享</li>
+			<?php else: ?>	
+				<li><a href="/app/native/<?=$GLOBALS['app']?>/index/self">我的分享</a></li>
+			<?php endif; ?>
+			
+		</div>
+		<div class="p2">
+		<?php if( isset( $fav[0] ) ): ?>
+		<p>最近分享的内容</p>	
+		<?php foreach( $fav as $k => $f ): ?>
+			<div class="fav_item l" id="fav_item_<?php echo $f['fid']; ?>">
+				<div class="l">
+				<center>
+						<a href="/user/space/<?=$f['uid']?>"><img src="<?=show_user_icon('',$f['uid'])?>" class="icon" /></a>
+				</center>
+				</div>
+				<div class="fav_item_right"><?php if($f['uid'] == format_uid() ): ?><div class="r"><a href="javascript:fav_remove(<?php echo $f['fid']; ?>);void(0)"><img src="/static/images/cross.gif" /></a></div><?php endif; ?>
+					<strong><?=$f['u2_nickname'];?>分享了一个<?php echo type_text( $f['type'] ); ?></strong>&nbsp;
+					<?php if( $f['type'] == VIDEO ): ?>
+					<!--<a href="javascript:$('fav_video_<?php echo $k; ?>').setStyle('display' , 'block');void(0)">播放</a>&nbsp;-->		
+					<?php elseif( $f['type'] == MUSIC ): ?>
+						<a href="javascript:$('fav_music_<?php echo $k; ?>').setStyle('display' , 'block');void(0)">试听</a>&nbsp;		
+					<?php endif; ?><font color="#ccc"><?php echo related_time( $f['time'] ); ?></font><br/>
+					<a href="<?php echo $f['link']; ?>" target="_blank"><?php echo word_substr($f['link'] , 40); ?></a>
+					<?php if( $f['desp'] ): ?>
+						<div class="p2"><img src="/static/images/quote_left.gif" />&nbsp;<?php echo $f['desp']; ?>&nbsp;<img src="/static/images/quote_right.gif" /></div>
+					<?php endif; ?>
+					<?php if( $f['type'] == VIDEO ): ?>
+					<div id="fav_video_<?php echo $k; ?>" class="fav_video_preview" >	
+					<center><?php echo get_player_by_url( $f['link'] ); ?></center>
+					</div>
+					<?php endif; ?>
+					<?php if( $f['type'] == MUSIC ): ?>
+					<div id="fav_music_<?php echo $k; ?>" class="fav_music_preview" >	
+					<center>
+						<embed src="/static/flash/mini_player_mp3.swf?my_mp3=<?php echo u( $f['link'] ) ?>&amp;my_text=mini-player&amp;autoplay=yes" quality="high" bgcolor="#ffffff" width="331" height="25" name="mini_player_mp3" align="left" allowScriptAccess="sameDomain" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />
+						
+					</center>
+					</div>
+					<?php endif; ?>
+				</div>	
+				<br clear="all"/>	
+				<span id="res_button_<?=$f['fid']?>" name="res_button_<?=$f['fid']?>" class="r"><a href="JavaScript:void(0)" onclick="show_res('ishare','<?=$f['fid']?>','<?=$f['uid'];?>')">回复</a></span>
+				<div id="res_list_<?=$f['fid']?>" name="res_list_<?=$f['fid']?>" class="reply_layout"></div>
+			</div>
+		<?php endforeach; ?>
+		<br clear="all"><br/>
+		<?=$pager;?>
+		<?php else: ?><br/>
+		<p>暂时没有分享,你来添加第一个吧</p>	
+		<?php endif; ?>			
+		</div>		
+	</div>
+	<div id="pm_right">
+	<?php @include_once( dirname( __FILE__ ) . '/fav.pub.tpl.html' ); ?>
+	</div>
+
+</div>
+		

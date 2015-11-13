@@ -1,0 +1,34 @@
+<div class="app_top"><h4>添加feed</h4>
+<div>添加feed</div></div>
+<!-- 标题 -->
+<div class="tabs">
+<li class="out"><a href="/app/native/<?=$GLOBALS['app']?>/feed_add/">添加</a></li>
+<li class="link"><a href="/app/native/<?=$GLOBALS['app']?>/feed/">返回管理</a></li>
+</div>
+<form action="/app/native/<?=$GLOBALS['app']?>/feed_save" method="post">
+<div class="feed_addpage">
+<div>Feed标题</div>
+<div><INPUT TYPE="text" class="text" NAME="ftitle" value="<?php if( isset($ftitle) && !empty($ftitle) ){ echo $ftitle; }?>" ></div>
+<div style="margin-top:10px">Feed地址</div>
+<div><INPUT TYPE="text" class="text" style="width:250px" NAME="faddress" value="<?php if( isset($flink) && !empty($flink) ){ echo $flink; }?>" ></div>
+<div style="margin-top:10px">Feed分类</div>
+<div>
+<SELECT NAME="ftid">
+	<?php foreach( $fselect as $k => $list ):?>
+	<OPTION VALUE="<?=$k?>"><?=$list?></OPTION>
+	<?php endforeach;?>
+</SELECT>
+</div>
+<div class="lists">Feed状态</div>
+<div>
+<SELECT NAME="state">
+	<?php foreach( $state as $k => $list ):?>
+	<OPTION VALUE="<?=$k?>"><?=$list?></OPTION>
+	<?php endforeach;?>
+</SELECT>
+</div>
+<div class="lists">默认图片</div>
+<div><INPUT TYPE="text" class="text" style="width:250px" NAME="img_add" value="http://"></div>
+<INPUT TYPE="submit" value="添加Feed" class="button lists">
+</div>
+</form>

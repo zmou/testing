@@ -1,0 +1,68 @@
+<script language="JavaScript1.2" src="/js/fck/fckeditor.js"></script>
+<div class="app_top"><h4><?=$forum['name']?></h4>
+<?=$forum['desp']?>	
+</div>
+<div class="l">
+		<div >
+		<?php if( $list ): ?>
+		<TABLE width="100%">
+		<TR>
+			<TD colspan="2" class="dispaly_title"><span class="r"><a href="/app/native/<?=$GLOBALS['app']?>/index/<?php echo $list[0]['fid'] ?>/<?php echo $return_page; ?>/<?php echo $return_key; ?>">回主题列表</a></span><font class="green"><strong><?=$list[0]['title']?></strong>&nbsp;[<small><?=$list[0]['reply']?>/<?=$list[0]['hit']?></small>]</font>
+			</TD>
+		</TR>
+	
+		<?php foreach( $list as $k => $v ):?>
+		<?php $key =  $k?($page-1)*$limit + $k:$k; ?>
+		<?php if($v['del_uid']):?>
+		<?php $name = $v['del_uid'] == $list[0]['uid']?'楼主':($v['del_uid'] == $v['uid']?'发布者':'管理员'); ?>
+		<TR>
+			<TD valign="top" width="52px"></TD>
+			<TD><span class="r"><?=show_floor( $key );?></span>
+			<del class="gray">该楼已被<?=$name;?>删除</del></TD>
+		<TR>
+		<?php else:?>
+		<TR>
+			<TD valign="top" width="52px"><div id="display_img_<?=$v['id']?>" name="display_img_<?=$v['id']?>"><img src="<?=show_user_icon('normal',$v['uid'])?>" class="icon" /><br/></div></TD>
+			<TD valign="top">
+			<div id="display_info_<?=$v['id']?>" name="display_info_<?=$v['id']?>" >
+			
+			<div class="forum_post_toolbar">
+			<span class="r"><?php if( $v['uid'] == format_uid() ):?><a href="/app/native/<?=$GLOBALS['app']?>/modify/<?=$v['id']?>/<?php echo $page; ?>/<?php echo $return_page; ?>/<?php echo $return_key; ?>">修改</a>&nbsp;&nbsp;<?php endif;?><?php if($show_del || $v['uid'] == format_uid() ):?><?php if( $k == 0 ):?>
+			<a href="#" onclick="app_del_post('<?=$v['id']?>','<?php echo $return_page; ?>','<?php echo $return_key; ?>')">删除</a><?php else:?><a href="JavaScript:void(0)" onclick="iforum_del('<?=$v['id']?>','<?=$key?>')" >删除</a><?php endif;?>&nbsp;&nbsp;<?php endif;?><a href="#reply" onclick="iforum_reply('<?=$key?>' , '<?=$v['id']?>')">回复</a> <?=show_floor( $key );?></span><a href="/user/space/<?=$v['uid']?>" target="_blank"><?=$names[$v['uid']]?></a><span class="post_time"><?=date("Y-m-d H:i",strtotime($v['time']) )?></span><br clear="all"></div>
+				
+			<div class="hline">
+			<?php if( $v['floor'] ):?>
+			---->>［回复 <?=$v['floor']?> 楼］<br/>
+			<?php endif;?>
+			<?=$v['desp'];?></div></div>
+			</TD>
+		</TR>
+		<?php endif;?>
+		<TR>
+			<td colspan="2">
+				<div class="gline">&nbsp;</div>
+			</td>
+		</TR>	
+		<?php endforeach;?>
+		</TABLE>
+		<br clear="all">
+		<span class="r"><a href="/app/native/<?=$GLOBALS['app']?>/index/<?php echo $list[0]['fid'] ?>/<?php echo $return_page; ?>/<?php echo $return_key; ?>">回主题列表</a></span><?=$pager;?>
+		<br clear="all"><br/>
+		<div id="reply">
+			<form action="/app/native/<?=$GLOBALS['app']?>/reply/<?=$id?>/<?=$return_page;?>/<?php echo $return_key; ?>" method="post">
+			<INPUT TYPE="hidden" NAME="floor" id="floor" value="0">
+			<INPUT TYPE="hidden" NAME="rid" id="rid" value="0">
+			<textarea name="desp" id="desp" wrap="hard" class="display_textarea"></textarea>
+			<br/><br/>
+			<input type="submit" value="回复主题" class="button">
+		</div>
+		<?php else:?>
+		<div class="notice">
+			没有找到主题信息
+		</div>
+		<?php endif;?>
+		</div>		
+	
+
+</div>
+<script>make_rich('desp' , 'Basic');</script>		

@@ -1,0 +1,4 @@
+<strong>([$iinfo.label])</strong>([ if  $iinfo.instruction != '' ])&nbsp;<img src="/static/images/comment_left.gif" title="([$iinfo.instruction])" class="tips" />([/if])<br/>
+<span id="field_([$iid])_txt" onclick="window.open('/upload/files/<?=$GLOBALS['app'];?>/field_([$iid])','_blank','scrollbars=no,width=475,height=150,left=75,top=80,status=no,resizable=yes')" style="cursor:pointer">点击这里上传文件，也可以直接在下边填写URL</span><br/>
+<input name="field_([$iid])" id="field_([$iid])" onchange="field_([$iid])_pic.src=this.value" value="<?=htmlspecialchars('([$iinfo.default_value])')?>"
+([ if $iinfo.size ]) class="text item_size_([$iinfo.size])"([/if]) ([ if $iinfo.custom_css ]) style="([$iinfo.custom_css])" ([/if]) >

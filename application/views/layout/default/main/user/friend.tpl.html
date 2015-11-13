@@ -1,0 +1,98 @@
+<div class="app_top"><h4>我的好友</h4>
+查找和整理你的好友	
+</div>
+<div class="l bd">		
+	<div id="friend_left">
+			<div class="boxes l" style="width:440px">
+				<div class="bd l">	
+	<?php if(!$see):?>
+		<div id="friend_search_box">
+		<?=_text('user_friend_find');?>
+			<p>
+			<INPUT class="text" TYPE="text" NAME="search" id="search" value="<?=$search;?>">
+			<INPUT TYPE="button" class="button" value="<?=_text('system_search')?>" onclick="search_user();">
+			</p>
+		</div>
+	
+	<?php else:?>
+	<center>
+	<?=_text('user_friend_see',$nickname);?>
+	</center>
+	<?php endif;?>
+		<p></p>
+		<?php if(is_array($friends[0])):?>
+		<div id="friend_list_box" >
+			<?php foreach($friends as $f):?>
+			<div class="friend_box" style="width:400px">
+				<div class="box_left">
+					<center>
+						<a href="/user/space/<?php echo $f['id'] ?>"><img src="<?=show_user_icon('big',$f['id'])?>" class="icon"/></a>
+					</center>
+				</div>
+				<div class="box_left">
+				<br/>
+				<p class="nickname"><a href="/user/space/<?php echo $f['id'] ?>"><?=$f['u2_nickname'];?></a></p>
+				<div style="width:150px"><?=$f['u2_desp'];?></div>
+				</div>
+				<div class="box_right">
+				<p><a href="javascript:show_chat(<?=$f['id']?>)"><?=_text('user_friend_send_pm');?></a></p>
+				<p>	<a href="/user/seefrinds/<?=$f['id']?>"><?=_text('user_friend_look');?></a></p>
+				<?php if(!$see):?>
+				<p><a href="#" onclick="javascript:link_del_confirm('/user/frienddo/del/<?=$f['id']?>')"><?=_text('user_friend_del');?></a></p>
+				<?php endif;?>
+				</div>
+			</div>
+			
+			<?php endforeach;?>
+			<br clear="all"/><br/>
+			<?=$pager;?>
+		</div>
+		<?php else:?>
+		<br clear="all"/>
+		<div class="notice">
+		<img src="/static/images/feature_sniffer.gif" />&nbsp;<?=_text('user_friend_no_friend');?>
+		</div>
+		<?php endif;?>
+	</div>
+	</div>	
+	</div>
+	<div id="friend_right">
+	<div class="boxes l rightcol">
+	<div class="hd">查找用户</div>
+		<div class="bd l">
+		<INPUT TYPE="text" NAME="search_user" id="search_user" class="text" >&nbsp;&nbsp;<INPUT class="button" TYPE="button" value="提交" onclick="location='/user/search/1/'+encodeURIComponent($('search_user').value)">
+		</div><br clear="all"/>
+	<?php if( c('invite_active') ):?>
+	<div class="hd"><?=_text('user_invite_friend');?></div>
+		<div class="bd l">
+		<a href="/app/native/iinvite/"><?=_text('user_click_to_invite_friend');?></a>
+		</div><br clear="all"/>
+	<?php endif;?>
+	<div class="hd">导入好友</div>
+		<div class="bd l">
+		<a href="/app/native/iinvite/">批量导入MSN或者邮箱联系人</a>
+		</div><br clear="all"/>
+	
+	
+		<div class="hd"><?=_text('user_friend_online');?></div>
+		<div class="bd l">
+	<?php if($fonline):?>
+	<?php foreach($fonline as $o):?>
+	<div class="p1 l">
+	<center>
+			<a href="/user/space/<?=$o['id']?>"><img src="<?=show_user_icon('',$o['id'])?>" class="icon" /><br/><?=$o['u2_nickname'];?></a><br/>
+			<a href="/user/frienddo/add/<?=$o['id']?>" title="<?=_text('system_frend_add')?>"><img src="/static/images/plus.gif"  /></a>
+			|
+			<a href="javascript:show_chat(<?=$o['id']?>)" title="<?=_text('user_friend_send_pm')?>"><img src="/static/images/mail.gif" /></a>
+	</center>
+	</div>
+	<?php endforeach;?>
+	<?php else: ?>
+		暂无好友
+	<?php endif;?>
+	</div>
+	
+	</div>
+	</div>
+
+</div>

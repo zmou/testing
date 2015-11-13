@@ -1,0 +1,126 @@
+<div class="app_top"><strong class="green">商城</strong>&nbsp;»&nbsp;<?=join('&nbsp;»&nbsp;', $nav )?>
+<?=_text('user_ulist_'.$action)?></div>
+<div class="bd">		
+
+	<div class="boxes">
+		<TABLE width="100%">
+		<TR>
+			<TD width="320px" valign="top">
+			<?php if( $item['pic'] ):?>
+			<a href="<?=$item['pic']?>" target="_blank"><img src="<?=$item['pic']?>" class="icon" onload="if(this.width>300)this.width=300"></a>
+			<?php else:?>
+			<img src="/static/images/shop_item.gif" class="icon">
+			<?php endif;?>
+			</TD>
+			<TD valign="top">
+			<div style="padding:10px">
+			<strong><?=$item['name']?></strong><br/>
+			<?php if( $item['is_pro'] &&   $item['pro_price'] ):?>
+			促销价  <strong style="color:orange;font-size:16px"><?=$item['pro_price']?></strong> 元
+			<?php else:?>
+			会员价  <strong style="color:orange;font-size:16px"><?=$item['price']?></strong> 元
+			<?php endif;?>
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			市场价  <del>￥<?php if( $item['market_price'] > 0 ):?><?=$item['market_price']?><?php else:?><?=ceil($item['price']*1.2)?><?php endif;?></del><br/><br/>
+				<div class="shop_buy_div">
+					<center>
+					我要买 <INPUT TYPE="text" NAME="number" id="number" class="text" style="width:60px;" onchange="format_number('number')">  <?php if( $item['unit'] ) echo $item['unit'];else echo '件' ?> (库存<?=$item['leave']?><?php if( $item['unit'] ) echo $item['unit'];else echo '件' ?>)<br/>
+					<INPUT TYPE="button" class="button" value=" 立刻购买 " onclick="add_shop_item_shopcate(<?=$item['id']?> , '<?=$shopcate?>')">
+					</center>
+				</div>
+				<br/>
+				<div class="shop_item_para"><label>货号</label><?=$item['number']?></div>
+				<div class="shop_item_para"><label>重量</label><?=$item['weight']?>克</div>
+				<div class="shop_item_para"><label>品牌</label><?=$brands[$item['brands']]['name']?></div>
+				<?php if( $extra_info && isset( $item['extra'] )  && $item['extra'] ):?>
+					<?php foreach( $extra_info as $v ):?>
+						<?php if( $item['extra']['extra_'.$v['id']] ):?>
+							<?php if( $v['type'] != 'checkbox' ):?>
+							<div class="shop_item_para"><label><?=$v['label']?></label><?=$item['extra']['extra_'.$v['id']]?></div>
+							<?php else:?>
+							<div class="shop_item_para"><label><?=$v['label']?></label><?=join(' ', unserialize($item['extra']['extra_'.$v['id']]) );?></div>
+							<?php endif;?>
+						<?php endif;?>
+					<?php endforeach;?>
+				<?php endif;?>
+				<br clear="all"/>
+				<br clear="all"/>
+				<span>
+					<?php if( in_array( $item['id'] , $keeps ) ):?>
+					已收藏
+					<?php else:?>
+					<a href="JavaScript:void(0)" onclick="add_to_wishlist( <?=$item['id']?> , 1 , this)">加入收藏</a>
+					<?php endif;?>
+				</span><span class="wishlist_button">
+					<?php if( in_array( $item['id'] , $wishes ) ):?>
+					已加入Wishlist
+					<?php else:?>
+					<a href="JavaScript:void(0)" onclick="add_to_wishlist( <?=$item['id']?> , 2 , this)">加入Wishlist</a>
+					<?php endif;?>
+				</span>
+				<br clear="all"/>
+			</div>
+			</TD>
+		</TR>
+		</TABLE>
+		<br/>
+		<ul class="tabs" id="shop_item_tab">
+		<li id="all" class="out"><a href="JavaScript:void(0)" onclick="show_shop_nav(this)">商品详情</a></li>
+		<li id="record"><a href="JavaScript:void(0)" onclick="show_shop_nav(this)">购买记录</a></li>
+		<li id="reply"><a href="JavaScript:void(0)" onclick="show_shop_nav(this)">留    言</a></li>
+		</ul>
+		<div id="desp_info" class="shop_info">
+		<?=$item['desp']?>
+		</div>
+
+		<div id="record_title" class="shop_info">
+		<h5 class="w2 underline">购买记录</h5>
+		</div>
+		<div id="record_info" class="shop_info">
+		购买记录 购买记录 购买记录 购买记录 购买记录 
+		</div>
+
+		<div id="reply_title" class="shop_info">
+		<h5 class="w2 underline">留    言</h5>
+		</div>
+		<div id="reply_info" class="shop_info">
+		<div id="reply_list" class="shop_replys">
+		<?php if( $replys ):?>
+		<?php foreach($replys as $v):?>
+		<a href="/user/space/<?=$v['uid']?>" target="_blank"><img src="<?=show_user_icon('small', $v['uid'])?>">&nbsp;<?=$names[$v['uid']]['u2_nickname']?></a><span class="post_time"><?=$item['time']?></span>
+		<div class="shop_reply_item">
+		<?php if( intval( $v['ruid'] ) == 0 && $v['uid'] == format_uid() ):?>
+		<span class="r"><a href="JavaScript:void(0)" onclick="shop_modify_reply(<?=$v['id']?>,this )">修改</a>&nbsp;<a href="JavaScript:void(0)" onclick="shop_del_reply(<?=$v['id']?> )"><img src="/static/images/cross.gif" alt="删除"></a></span>
+		<?php elseif( is_admin() ):?>
+		<span class="r"><a href="JavaScript:void(0)" onclick="shop_del_reply(<?=$v['id']?> )"><img src="/static/images/cross.gif" alt="删除"></a></span>
+		<?php endif;?>
+			<div class="l" id="reply_item_<?=$v['id']?>"><?=nl2br( $v['info'] );?></div>
+
+			<span id="rreply_item_<?=$v['id']?>" class="shop_rreplys">
+			<?php if( is_admin() && $v['ruid'] == 0 ):?>
+			<a href="JavaScript:void(0)" onclick="show_shop_rreply_div(<?=$v['id']?>,this)"><img src="/static/images/revert.png" alt="回复"/></a>
+			<?php endif;?>
+			<?php if( $v['ruid'] > 0 ):?>
+			<br/>
+			<a href="/user/space/<?=$v['ruid']?>" target="_blank" style="color:orange"><?=$names[$v['ruid']]['u2_nickname']?></a>回复: <?=nl2br( $v['rinfo'] );?>
+				<?php if( is_admin()):?>
+				<a href="JavaScript:void(0)" onclick="show_shop_rreply_div(<?=$v['id']?>,this)"><img src="/static/images/updates.gif" alt="修改"/></a>
+				<?php endif;?>
+			<?php endif;?>
+			</span>
+		</div><br clear="all"/>
+		<?php endforeach;?>
+		<br/>
+		
+		<?php else:?>
+		暂无留言<br/><br/>
+		<?php endif;?>
+		</div>
+		<form action="/shop/replysave/<?=$item['id']?>" method="post">
+		<TEXTAREA NAME="info"  wrap="hard" style="width:600px;height:60px;overflow:hidden"></TEXTAREA>
+		<br/><br/>
+		<INPUT TYPE="submit" class="button" value=" 提交留言 ">
+		</form>
+		</div>
+	</div>
+</div>

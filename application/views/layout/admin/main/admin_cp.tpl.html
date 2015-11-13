@@ -1,0 +1,21 @@
+<div class="box">
+	<p class="admin_title"><?=_text('admin_cp_title')?></p>
+	<p><b><?=_text('admin_site_info_today')?></b></p><br/>
+	<div class="l">
+		<div class="left">
+			<p><?=_text('admin_site_info_view_ip')?>&nbsp;<?=$ip_count;?><p>
+			<p><?=_text('admin_site_info_new_member')?>&nbsp;<?=$new_num?><p>
+			<p><?=_text('admin_site_info_member_online')?>&nbsp;<?=ceil($avg_online)?><p>
+			<p><?=_text('admin_site_info_message_max')?>&nbsp;<?=$pm_count;?><p>
+			<p><?=_text('admin_site_info_feed_count')?>&nbsp;<?=$feed_count;?><p>
+		</div>
+		<div class="l">
+		<?php if(is_array( $statistics) ):?>
+		<?php foreach( $statistics as $statistic):?>
+		<p><?=$statistic;?><p>
+		<?php endforeach;?>
+		
+		<?php endif;?>
+		</div>
+	</div>
+</div>

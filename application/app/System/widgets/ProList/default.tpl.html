@@ -1,0 +1,31 @@
+<div class="boxes">
+	<div class="hd"><!--{tool bar}--><?=_text('pro_list_title');?></div>
+	<div class="bd">
+		<?php if(isset($pros)&& $pros):?>
+			<?php foreach($pros as $k => $p):?>
+			<?php if( $k < $full ): ?>
+			<p><?php if(is_admin()):?><span class="r"><a href="JavaScript:void(0)" onclick="javascript:ajax_del_confirm('/pro/del/<?=$p['id']?>')"><img src="/static/images/cross.gif"></a></span><?php endif;?>[<?php echo show_pro_cate($p['u2_cate']) ?>][<?php echo date( "m-d" , strtotime($p['u2_addtime']) ) ?>]&nbsp;<a href="/riki/display/<?=$p['id']?>" title="<?=_text('pro_add_information', $p['u2_nickname'])?>"><?=$p['u2_title']?></a><?php if(is_admin()):?>&nbsp;&nbsp;<a href="/pro/modify/<?=$p['id']?>">[<?=_text('system_modify')?>]</a><?php endif;?></p>
+				<?php if( $p['u2_pic'] ): ?>
+				<div class="l">
+					<div class="l">
+					<img src="<?=$p['u2_pic']?>" class="icon"/>
+					</div>
+					<div class="l">
+					<?=$p['u2_desp']?>
+					</div>
+				</div>
+				<br clear="both"/>
+				<?php else:?>
+				<p><?=$p['u2_desp']?></p>
+				<?php endif;?>	
+			<?php else:?>
+			<p><?php if(is_admin()):?><span class="r"><a href="JavaScript:void(0);" onclick="javascript:ajax_del_confirm('/pro/del/<?=$p['id']?>');"><img src="/static/images/cross.gif"></a></span><?php endif;?>[<?php echo show_pro_cate($p['u2_cate']) ?>][<?php echo date( "m-d" , strtotime($p['u2_addtime']) ) ?>]&nbsp;<a href="/riki/display/<?=$p['id']?>" title="<?=_text('pro_add_information', $p['u2_nickname'])?>"><?=$p['u2_title']?></a><?php if(is_admin()):?>&nbsp;&nbsp;<a href="/pro/modify/<?=$p['id']?>">[<?=_text('system_modify')?>]</a><?php endif;?></p>
+			<p></p>
+			<?php endif;?>	
+			<?php endforeach;?>
+		<?php else:?>
+			<p></p>
+			<p class="item"><?=_text('pro_list_no_item');?></p>
+		<?php endif;?>
+	</div>
+</div>

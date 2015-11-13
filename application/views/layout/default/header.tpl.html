@@ -1,0 +1,86 @@
+<?php if( !isset($page_name) ) $page_name = ''; ?><div id="top_spacer"></div>
+<div class="yui-g">
+	<div class="yui-u first">
+		<a href="/" class="logo"><img src="<?=c('site_logo')?>" alt="Logo" id="logo"></a>
+	</div>
+	<div class="yui-u" id="top_nav">
+		
+		<div class="f-top"><?php if( is_admin() ):?><a href="/admin/"><?=_text('system_admin_center');?></a><?php endif?></div>
+		
+		<div class="f-bottom">
+		<?php if( is_login() ):?>
+
+		<?php if( module() == 'user' && $page_name == 'miniblog' ): ?><a href="/user/miniblog/"><span class="menu_active"><img src="/static/images/transmission.gif" />&nbsp;我的首页</span></a><?php else: ?><a href="/user/miniblog/"><img src="/static/images/transmission.gif" />&nbsp;我的首页</a><?php endif; ?>&nbsp;
+			
+		<?php if( module() == 'user' && $page_name == 'space' && isset($self) && $self ): ?><span class="menu_active"><img src="/static/images/home.gif" />&nbsp;个人空间</span><?php elseif( module() == 'user' && $page_name == 'space'): ?><a href="/user/space/"><span class="menu_active"><img src="/static/images/home.gif" />&nbsp;个人空间</span></a><?php else: ?><a href="/user/space/"><img src="/static/images/home.gif" />&nbsp;个人空间</a><?php endif; ?>[<?php if( module() == 'user' && $page_name == 'setting' ): ?><span class="menu_active">修改</span><?php else: ?><a href="/user/setting/">修改</a><?php endif; ?>]&nbsp;
+
+<span id="qmenu">
+<?php if( module() == 'app' ):?><a href="javascript:void(0)"id="qm_link"><span class="menu_active">应用<img src="/static/images/pulldown.gif" /></span></a><?php else: ?><a href="javascript:void(0)"id="qm_link">应用<img src="/static/images/pulldown.gif" /></a><?php endif; ?>
+</a>&nbsp;&nbsp;
+	 <div id="qmenu_pop" class="qmenu_pop" style="display:none"  >
+	 <div style="margin:10px">
+	 <?php $apps = get_left_apps();
+	if( isset( $apps[0] ) ): ?>
+	<?php foreach( $apps as $app ): ?>
+	 <p><a href="/app/native/<?=$app['u2_folder']?>"><img src="<?=$app['u2_icon']?>" />&nbsp;<?=$app['u2_title']?></a></p>
+	<?php endforeach; ?>
+	<?php endif; ?>         
+	</div>
+	 </div>
+</span>
+<script>
+	$('qm_link').addEvent('mouseenter', function(){quick_menu('qmenu','qmenu_pop')});
+	$('qm_link').addEvent('mouseleave', function(){close_menu('qmenu_pop')});
+
+	$('qmenu_pop').addEvent('mouseenter', function(){quick_menu('qmenu','qmenu_pop')});
+	$('qmenu_pop').addEvent('mouseleave', function(){close_menu('qmenu_pop')});
+</script>
+
+
+		<?php if( module() == 'user' && $page_name == 'friend' ): ?><a href="/user/friend/"><span class="menu_active"><img src="/static/images/person.gif" />&nbsp;好友</span></a><?php else: ?><a href="/user/friend/"><img src="/static/images/person.gif" />&nbsp;好友</a><?php endif; ?>&nbsp;
+		<!--
+		<span id="qmenu">
+			<a href="javascript:void(0)"  onmouseout="close_menu();" onmouseover="quick_menu()"><?=_text('system_my_meun')?><img src="/static/images/pulldown.gif" /></a>&nbsp;&nbsp;
+				<div id="qmenu_pop" style="display:none"  onmouseover="quick_menu()"  onmouseout="close_menu();" >
+				<p><img src="/static/images/transmission.gif" />&nbsp;<a href="/user/miniblog/"><?=_text('system_frends_action')?></a></p>
+			
+				<p><img src="/static/images/home.gif" />&nbsp;<a href="/user/space/"><?=_text('system_user_space')?></a></p>
+				
+				<p><img src="/static/images/list_unordered.gif" />&nbsp;<a href="/user/setting/"><?=_text('system_user_setting')?></a></p>
+			
+				<p><img src="/static/images/person.gif" />&nbsp;<a href="/user/friend/"><?=_text('system_user_friends')?></a></p>
+				
+				<?php if( false ): ?><p><img src="/static/images/plus.gif" />&nbsp;<a href="/pro/add/"><?=_text('pro_add_title')?></a></p><?php endif; ?>
+				
+				</div>
+		</span> -->
+		<?php $pm_conut = get_unread_pm();$no_conut = get_unread_notice();$fr_count=get_unread_request();$all_count = $pm_conut + $no_conut + $fr_count;
+		
+		?>
+			<?php if( module() == 'user' && $page_name == 'message' ): ?><span class="menu_active"><a href="javascript:void(0)" id="pm_link"><img src="/static/images/mail.gif" />&nbsp;<?=_text('system_message')?><span id="pm_all_count"></span></a></span><?php else: ?><a href="javascript:void(0)" id="pm_link"><img src="/static/images/mail.gif" />&nbsp;<?=_text('system_message')?><span id="pm_all_count"><?php if( $all_count > 0 ){ echo "($all_count)"; } ?></span></a><?php endif;?>
+	
+	 <div id="qmenu_pm" class="qmenu_pop" style="display:none"  >
+	 <div style="margin:10px">
+	 <p><a href="/user/message/"><img src="/static/images/radio.gif" />&nbsp;收件箱<span id="inbox_count"><?php if( $pm_conut > 0 ){ echo "($pm_conut)"; } ?></span></a></p>
+	 <p><a href="/user/message/sendbox"><img src="/static/images/radio.gif" />&nbsp;发件箱</a></p> 
+	 <p><a href="/user/notifications"><img src="/static/images/radio.gif" />&nbsp;通知<span id="notice_count"><?php if( $no_conut > 0 ){ echo "($no_conut)"; } ?></span></a></p> 
+	 <p><a href="/user/friendrequest/"><img src="/static/images/radio.gif" />&nbsp;好友请求<span id="resquest_count"><?php if( $fr_count > 0 ){ echo "($fr_count)"; } ?></span></a></p> 
+	</div>
+	 </div>
+</span>
+<script>
+	$('pm_link').addEvent('mouseenter', function(){quick_menu('pm_link','qmenu_pm')});
+	$('pm_link').addEvent('mouseleave', function(){close_menu('qmenu_pm')});
+
+	$('qmenu_pm').addEvent('mouseenter', function(){quick_menu('pm_link','qmenu_pm')});
+	$('qmenu_pm').addEvent('mouseleave', function(){close_menu('qmenu_pm')});
+</script>	
+			
+			
+			<a href="/user/logout/"><?=_text('system_logout')?></a><?php else: ?> <?=_text('system_login_or_register','<a href="/user/login/">','</a>','<a href="/user/register/">','</a>')?>
+			<?php endif;?>
+		</div>
+ 	</div>
+	
+</div>
+<div style="margin-bottom:10px"></div>

@@ -1,0 +1,114 @@
+<div class="app_top"><h4>订单管理 - 浏览</h4>
+<div>查看订单详细情况</div>
+</div>
+<div class="tabs">
+<li class="out"><a href="/app/native/<?=$GLOBALS['app']?>/order_select/<?=$id;?>">浏览</a></li>
+<li class="link"><a href="/app/native/<?=$GLOBALS['app']?>/">回到购物车</a></li>
+<li class="link"><a href="/app/native/<?=$GLOBALS['app']?>/order_manager/">回到订单管理</a></li>
+</div>
+<div class="small_title"><b><img src="/static/images/icon_arrow_down.gif">物品账单</b></div>
+<form action="/app/native/<?=$GLOBALS['app']?>/order_update/" method="POST">
+<div class="ware_rim ware_width">
+	<div>
+	<table width="100%" align="center" border="0" cellspacing="0" cellpadding="0">
+		<tr height="30" class="shop_ground">
+			<td width="20%">商品</td>
+			<td width="20%" align="center">数量</td>
+			<td width="20%" align="center">单价</td>
+			<td width="20%" align="center">小计</td>
+		</tr>
+		<?php $i=0;?>
+		<?php foreach( $ware as $k => $line ):?>
+		<?php $i++;?>
+		<tr>
+			<td width="20%"><a href="/app/native/<?=$line['folder']?>/display/<?=$line['cid']?>"><?=$line['name']?></a></td>
+			<td width="20%" align="center"><?=$line['num']?></td>
+			<td width="20%" align="center">
+			￥<span><?=$line['money']?></span></td>
+			<td width="20%" align="center">
+			￥<span><?=$line['num']*$line['money']?></span></td>
+		</tr>
+		<?php endforeach;?>
+	</table>
+	</div>
+	<div class="septa_line agiso_div">
+	<?php if( $agio != '100' ):?>
+	<span class="agis_span"><b>您共节省:
+	<font class="money">￥<span><?=$orders['stint'];?></span></font></b>
+	</span>
+	<?php endif;?>
+	<span class="agis_span"><b>商品金额总计:<font class="money">￥<span><?=$orders['money'];?></span></font>
+	</span></b>
+	</div>
+</div>
+<br>
+
+<div style="width:60%">
+<div class="small_title">
+<b><img src="/static/images/icon_arrow_down.gif">您选择的送货方式</b>
+</div>
+<?php foreach( $carrys as $k => $carr):?>
+<?php if($orders['carry_type'] == $k+1):?>
+<div style="padding-left:18px"><?=$carr['name']?> <font class="nickname"><?=$carr['desp']?></font></div>
+<?php endif;?>
+<?php endforeach;?>
+</div><br>
+<div style="width:60%">
+	<div class="small_title">
+	<b><img src="/static/images/icon_arrow_down.gif">您的收获信息</b>
+	</div>
+	<div style="height:115px;padding-left:13px">
+		<table width="100%" align="left" border="0" cellspacing="0" cellpadding="0">
+		<tr>
+			<td width="20%">收货人:</td>
+			<td align="left">
+			<?php foreach( $names as $list ):?>
+			<?php if( $list['name'] == $orders['toname'] ):?>
+			<?=$list['name']?>
+			<?php endif;?>
+			<?php endforeach;?>
+			</td>
+		</tr>
+		<tr>
+			<td width="20%">收货电话:</td>
+			<td align="left"><?php echo $orders['totell'];?></td>
+		</tr>
+		<tr>
+			<td width="20%">邮编:</td>
+			<td align="left"><?php echo $orders['tocode'];?></td>
+		</tr>
+		<tr>
+			<td width="20%">收货地址:</td>
+			<td align="left"><?php echo $orders['tohome'];?></td>
+		</tr>
+		</table>
+	</div>
+</div>
+<div style="width:60%">
+<div class="small_title">
+<b><img src="/static/images/icon_arrow_down.gif">礼品包装</b>
+</div>
+<div style="padding-left:20px">
+<?php if( $orders['pack_type'] == '0' ):?>
+不需要
+<?php else:?>
+需要
+<?php endif;?>
+</div>
+</div>
+<?php if( isset($orders['need']) && $orders['need'] != '' ):?>
+<br>
+<div style="width:60%">
+	<div class="small_title">
+	<b><img src="/static/images/icon_arrow_down.gif">特殊要求</b>
+	</div>
+	<div style="padding-left:20px"><?php echo $orders['need'];?></div>
+</div>
+<?php endif;?>
+<br><br>
+<div style="margin-bottom:40px">
+<input type="button" class="button" value="修改订单" onclick="window.location='/app/native/<?=$GLOBALS['app']?>/order_modify/<?=$id;?>'">&nbsp;
+<input type="button" class="button" value="回到订单管理" onclick="window.location='/app/native/<?=$GLOBALS['app']?>/order_manager/'">
+<a href="#" onclick="if( confirm( '取消此条订单!' )==true ){ window.location='/app/native/<?=$GLOBALS['app']?>/order_del/<?=$id;?>' ;}">取消订单</a>
+</div>
+</form>

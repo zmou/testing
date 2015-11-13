@@ -1,0 +1,116 @@
+<div class="app_top"><h4><?=_text('user_miniblog_title')?></h4>
+最新信息都在这里出现~好友的~网站的~	
+</div>
+<div class="l bd">
+	<div id="miniblog_left">
+	<ul class="tabs" >
+	<li  class="out"><a href="/user/miniblog/">新鲜事</a></li>
+	</ul>
+	<p></p>
+	<p></p>
+		<div id="snotice"><SCRIPT LANGUAGE="JavaScript">show_snotice('snotice' , '0');</SCRIPT></div>
+		<p><INPUT id="friend_only_check_box" TYPE="checkbox" NAME="friend_only" value="1" onclick="reload_miniblog();" <?php if($friend_only == 'friend')echo 'checked';?>  >&nbsp;<?=_text('user_miniblog_friend_only')?></p>
+		<?php if(is_array($feeds[0])):?>
+		<?php foreach($feeds as $b):?>
+		
+		<!--
+		<p><?php if($b['u2_img'] != NULL):?><img src="<?=$b['u2_img']?>"><?php endif;?>
+		<span class="nickname"><?=$b['u2_nickname']?></span>&nbsp;<?=$b['u2_action']?></p>
+		-->
+		<div class="minifeed_item" id="minifeed_item_<?php echo $b['id']; ?>"><?php if($b['u2_uid'] == format_uid() ): ?><div class="r"><a href="javascript:minifeed_remove(<?php echo $b['id']; ?>);void(0)"><img src="/static/images/cross.gif" /></a></div><?php endif; ?>
+		<img src="/static/icon/<?=$b['u2_app_aid']?>.gif" />&nbsp;<?=$b['u2_action']?>&nbsp;&nbsp;<img src="/static/images/clock.gif">&nbsp;<font color="#aaa"><?=related_time($b['u2_time']);?></font>
+		<?php if($b['u2_img']):?>
+		<TABLE>
+		<TR>
+			<TD><img src="<?=$b['u2_img']?>" class="icon miniblog_u2_img_style" /></TD>
+			<TD><?php if($b['u2_desp'] != NULL):?><IMG src="/static/images/quote_left.gif">&nbsp;<?=$b['u2_desp']?>&nbsp;<IMG 
+src="/static/images/quote_right.gif"><?php endif;?><br clear="all"/></TD>
+		</TR>
+		</TABLE>
+		<?php else:?>
+		<?php if($b['u2_desp'] != NULL):?><div class="miniblog_news_desp">
+		<IMG src="/static/images/quote_left.gif">&nbsp;<?=$b['u2_desp']?>&nbsp;
+		<IMG src="/static/images/quote_right.gif"></div>
+		<?php endif;?>
+		<?php endif;?>
+		
+		</div>	
+		<?php endforeach;?>
+		<br/>
+		<?=$pager;?><br/><br/>
+		<?php else:?>
+		<div class="notice">
+		<?=_text('user_miniblog_no_blog');?>
+		</div>
+		<?php endif;?>
+	</div>
+	
+	<div id="miniblog_right">
+		<div class="boxes">
+			<div class="hd"><?=_text('user_friend_online')?></div>
+			<div class="bd">
+			
+				<?php if($ofriends):?>
+					<?php foreach($ofriends as $o):?>
+					<div class="l p1  warp w-normal">
+					<center>
+					<a href="/user/space/<?=$o['id']?>"><img src="<?=show_user_icon('',$o['id'])?>" class="icon" /><br/><?=$o['u2_nickname'];?></a><br/>
+				
+					<a href="javascript:show_chat(<?=$o['id']?>)" title="<?=_text('user_friend_send_pm')?>"><img src="/static/images/mail.gif" />&nbsp;<?=_text('user_friend_send_pm')?></a>
+					</center>
+					</div>
+					<?php endforeach;?>
+				<?php else:?>
+					<p><?=_text('system_no_friends')?></p>
+				<?php endif;?>
+				<br clear="all"/>
+			</div>
+		</div>
+		
+		<div style="margin-bottom:5px"></div>
+		
+		<div class="boxes">
+			<div class="hd"><?=_text('system_online_people')?></div>
+			<div class="bd">
+			
+				<?php if($omembers):?>
+					<?php foreach($omembers as $o):?>
+					<div class="l p1  warp w-normal">
+					<center>
+					<a href="/user/space/<?=$o['id']?>"><img src="<?=show_user_icon('',$o['id'])?>" class="icon" /><br/><?=$o['u2_nickname'];?></a><br/>
+				
+					<a href="/user/frienddo/add/<?=$o['id']?>" title="<?=_text('system_frend_add')?>"><img src="/static/images/plus.gif"  /></a>
+					|
+					<a href="javascript:show_chat(<?=$o['id']?>)" title="<?=_text('user_friend_send_pm')?>"><img src="/static/images/mail.gif" /></a>
+					</center>
+					</div>
+					<?php endforeach;?>
+				<?php else:?>
+					<p><?=_text('system_no_friends')?></p>
+				<?php endif;?>
+				<br clear="all"/>
+			</div>
+		</div>
+			<!--<div class="boxes">
+				
+				<div class="hd">&nbsp;&nbsp;心智状态</div>
+				<div class="bd">
+				<div style="padding:10px">
+				-&nbsp;行动力&nbsp;<?php echo intval($user['hp']); ?>/<?php echo intval($user['hp_max']); ?>
+				</div>
+				</div>	
+				
+				<div class="hd">&nbsp;&nbsp;财务状况</div>
+				<div class="bd">
+				<div style="padding:10px">
+				<p>钱包</p>	
+				-&nbsp;银币&nbsp;<?php echo intval($user['g']); ?><br/>
+				-&nbsp;金币&nbsp;<?php echo intval($user['gold']); ?><br/><br/>
+				<p>银行</p>	
+				-&nbsp;银币&nbsp;<?php echo intval($bank['g_count']); ?><br/>
+				-&nbsp;金币&nbsp;<?php echo intval($bank['gold_count']); ?><br/>
+				</div>
+				</div>
+			</div>-->
+	</div>
+</div>

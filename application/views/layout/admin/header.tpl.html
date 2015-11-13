@@ -1,0 +1,58 @@
+<div id="top_spacer"></div>
+<div class="yui-g">
+	<div class="yui-u first">
+		<a href="/"><img src="<?=c('site_logo')?>" alt="Logo" id="logo"></a>
+	</div>
+	<div class="yui-u" id="top_nav">
+		<div class="f-top"><a href="/"><?=_text('admin_back_to_site');?></a></div>
+		<div class="f-bottom"></div>
+ 	</div>
+</div>
+
+<?php
+$navs['index'] = _text('admin_cp_title');
+//$navs['shop'] = _text('admin_shop_title');
+$navs['setting'] = _text('admin_setting_title');
+$navs['applist'] = _text('admin_applist_title');
+$navs['snotice'] = '通知';
+
+$navs['members'] = _text('admin_members_title');
+$navs['cards'] = _text('admin_cards_title');
+/*
+if( get_app_name_with_aid( 'iticket' ) )
+{
+	$navs['iticket'] =  _text('admin_iticket_title');
+}*/
+$navs['pages'] = _text('admin_pages_title');
+$navs['contents'] = _text('admin_contents_title');
+//$navs['plist'] = _text('admin_data_title');
+$navs['update'] = _text('admin_update_title');
+$navs['upgrade'] = _text('admin_upgrade_title');
+?>
+
+<div class="admin_nav">
+	<table border="0" width="100%">
+	<tr>
+	<?php foreach($navs as $k => $v):?>
+	<td align="center">
+	<a href="/admin/<?=$k;?>"><?=$v;?></a>
+	</td>
+	<?php endforeach;?>
+	</tr>
+	</table>
+	<!--
+	<div class="items">
+	<label><a href="/admin/index/"><?=_text('admin_cp_title')?></a></label>
+	<label><a href="/admin/contents/"><?=_text('admin_contents_title')?></a></label>
+	<label><a href="/admin/pages/"><?=_text('admin_pages_title')?></a></label>
+	<label><a href="/admin/members/"><?=_text('admin_members_title')?></a></label>
+	<label><a href="/admin/applist/"><?=_text('admin_applist_title')?></a></label>
+	<label><a href="/admin/setting/"><?=_text('admin_setting_title')?></a></label>
+	<label><a href="/admin/cards/"><?=_text('admin_cards_title')?></a></label>
+	<span><a href="/admin/plist/"><?=_text('admin_data_title')?></a></span>
+
+	</div>
+	-->
+</div>
+<br clear="all"/>
+<br/>

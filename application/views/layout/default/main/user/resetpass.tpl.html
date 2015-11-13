@@ -1,0 +1,9 @@
+<?php @include( dirname(__FILE__) .'/header.settings.tpl.html' ); ?>
+<br/><br/>
+<div class="bd">
+<form action="/user/resetpass/save" method="post">
+<p class="item"><label><?=_text('user_resetpass_oldpass');?>:</label>&nbsp;<input type="password" class="text" name="oldpass" ></p>
+<p class="item"><label><?=_text('user_resetpass_newpass')?>:</label>&nbsp;<input type="password" class="text" name="newpass1" ></p>
+<p class="item"><label><?=_text('user_resetpass_newpass_again');?>:</label>&nbsp;<input type="password" class="text" name="newpass2" ></p>
+<p class="act"><input type="submit" value="<?=_text('system_submit')?>" class="button"></p>
+</div>

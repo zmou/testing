@@ -1,0 +1,59 @@
+<SCRIPT LANGUAGE="JavaScript">
+function app_show_list( id )
+{
+	if( id == '1' )
+	{
+		$('show_one').setStyle( 'display' , 'block' );
+	}
+	else
+	{
+		$('show_one').setStyle( 'display' , 'none' );
+	}
+}
+</SCRIPT>
+<center>
+<table border="0" width="300">
+	<tr><td align="left" width="100">
+	模块标题
+	</td><td align="left">
+	<input type="text" name="title" value="<?php if( isset($title) ){ echo $title; }?>" class="text">
+	</td></tr>
+	<tr><td align="left" width="100">
+	显示方式
+	</td><td align="left">
+	<select name="show_type" id="show_type" onchange="app_show_list( this.value )">
+	<option value="1" <?php if( isset($show_type) && $show_type == '1' ){ echo "selected"; }?>>标题+图片</option>
+	<option value="2" <?php if( isset($show_type) && $show_type == '2' ){ echo "selected"; }?>>标题+内容</option>
+	</select>
+	</td></tr>
+	<tr><td align="left" width="100">
+	列表方式
+	</td><td align="left">
+	<select name="list_type">
+	<option value="1" <?php if( isset($list_type) && $list_type == '1' ){ echo "selected"; }?>>最新发布的</option>
+	<option value="2" <?php if( isset($list_type) && $list_type == '2' ){ echo "selected"; }?>>点击最多的</option>
+	<option value="3" <?php if( isset($list_type) && $list_type == '3' ){ echo "selected"; }?>>评论最多的</option>
+	</select>
+	</td></tr>
+	</tr>
+	<tr><td align="left" width="83">
+	显示总条数
+	</td><td align="left">
+	<input type="text" name="list_num" value="<?php if( isset($list_num)){ echo $list_num; }?>" class="text">
+	</td></tr>
+</table>
+<?php if( isset($show_type) && $show_type == '2' ):?>
+<div id="show_one" style="display:none;">
+<?php else:?>
+<div id="show_one" style="display:block;">
+<?php endif;?>
+	<table border="0" width="300">
+		<tr><td align="left" width="84">
+		每行显示个数
+		</td><td align="left">
+		</td><td align="left">
+		<input type="text" name="row_num" value="<?php if( isset($row_num)){ echo $row_num; }?>" class="text">
+		</td></tr>
+	</table>
+</div>
+</center>

@@ -1,0 +1,8 @@
+<?php if( !isset($iinfo) ): ?>
+<strong>默认标题</strong><br/>
+<input name="field_<?=$iid?>" value="默认值" />
+<?php else: ?>
+	<strong><?=$iinfo['label']?></strong><?php if( !empty( $iinfo['instruction'] ) ): ?>&nbsp;<img src="/static/images/comment_left.gif" title="<?php echo $iinfo['instruction']; ?>" class="tips" /><?php endif; ?><br/>
+	<input name="field_<?=$iid?>" value="<?=$iinfo['default_value']?>" <?php if( isset( $iinfo['size'] ) ) :?>class="text item_size_<?=$iinfo['size'];?>"<?php endif; ?>  />
+<?php endif; ?>
+

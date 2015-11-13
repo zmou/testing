@@ -1,0 +1,30 @@
+<center>
+<table>
+<tr><td align="left">
+<label>标题</label>
+</td><td align="left">
+<label><INPUT TYPE="text" NAME="title" class="text" value="<?php if( isset($title)){ echo $title; } ?>"></label><br clear="all"/>
+</td></tr>
+<tr><td align="left">
+<label>宽度</label>
+</td><td align="left">
+<label><INPUT TYPE="text" NAME="width" class="text" value="<?php if( isset($width)){ echo $width; }?>"></label><br clear="all"/>
+</td></tr>
+<tr><td align="left">
+<label>高度</label>
+</td><td align="left">
+<label><INPUT TYPE="text" NAME="height" class="text" value="<?php if( isset($height)){ echo $height; }?>"></label><br clear="all"/>
+</td></tr>
+<tr><td align="left">
+<label>图片路径:<div><font color="#ff0000">图片URL,用|分隔<br>只支持JPG格式的图片</font></div></label>
+</td><td align="left">
+<label><textarea NAME="img_url" class="text" style="width:300px;height:50px" ><?php if( isset($img_url)){ echo $img_url; };?></textarea></label><br clear="all"/>
+</td></tr>
+<tr><td align="left">
+<label>连接路径:<div><font color="#ff0000">连接路径,用|分隔</font></div></label>
+</td><td align="left">
+<label><textarea NAME="link_url" class="text" style="width:300px;height:50px"><?php if( isset($link_url)){ echo $link_url; };?></textarea></label><br clear="all"/>
+</td></tr>
+</table>
+<br><br>
+</center>

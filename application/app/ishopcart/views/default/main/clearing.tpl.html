@@ -1,0 +1,104 @@
+<div class="app_top"><h4>购物车 - 结算</h4>
+<div>请认真填写以下收获信息</div>
+</div>
+<div class="tabs">
+<li class="out"><a href="/app/native/<?php echo $GLOBALS['app'] ?>/clearing/">结算</a></li>
+<li class="link"><a href="/app/native/<?=$GLOBALS['app']?>/">返回购物车</a></li>
+</div>
+<div class="small_title"><b><img src="/static/images/icon_arrow_down.gif">物品账单</b></div>
+<div class="ware_rim">
+	<div>
+	<table width="100%" align="center" border="0" cellspacing="0" cellpadding="0">
+		<tr height="30"  class="shop_ground">
+			<td>物品名</td>
+			<td align="center">数量</td>
+			<td align="center">单价</td>
+			<td align="center">小计</td>
+		</tr>
+		<?php foreach( $record as $k => $line ):?>
+		<tr>
+			<td><?=$line['name']?></td>
+			<td align="center"><?=$line['num']?></td>
+			<td align="center">￥<?=$line['money']?></td>
+			<td align="center">￥<?=$line['num']*$line['money']?></td>
+		</tr>
+		<?php endforeach;?>
+	</table>
+	</div>
+	<div class="septa_line padding_money">
+	<?php if( $agio != '100' ):?>
+	<span><b>您共节省:<font class="money">￥<?=$stint;?></font></b></span>
+	<?php endif;?>
+	<span class="agis_span"><b>商品金额总计:<font class="money">￥<?=$money_end;?></font></b></span>
+	</div>
+</div>
+<div class="p1"><a href="/app/native/<?=$GLOBALS['app']?>/">→点这里修改您的商品</a></div>
+<br>
+<form action="/app/native/<?=$GLOBALS['app']?>/order_save/" method="POST">
+<div class="methods">
+<div class="small_title">
+<b><img src="/static/images/icon_arrow_down.gif">请选择您需要的送货方式</b>
+</div>
+<?php foreach( $carrys as $k => $carr):?>
+<div><input type="radio" name="carry" value="<?=$k+1;?>" checked /><?=$carr['name']?> <font class="nickname"><?=$carr['desp']?></font></div>
+<?php endforeach;?>
+</div>
+<br>
+<div class="methods">
+<div class="small_title">
+<b><img src="/static/images/icon_arrow_down.gif">请输入收获信息</b>
+</div>
+<div class="methods_height">
+<table width="100%" align="left" border="0" cellspacing="0" cellpadding="0">
+<tr>
+	<td width="20%">收货人 <font color="#ff0000">*</font></td>
+	<td align="left">
+	<?php if( !$names ):?>
+	<input type="text" name="custom_name" maxlength="20" class="methods_input_width" class="text" />
+	<?php else:?>
+	<select name="username" id="username" onchange="ShowToname(); ShopVote( this.value );">
+	<?php foreach( $names as $list ):?>
+	<option value="<?=$list['id']?>" <?php if( $list['name'] == this.value ){ echo "selected"; }?> ><?=$list['name']?></option>
+	<?php endforeach;?>
+	<option value="0" >自定义</option>
+	</select>
+	<span id="Custom" class="custom_style">
+	<input type="text" name="custom_name" maxlength="20" class="methods_input_width text"/></span>
+	<?php endif;?>
+	</td>
+</tr>
+<tr>
+	<td width="20%">收货电话 <font color="#ff0000">*</font></td>
+	<td align="left"><input type="text" id="usertell" name="usertell" maxlength="20" class="text" style="width:150px;" /></td>
+</tr>
+<tr>
+	<td width="20%">邮编 <font color="#ff0000">*</font></td>
+	<td align="left"><input type="text" id="usercode" name="usercode" class="text" style="width:50px;" maxlength="6" /></td>
+</tr>
+<tr>
+	<td width="20%">收货地址 <font color="#ff0000">*</font></td>
+	<td align="left"><input type="text" id="userhome" name="userhome" class="text" style="width:250px;" /></td>
+</tr>
+</table>
+</div>
+</div>
+<br>
+<div class="methods">
+	<div class="small_title">
+		<b><img src="/static/images/icon_arrow_down.gif">免费礼品包装</b>
+	</div>
+	<span><input type="radio" name="pack" value="0" checked />&nbsp;&nbsp;不需要包装</span>
+	<span><input type="radio" name="pack" value="1" />&nbsp;&nbsp;需要包装</span>
+</div>
+<br>
+<div class="methods">
+<div class="small_title">
+<b><img src="/static/images/icon_arrow_down.gif">如果您有特殊要求，请在这里注明</b>
+</div>
+<div>
+<textarea class="need_w_h" name="need"></textarea>
+</div>
+</div>
+<br>
+<div class="button_margin"><input type="submit" class="button" value="提交订单"></div>
+</form>

@@ -1,0 +1,40 @@
+<div class="app_top"><h4>社区银行</h4>
+银行,充值相关	
+</div>
+<div class="l">
+	<div id="pm_left">
+		<div class="tabs">
+			
+			<?php foreach( $tab_array  as $key=>$tab ) : ?>
+			<?php if( $tab_type == $key ): ?>
+			<li class="out"><a href="/app/native/<?=$GLOBALS['app']?>/<?php echo $key; ?>"><?php echo $tab; ?></a></li>
+			<?php else: ?>
+			<li ><a href="/app/native/<?=$GLOBALS['app']?>/<?php echo $key; ?>"><?php echo $tab; ?></a></li>
+			<?php endif; ?>		
+			<?php endforeach; ?>	
+
+		</div>
+		<div class="p2">
+		<h2>社区银行欢迎你前来理财,你不理财,财不理你~</h2>
+		<p class="green">你当前的财务状况</p>
+		随身携带: 银币 <?php echo intval( $user['g'] ) ?>枚 <!-- &nbsp; 金币 <?php echo intval( $user['gold'] ) ?>枚--><br/>
+		银行帐户: 银币 <?php echo intval( $account['g_count'] ) ?>枚 <!--&nbsp; 金币 <?php echo intval( $account['gold_account'] ) ?>枚--><br/>
+		<br/>
+		<p class="green underline">充值</p>
+		<p>请输入充值卡密码</p>
+		<form action="/app/native/<?=$GLOBALS['app']?>/pay" method="POST">
+		<input class="text" name="code" type="text" value="" /> <br/>
+		<br/><input type="submit" value="充值" class="button" />
+		</form>
+		<p>&nbsp;</p>
+		
+		<br/><br/>
+		
+		</div>		
+	</div>
+	<div id="pm_right">
+	<?php @include_once( dirname( __FILE__ ) . '/public.tpl.html' ); ?>
+	</div>
+
+</div>
+		

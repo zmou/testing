@@ -1,0 +1,17 @@
+<div class="boxes">
+<div class="hd"><span><a href="/user/login/"><?=_text('user_register_to_login');?></a></span><?=_text('user_register_title');?></div>
+<div class="bd"><p>&nbsp;</p>
+<form action="/user/register/save" method="post" id="reg_from">
+<p class="item"><label><?=_text('user_register_nickname');?>:</label>&nbsp;<input type="text" id="nickname" class="text" name="nickname" ></p>
+<p class="item"><label><?=_text('user_register_email')?>:</label>&nbsp;<input type="text" id="email" class="text" name="email" ></p>
+<p class="item"><label><?=_text('user_register_password');?>:</label>&nbsp;<input type="password" id="psw" class="text" name="psw" ></p>
+<p class="item"><label><?=_text('user_register_password_again');?>:</label>&nbsp;<input type="password" id="psw2" class="text" name="psw2" ></p>
+<?php if(c('invite_active')): ?>
+<p class="item"><label><?=_text('invite_code');?>:</label>&nbsp;<input type="text" id="invitecode" class="text" name="invitecode" value="<?=$icode;?>" ></p>
+<?php endif;?>
+<INPUT TYPE="hidden" NAME="invuid" value="<?=$invuid;?>">
+<p class="act"><input type="button" value="<?=_text('system_submit')?>" class="button" onclick="reg_check()"></p>
+
+</form>
+</div>
+</div>

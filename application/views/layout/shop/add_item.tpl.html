@@ -1,0 +1,128 @@
+<SCRIPT LANGUAGE="JavaScript" src="/js/index/set.js"></SCRIPT>
+<script type="text/javascript" src="/js/fck/fckeditor.js"></script>
+<div class="box">
+	<p class="admin_title"><?=_text('admin_shop_title')?></p>
+
+	<ul class="tabs">
+	<li><a href="/admin/shop/"><?=_text('admin_shop_situation')?></a></li>
+	<li class="out"><?=_text('admin_shop_item_title')?></li>
+	<li><a href="/admin/shop/list/orders">订单</a></li>
+	</ul>
+	<br/>
+	<?=join(' | ', $nav_links);?>
+	<br/><br/>
+	<b>添加商品</b><br/>
+<INPUT TYPE="hidden" id="item_id" value="<?=$item['id']?>">
+<form  action="/admin/shop/save/item/<?=$item['id']?>" method="post" id="shop_item_form">
+<INPUT TYPE="hidden" NAME="is_active" id="is_active" value="<?=$item['is_active']?>">
+		<div class="r"  style="width:350px">
+				<TABLE width="100%" class="p0">
+				<TR>
+					<TD width="70px">商品名称</TD>
+					<TD><INPUT TYPE="text" NAME="name" class="text" value="<?=$item['name']?>"></TD>
+					<TD width="90px"></TD>
+				</TR>
+				<TR>
+					<TD>货号</TD>
+					<TD><INPUT TYPE="text" NAME="number" id="number" class="text" value="<?php if( $item['number'] ) echo $item['number'] ; else echo 'MS'.str_pad($item['id'], 6, '0', STR_PAD_LEFT); ?>"></TD>
+					<TD><INPUT TYPE="button" class="button" value="自动生成" onclick="$('number').value='MS<?=str_pad($item['id'], 6, '0', STR_PAD_LEFT);?>'"></TD>
+				</TR>
+				<TR>
+					<TD>品牌</TD>
+					<TD><div id="shop_brand_opt"><INPUT TYPE="hidden" NAME="brands" id="brands" value="<?=$item['brands']?>"></div></TD>
+					<TD><a href="/admin/shop/add/brand"><img src="/static/images/plus.gif">&nbsp;添加品牌</a></TD>
+				</TR>
+				<TR>
+					<TD>计量单位</TD>
+					<TD><INPUT TYPE="text" NAME="unit" class="text" value="<?=$item['unit']?>"></TD>
+					<TD></TD>
+				</TR>
+				<TR>
+					<TD>重量</TD>
+					<TD><INPUT TYPE="text" NAME="weight" class="text"  id="weight" value="<?=$item['weight']?>" onchange="format_number('weight')" ></TD>
+					<TD>克(g)</TD>
+				</TR>
+				<TR>
+					<TD>销售价</TD>
+					<TD><INPUT TYPE="text" NAME="price" class="text" id="price" value="<?=$item['price']?>" onchange="format_float('price')"></TD>
+					<TD></TD>
+				</TR>
+				<TR>
+					<TD>市场价</TD>
+					<TD><INPUT TYPE="text" NAME="market_price" value="<?=$item['market_price']?>" class="text" id="market_price" onchange="format_float('market_price')"></TD>
+					<TD><INPUT TYPE="button" class="button" value="自动生成" onclick="if( isNaN( parseFloat( $('price').value ) ))return;$('market_price').value=parseInt( $('price').value*1.2);"></TD>
+				</TR>
+				<TR>
+					<TD>促销价</TD>
+					<TD><INPUT TYPE="text" NAME="pro_price" value="<?=$item['pro_price']?>" class="text" id="pro_price" onchange="format_float('pro_price')"></TD>
+					<TD><INPUT TYPE="checkbox" NAME="is_pro" value="1" <?php if( $item['is_pro'] == 1 ) echo 'checked'?> >促销</TD>
+				</TR>
+				</TABLE>
+
+				<div id="shop_extra_div" class="p0">
+				</div>
+
+				<TABLE width="100%" class="p0">
+				<TR>
+					<TD width="70px">库存</TD>
+					<TD><INPUT TYPE="text" NAME="leave" id="leave" value="<?=$item['leave']?>" onchange="format_number('leave')" class="text" style="width:50px"> 少于 <INPUT TYPE="text" NAME="alarm" class="text" style="width:20px" id="alarm"value="<?=$item['alarm']?>" onchange="format_number('alarm')"> 时通知我</TD>
+				</TR>
+				<TR>
+					<TD width="70px">状态</TD>
+					<TD><INPUT TYPE="checkbox" NAME="carriage" value="1" <?php if( $item['carriage'] == 1 ) echo 'checked'?> >上架 <INPUT TYPE="checkbox" NAME="new" value="1" <?php if( $item['new'] == 1 ) echo 'checked'?> >新品 <INPUT TYPE="checkbox" NAME="good" value="1" <?php if( $item['good'] == 1 ) echo 'checked'?> >精品 <INPUT TYPE="checkbox" NAME="hot" value="1" <?php if( $item['hot'] == 1 ) echo 'checked'?> >热卖</TD>
+				</TR>
+				<TR>
+					<TD></TD>
+					<TD><INPUT TYPE="button" value=" 保存 " class="button" onclick="$('is_active').value=1;$('shop_item_form').submit();">&nbsp;&nbsp;<INPUT TYPE="button" value=" 草稿 " class="button" onclick="$('is_active').value=0;save_draft( 'shop_item_form')"></TD>
+				</TR>
+				</TABLE>
+		</div>
+		<div class="l">
+			<br/>
+			<span id="shop_cate">
+				<SCRIPT LANGUAGE="JavaScript">show_shop_cate(<?=$item['cate']?> , <?=$item['type']?> )</SCRIPT>
+				</span>
+				&nbsp;&nbsp;类型&nbsp;&nbsp;<SELECT id="type" NAME="type" id="type" onchange="load_shop_extra(this.value)">
+					<OPTION VALUE="0" SELECTED>通用类型
+					<?php if( $types):?>
+					<?php foreach($types as $v):?>
+					<OPTION VALUE="<?=$v['id']?>"><?=$v['name']?>
+					<?php endforeach;?>
+					<?php endif;?>
+				</SELECT>
+			<br clear="all/"><br/>
+			<img src="<?php if( $item['pic'] ) echo $item['pic']; else echo '/static/images/shop_item.gif';?>" id="pic_pic"  onload="if(this.width>400)this.width=400" class="icon"/><br/>
+			<TABLE>
+			<TR>
+				<TD width="100px"><b>上传图片</b></TD>
+				<TD><span id="pic_txt" onclick="window.open('/upload/pic/system/pic','_blank','scrollbars=no,width=475,height=150,left=75,top=80,status=no,resizable=yes')" style="cursor:pointer">点击这里上传图片，也可以直接在下边填写URL</span><br/>
+				<input name="pic" id="pic" value="<?=$item['pic'];?>" class="text" onchange="pic_pic.src=this.value" ></TD>
+			</TR>
+			<TR>
+				<TD><b>标签</b></TD>
+				<TD><INPUT TYPE="text" id="tags" class="text">&nbsp;&nbsp;&nbsp;<INPUT TYPE="button" class="button" value="增加" onclick="add_shop_item_tag(<?=$item['id']?>)"><br>多个标签请用空格分开
+
+				</TD>
+			</TR>
+			<TR>
+				<TD></TD>
+				<TD><div id="tag_list"><SCRIPT LANGUAGE="JavaScript">shop_item_tag_list(<?=$item['id']?>);</SCRIPT></div></TD>
+			</TR>
+
+			
+			</TABLE>
+		<div id="item_notice" class="notice">草稿最后保存于 <?=$item['time']?></div>
+		</div><br clear="all"/>
+		<div style="border-top:1px solid #ccc;">
+		<br/>
+		<b>详细介绍</b>
+		<br/>
+		<center>
+		<textarea name="desp" id="desp" wrap="hard" style="width:800px;height:200px" class="fck"><?=$item['desp']?></textarea>
+		</center>
+		</div>
+		</form>
+</div>
+<script>make_rich('desp' , 'Basic');
+setInterval( function(){ save_draft( 'shop_item_form') } , 30000 ); 
+</script>

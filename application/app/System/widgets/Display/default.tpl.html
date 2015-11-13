@@ -1,0 +1,22 @@
+<div class="boxes">
+	<div class="hd"><!--{tool bar}--><?=_text('pro_display_title')?></div>
+	<div class="bd">
+		<?php if(isset($pro) && $pro ):?>
+			<p></p>
+			<p><b><?=$pro['u2_title']?></b></p>
+			<p></p>	
+			<?php if($pro['u2_pic']):?>
+			<p><img src="<?=$pro['u2_pic']?>"></p>
+			<?php endif;?>
+			<p class="item"><?=$pro['u2_desp']?></p>
+			<?php if($added):?>
+			<?php foreach($added as $a ):?>
+			<?=$a;?>
+			<?php endforeach;?>
+			<?php endif;?>
+		<?php else:?>
+				<p></p>
+				<p><b><?=_text('system_no_date');?></b></p>
+		<?php endif;?>
+	</div>
+</div>

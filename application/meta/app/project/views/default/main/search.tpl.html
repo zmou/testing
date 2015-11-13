@@ -1,0 +1,51 @@
+<div class="app_top">
+<h4><?=app_config('model_name')?></h4><div><?=app_config('model_subtitle');?></div></div>
+<div class="tabs">
+<li class="out"><a href="/app/native/<?=$GLOBALS['app']?>/search/">搜索<?=app_config('model_name')?></a></li>
+<li class="link"><a href="JavaScript:history.back(1)">返回</a></li>
+<?php if( level_check( app_config('add_level') ) ):?>
+<li class="link"><a href="/app/native/<?=$GLOBALS['app']?>/add/">发布<?=app_config('model_name')?></a></li>
+<?php endif;?>
+<li class="link"><a href="/app/native/<?=$GLOBALS['app']?>/search/">搜索<?=app_config('model_name')?></a></li>
+</div><br clear="all"/>
+<div id="app_left">
+<?php if( $items ):?>
+	<?php if( $bind['pic'] != 'extra' ):?>
+		<?php foreach( $items as $k => $v ):?>
+		<div class="app_search_test">
+		<table border="0" cellpadding="0" cellspacing="0" width="100%">
+		<tr>
+		<Td width="10%" align="left">
+		<a href="/app/native/<?=$GLOBALS['app'];?>/display/<?=$v['id'];?>">
+		<img src="/upload/snap/<?=$GLOBALS['app']?>/<?=base64_encode($v['pic']);?>" class="icon" <?=$pic_style?> />
+		</a></Td>
+		<td valign="top">
+		<div style="height:20px;">
+		<a href="/app/native/<?=$GLOBALS['app'];?>/display/<?=$v['id'];?>"><?=$v['title'];?></a></div>
+		<div><?=short_content( $v['desp'] , 100 , '<a href="/app/native/'.$GLOBALS['app'].'/display/'.$v['id'].'">  继续阅读</a>' )?></div>
+		</td>
+		</tr>
+		</table>
+		</div>
+		<?php endforeach;?>
+	<?php else:?>
+		<?php foreach( $items as $k => $v ):?>
+		<div class="app_search_test" style="margin-top:10px">
+		<div style="height:20px;">
+		<a href="/app/native/<?=$GLOBALS['app'];?>/display/<?=$v['id'];?>"><?=$v['title'];?></a></div>
+		<div><?=short_content( $v['desp'] , 100 , '<a href="/app/native/'.$GLOBALS['app'].'/display/'.$v['id'].'">  继续阅读</a>' )?></div>
+		</div>
+		<?php endforeach;?>
+	<?php endif;?>
+	<div style="margin-top:20px"><?=$pager;?></div>
+<?php else:?>
+<div align="center">抱歉,未收录相关<?=app_config('model_name')?></div>
+<?php endif;?>
+</div>
+<div class="r">
+<br/>
+<form action="/app/native/<?=$GLOBALS['app'];?>/search/" method="post">
+<input type="text" class="text" name="desp" value="<?=$desp;?>">
+<input type="submit" class="button" value="搜索">
+</form>
+</div>

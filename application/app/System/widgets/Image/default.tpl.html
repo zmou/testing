@@ -1,0 +1,24 @@
+<div class="boxes">
+	<div class="hd"><!--{tool bar}--><?=$title;?></div>
+	<div class="bd">
+	<?php $time = time();?>
+	<div id ="Image_<?=$time;?>">
+	</div>
+	<script type="text/javascript">
+	var focus_width=<?php echo $width; ?>;
+	var focus_height=<?php echo $height; ?>;
+	var text_height=0;
+	var swf_height = focus_height+text_height;
+	var pics='<?php echo $imgs; ?>';
+    var links='<?php echo $links; ?>';
+	var texts='';
+	var image_html ='<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0" width="'+ focus_width +'" height="'+ swf_height +'">';
+	image_html += '<param name="allowScriptAccess" value="sameDomain"><param name="movie" value="/static/flash/pixviewer.swf"><param name="quality" value="high"><param name="bgcolor" value="#F0F0F0">';
+	image_html += '<param name="menu" value="false"><param name=wmode value="opaque">';
+	image_html += '<param name="FlashVars" value="pics='+pics+'&links='+links+'&texts='+texts+'&borderwidth='+focus_width+'&borderheight='+focus_height+'&textheight='+text_height+'">';
+	image_html += '<embed src="/static/flash/pixviewer.swf" wmode="opaque" FlashVars="pics='+pics+'&links='+links+'&texts='+texts+'&borderwidth='+focus_width+'&borderheight='+focus_height+'&textheight='+text_height+'" menu="false" bgcolor="#F0F0F0" quality="high" width="'+ focus_width +'" height="'+ swf_height +'" allowScriptAccess="sameDomain" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />';	image_html += '</object>';
+	$( 'Image_<?=$time;?>' ).setHTML( image_html );
+	</script>
+	</div>
+</div>
+<!-- $data['roots'] = $roots = dirname( __FILE__ ).'../../../../../../static/images/logo.gif'; -->

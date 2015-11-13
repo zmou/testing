@@ -1,0 +1,37 @@
+<div class="boxes">
+	<div class="hd"><!--{tool bar}--><?=$title;?></div>
+	<div class="bd">
+	<?php if( isset( $qq ) && $qq != '' ):?>
+	<div>
+	<?php foreach( $qq as $k ):?>
+		<!-- <?php if( intval($k) != '0' ):?> -->
+		<a href="tencent://Message/?Uin=<?=$k;?>&websiteName=<?=$http_host;?>&Menu=yes" target="_black"><img border="0" src="http://wpa.qq.com/pa?p=1:<?=$k;?>:1" alt="点击这里给我发消息" /></a>
+		<!-- <?php endif;?> -->
+	<?php endforeach;?>
+	</div><br>
+	<?php endif;?>
+
+	<?php if( isset( $wangwang ) && $wangwang != '' ):?>
+	<div>
+	<?php foreach( $wangwang as $k ):?>
+		<a target="_blank" href="http://amos1.taobao.com/msg.ww?v=2&uid=<?=urlencode($k)?>&s=1" ><img border="0" src="http://amos1.taobao.com/online.ww?v=2&uid=51shopex&s=1" alt="点击这里给我发消息" /></a>
+	<?php endforeach;?>
+	</div>
+	<?php endif;?>
+	<?php if( isset( $other ) && $other != '' ):?>
+	<div class="servive_other_contack">
+	联系方式:
+	<?php foreach( $other as $k ):?>
+	<div>
+	<?=$k;?>
+	</div>
+	<?php endforeach;?>
+	</div>
+	<?php endif;?>
+
+	<?php if( isset($set_please) && $set_please == '0' ):?>
+	<div>请先设置联系号码</div>
+	<?php endif;?>
+
+	</div>
+</div>

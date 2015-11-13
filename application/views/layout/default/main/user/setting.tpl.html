@@ -1,0 +1,23 @@
+<?php @include( dirname(__FILE__) .'/header.settings.tpl.html' ); ?>
+<br/><br/>
+<div class="l bd">
+	<form action="/user/setting/save" method="post">
+		<p class="item"><label><?=_text('user_nick_name');?>:</label>&nbsp;<input type="text" class="text" name="nick_name" value="<?=$u2_nickname;?>" ></p>
+		<p class="item"><label><?=_text('user_true_name');?>:</label>&nbsp;<input type="text" class="text" name="true_name" value="<?=$u2_true_name;?>" ></p>
+		
+		<p class="item"><label>性别:</label>&nbsp;<input type="radio" class="text" name="sex" value="1" >女生 &nbsp; <input type="radio" class="text" name="sex" value="2" >男生</p>
+		
+		<p class="item"><label><?=_text('user_msn');?>:</label>&nbsp;<input type="text" class="text" name="msn" value="<?=$u2_msn;?>" ></p>
+		<p class="item"><label><?=_text('user_qq');?>:</label>&nbsp;<input type="text" class="text" name="qq" value="<?=$u2_qq;?>" ></p>
+		<p class="item"><label><?=_text('user_mobile');?>:</label>&nbsp;<input type="text" class="text" name="mobile" value="<?=$u2_mobile;?>" ></p>
+		<p class="item"><label><?=_text('user_city');?>:</label>&nbsp;<input type="text" class="text" name="city" value="<?=$u2_city;?>" ></p>
+	
+		<p class="item"><label><?=_text('user_zipcode');?>:</label>&nbsp;<input type="text" class="text" name="zipcode" value="<?=$u2_zipcode;?>" ></p>
+		
+			<p class="item"><label><?=_text('user_address');?>:</label>&nbsp;<TEXTAREA class="text" name="address" ROWS="3" COLS="30"><?=$u2_address;?></TEXTAREA></p>
+		
+	<p class="act"><input type="submit" value="<?=_text('system_submit')?>" class="button"></p>
+	</form>
+	<script>set_value( 'sex' , '<?php echo $u2_sex; ?>' )</script>
+
+</div>

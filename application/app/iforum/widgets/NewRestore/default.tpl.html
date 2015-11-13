@@ -1,0 +1,29 @@
+<div class="boxes">
+	<div class="hd"><!--{tool bar}--><?=$title;?></div>
+	<div>
+	<?php if($list):?>
+		<TABLE width="80%" border="0" cellspacing="0" cellpadding="0">
+		<TR>
+		<TD><b>标题</b></TD>
+		<TD width="100px"><b>作者</b></TD>
+		<TD width="100px"><b>回复/阅读</b></TD>
+		<TD width="100px"><b>最后回复</b></TD>
+		</TR>
+		<?php foreach($list as $v):?>
+		<TR>
+		<TD>
+		<a href="/app/native/iforum/display/<?=$v['id']?>/1/" <?php if( isset($new_page) && $new_page == '1'){ echo "target='_black'"; }?>><?=$v['title']?></a><?php if($v['is_selected']):?>&nbsp;&nbsp;<img src="/static/images/is_selected.gif"/><?php endif;?><span class="post_time_iforum">&nbsp;<?=date("m-d H:i",strtotime( $v['time'] ) )?></span>
+		</TD>
+		<TD><a href="/user/space/<?=$v['uid']?>" target="_blank"><?=$names[$v['uid']]['u2_nickname']?></a></TD>
+		<TD><?=$v['reply']?>/<?=$v['hit']?></TD>
+		<TD><a href="/user/space/<?=$v['uid']?>" target="_blank"><?=$names[$v['last_uid']]['u2_nickname']?></a><span class="post_time_iforum"><?=date("m-d",strtotime( $v['last_post_time'] ) )?></span></TD>
+		</TR>
+		<?php endforeach;?>
+		</TABLE>
+		<?php else:?>
+		<div class="notice">
+		暂无文章
+		</div>
+		<?php endif;?>
+	</div>
+</div>

@@ -1,0 +1,30 @@
+<div class="boxes">
+<div class="hd">数据添加页面预览</div>
+<div class="bd">
+<div style="padding-left:30px">
+<h2><?=$finfo['title']?></strong></h2>
+<?=$finfo['subtitle']?>
+<div class="gray p1">点击左侧字段类型后的<img src="/static/images/plus.gif" />添加字段 <a href="http://techblog.moneysns.com/?p=39" target="_blank">查看使用教程</a></div>
+</div>
+
+<ul class="design_ul"id="design_form">
+</ul>	
+<div class="gline"></div>
+<p>&nbsp;</p>
+
+<ul class="design_ul">
+<li><input type="button" class="button" onclick="location='/design/bindkey/<?=$finfo['id'];?>'" value="下一步:绑定字段 >>"><br/><br/><a href="/design/">返回组件列表</a>	</li>	
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+<script type="text/javascript">
+<?php if( isset( $fitems[0] ) ): ?>
+<?php foreach( $fitems as $fitem ): ?>
+design_item_render( <?=$fitem['id']?> );
+<?php endforeach; ?>
+<?php endif; ?>
+</script>
+
+</div>
+</div>	

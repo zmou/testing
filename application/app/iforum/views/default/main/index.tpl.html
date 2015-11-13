@@ -1,0 +1,63 @@
+<div class="app_top"><h4><?=$forum['name']?></h4>
+<?=$forum['desp']?>	
+</div>
+<div class="l">
+		<div class="tabs" >
+			<?php foreach( $tab_array  as $key=>$tab ) : ?>
+			<?php if( $tab_type == $key ): ?>
+			<li class="out"><a href="/app/native/<?=$GLOBALS['app']?>/index/<?php echo $fid; ?>/1/<?php echo $key; ?>"><?php echo $tab; ?></a></li>
+			<?php else: ?>
+			<li ><a href="/app/native/<?=$GLOBALS['app']?>/index/<?php echo $fid; ?>/1/<?php echo $key; ?>"><?php echo $tab; ?></a></li>
+			<?php endif; ?>		
+			<?php endforeach; ?>
+			<li class="link"><a href="/app/native/<?=$GLOBALS['app']?>/add/<?=$fid;?>">发起新主题</a></li>
+			<li class="link"><a href="/app/native/<?=$GLOBALS['app']?>/index/<?php echo $fid; ?>/1/-1">精华区</a></li>
+			<?php if(is_admin()):?>
+			<li class="link"><a href="/app/native/<?=$GLOBALS['app']?>/setting/<?=$fid;?>"><img src="/static/images/list_unordered.gif" /></a></li>
+			<?php endif;?>
+
+		</div>
+		<div class="p2">
+		<?php if( is_admin() ):?>
+		<span class="r"> <a href="JavaScript:void(0)" onclick="select_all('selectAll','ids[]')"><img src="/static/images/checkbox.gif" />全选</a> |   <a href="JavaScript:void(0)" onclick="select_all('selectNone','ids[]')"><img src="/static/images/button.gif" />全不选</a> |   <a href="JavaScript:void(0)" onclick="iforum_admin_action('iforum_ids','top')"><img src="/static/images/arrow_dash_up.gif" />置顶</a> |   <a href="JavaScript:void(0)" onclick="iforum_admin_action('iforum_ids','untop')"><img src="/static/images/arrow_dash_down.gif" />取消置顶</a> |   <a href="JavaScript:void(0)" onclick="iforum_admin_action('iforum_ids','sel')"><img src="/static/images/heart.gif" />精华</a> |   <a href="JavaScript:void(0)" onclick="iforum_admin_action('iforum_ids','unsel')"><img src="/static/images/heart_broken.gif" />取消精华</a> <a href="JavaScript:void(0)" onclick="iforum_admin_action('iforum_ids','del')"><img src="/static/images/cross.gif" />删除</a></span><br clear="all">
+		<?php endif;?>
+		<form action="/app/native/<?=$GLOBALS['app']?>/action/" method="post" name="iforum_ids" id="iforum_ids">
+		<INPUT TYPE="hidden" NAME="action" id="action">
+		<?php if($list):?>
+		<TABLE width="100%">
+		<TR>
+		<TD><b>标题</b></TD>
+		<TD width="60" align="center"><b>作者</b></TD>
+		<TD width="60" align="center"><b>回复/阅读</b></TD>
+		<TD width="100"><b>最后回复</b></TD>
+		</TR>
+		<?php $evalcode = is_admin()?'<INPUT TYPE=\"checkbox\" NAME=\"ids[]\" value=\"{$v[id]}\" >':NULL;?>
+		<?php foreach($list as $v):?>
+		<TR>
+		<TD><?php eval("\$checkbox = \"$evalcode\";"); echo $checkbox; ?>
+		<?php $class=$v['top_level']?' class = "top_level" ' :NULL; ?>
+		<a href="/app/native/<?=$GLOBALS['app']?>/display/<?=$v['id']?>/1/<?=$page;?>/<?=$tab_type;?>" <?=$class;?>><?=$v['title']?></a><?php if($v['is_selected']):?>&nbsp;&nbsp;<img src="/static/images/is_selected.gif"/><?php endif;?><span class="post_time"><?=date("m-d H:i",strtotime( $v['time'] ) )?></span>
+		<?php if( $tab_type < 1  && $v['type'] > 0 && $tab_array[$v['type']]):?>
+		<br/><span class="post_time"><?=$tab_array[$v['type']];?></span>
+		<?php endif;?>
+		</TD>
+		<TD align="center"><a href="/user/space/<?=$v['uid']?>" target="_blank"><?=$names[$v['uid']]?></a></TD>
+		<TD align="center"><?=$v['reply']?>/<?=$v['hit']?></TD>
+		<TD><a href="/user/space/<?=$v['last_uid']?>" target="_blank"><?=$names[$v['last_uid']]?></a><span class="post_time"><?=date("m-d",strtotime( $v['last_post_time'] ) )?></span></TD>
+		</TR>
+		<?php endforeach;?>
+		</TABLE><br/>
+		<?=$pager;?>
+		<?php else:?>
+		<div class="notice">
+		暂无主题
+		</div>
+		<?php endif;?>
+		</form>
+		</div>		
+
+
+</div>
+
+
+		

@@ -1,0 +1,65 @@
+<div class="app_top"><h4>我的小屋</h4>
+道具	
+</div>
+<div class="l">
+	<div id="pm_left">
+		<div class="tabs">
+			
+			<?php foreach( $tab_array  as $key=>$tab ) : ?>
+			<?php if( $tab_type == $key ): ?>
+			<li class="out"><a href="/app/native/<?=$GLOBALS['app']?>/<?php echo $key; ?>"><?php echo $tab; ?></a></li>
+			<?php else: ?>
+			<li ><a href="/app/native/<?=$GLOBALS['app']?>/<?php echo $key; ?>"><?php echo $tab; ?></a></li>
+			<?php endif; ?>		
+			<?php endforeach; ?>	
+
+		</div>
+		<div class="p2">
+		<br/>
+		<TABLE width="430px">
+		<TR>
+			<TD width="250px;" valign="top">
+			<center><img src="<?=show_user_icon('big')?>"><br/><span class="nickname"><?=_sess('u2_nickname')?></span></center>
+			<br/>
+			<b>携带:</b><br/>
+			<?php for( $i=1;$i<6;$i++ ):?>
+			<?php if( isset( $wear[$i-1]) ):?>
+			<div class="ihome_wear" id="wear_<?=$i?>">
+			<a href="JavaScript:void(0)" onclick="ihome_unset_item('<?=$wear[$i-1]['id']?>','<?=$i?>')"><img src="<?=$wear[$i-1]['pic'];?>" alt="<?=$wear[$i-1]['desp'];?>" /></a>
+			</div>
+			<?php else:?>
+			<div class="ihome_wear" id="wear_<?=$i?>"></div>
+			<?php endif;?>
+			<?php endfor;?>
+			<TD>
+			<center>
+			<div class="ihome_baggage_title">
+			物品栏
+			</div>
+			<div id="baggage_list" name="baggage_list" class="ihome_baggage">
+			<?php if($list):?>
+			<?php foreach( $list as $v):?>
+			<a href="JavaScript:void(0)" onclick="ihome_user_item('<?=$v['id']?>')" title="<?=$v['desp']?>">
+			<div id="item_<?=$v['id']?>"  name="item_<?=$v['id']?>" class="ihome_my_item" style="background:url(<?=$v['pic']?>) top center;background-repeat : no-repeat;">
+			X<span id="item_count_<?=$v['id']?>" id="item_count_<?=$v['id']?>"><?=$v['count'];?></span><INPUT TYPE="hidden" NAME="item_count_value_<?=$v['id']?>" id="item_count_value_<?=$v['id']?>" value="<?=$v['count'];?>">
+			</div>
+			</a>
+			<?php endforeach;?>
+
+			<?php endif;?>
+			</div>
+			<div class="ihome_baggage_title">
+			<?=$pager;?>
+			</div>
+			</center></TD>
+		</TR>
+		</TABLE>
+		<INPUT TYPE="hidden" NAME="baggage_count" id="baggage_count" name="baggage_count" value="<?=$baggage_count;?>">
+		</div>		
+	</div>
+	<div id="pm_right">
+
+	</div>
+
+</div>
+		

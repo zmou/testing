@@ -1,0 +1,17 @@
+<div class="boxes">
+	<div class="hd"><?=_text('pro_display_title')?></div>
+	<div class="bd">
+		<p></p>
+		<p><b><?=$pro['u2_title']?></b></p>
+		<p></p>	
+		<?php if($pro['u2_pic']):?>
+		<p><img src="<?=$pro['u2_pic']?>"></p>
+		<?php endif;?>
+		<p class="item"><?=$pro['u2_desp']?></p>
+		<?php if($added):?>
+		<?php foreach($added as $a ):?>
+		<?=$a;?>
+		<?php endforeach;?>
+		<?php endif;?>
+	</div>
+</div>

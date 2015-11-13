@@ -1,0 +1,40 @@
+<div class="app_top"><h4>空白模板</h4>
+简要说明	
+</div>
+<div class="l">
+	<div id="pm_left">
+		<div class="tabs">
+			
+			<?php foreach( $tab_array  as $key=>$tab ) : ?>
+			<?php if( $tab_type == $key ): ?>
+			<li class="out"><a href="/app/native/<?=$GLOBALS['app']?>/<?php echo $key; ?>"><?php echo $tab; ?></a></li>
+			<?php else: ?>
+			<li ><a href="/app/native/<?=$GLOBALS['app']?>/<?php echo $key; ?>"><?php echo $tab; ?></a></li>
+			<?php endif; ?>		
+			<?php endforeach; ?>	
+
+		</div>
+		<div class="p2">
+		<p class="green">你当前的财务状况</p>
+		主人携带: 银币 <span id="user_money" name="user_money"><?php echo intval( $user['g'] ) ?></span>枚 <!-- &nbsp; 金币 <?php echo intval( $user['gold'] ) ?>枚--><br/>
+		宠物携带: 银币 <span id="duoduo_money" name ="duoduo_money"><?php echo intval( $duoduo['g'] ) ?></span>枚 <!--&nbsp; 金币 <?php echo intval( $account['gold_account'] ) ?>枚--><br/>
+		<br/>
+		<p class="green underline">存放</p>
+		<p>宠物银币存放到主人身上.</p>
+		<input class="text" name="save_money" id="save_money" type="text" value="<?php echo intval( $duoduo['g'] ); ?>" /> <br/>
+		<br/><input type="button" value="存入" class="button" onclick="ibank_petbank('save')"/>
+		<p>&nbsp;</p>
+		
+		<p class="green underline">取款</p>
+		<p>主人携带银币交给宠物.</p>
+		<input class="text" name="get_money" id="get_money" type="text"  value="<?php echo intval($user['g']); ?>" /> <br/>
+		<br/><input type="button" value="取出" class="button" onclick="ibank_petbank('get')" />
+		<br/><br/>
+		</div>		
+	</div>
+	<div id="pm_right">
+	<?php @include_once( dirname( __FILE__ ) . '/public.tpl.html' ); ?>
+	</div>
+
+</div>
+		

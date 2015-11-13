@@ -1,0 +1,9 @@
+<?php if( !isset($iinfo) ): ?>
+<strong>默认标题</strong><br/>
+<textarea name="field_<?=$iid?>" style="width:300px;height:80px"></textarea>
+<?php else: ?>
+	<strong><?=$iinfo['label']?></strong><?php if( !empty( $iinfo['instruction'] ) ): ?>&nbsp;<img src="/static/images/comment_left.gif" title="<?php echo $iinfo['instruction']; ?>" class="tips" /><?php endif; ?><br/>
+	
+<textarea name="field_<?=$iid?>"><?=htmlspecialchars($iinfo['default_value'])?></textarea>	
+<?php endif; ?>
+

@@ -1,0 +1,34 @@
+<div class="app_top"><h4>站内消息</h4>
+查看私信,交友请求和系统通知的地方	
+</div>
+<div class="l">
+	<div id="pm_left">
+		<div class="boxes l" style="width:100%">
+			<div class="hd"><?=_text('user_message_send_to',$s_user['u2_nickname'])?>
+			</div>
+			<div class="bd l">
+	
+	
+		<div class="message_reply">
+			<div class="l p10 m1">
+			<center>
+			<img src="<?=show_user_icon( '' , $s_user['id'])?>" class="icon" /><br/>To <?=$s_user['u2_nickname']?>
+			</center>
+			</div>
+			<div class="l p10 m1">
+			<form action="/user/pmsave" method="post">
+				<INPUT TYPE="text" NAME="title" id="title" class ="text long" style="width:300px"><br/><br/>
+				<TEXTAREA NAME="info" ROWS="3" COLS="50" class ="text" wrap="hard"  style="width:300px;height:120px" id="info"></TEXTAREA><br/><br/>
+				<INPUT TYPE="hidden" NAME="sid" value="<?=$s_user['id']?>"><INPUT TYPE="hidden" NAME="sname" value="<?=$s_user['u2_nickname']?>">
+					<div class="r">	<INPUT TYPE="button" class="button" value="<?=_text('system_cancel')?>" onclick="if( $('title').value + $('info').value != '' ){   if( confirm('确定要取消?书写的文字将会丢失')){ history.back(1); }  }else{ history.back(1); }  ;void(0);" /></div>
+					<div class="l">	
+					<INPUT TYPE="submit" value="<?=_text('system_send')?>" class="button"></div>
+			</form>
+			</div></div></div></div>
+	</div>	
+<div id="pm_right">
+<?php @include( dirname(__FILE__) .'/message_public_block.tpl.html' ); ?>
+</div>
+</div>
+
+

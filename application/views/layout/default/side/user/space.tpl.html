@@ -1,0 +1,10 @@
+<div class="boxes">
+	<div class="bd"><p></p>
+<center>
+<img src="<?=show_user_icon('big',$user['id']);?>" class="icon"/><br/><br/><p><span class="nickname"><?=$user['u2_nickname']?></span>&nbsp;<?=$user['u2_desp'];?></p>
+<?php if( !$self ): ?><p><img src="/static/images/plus.gif" />&nbsp;<a href="/user/frienddo/add/<?=$user['id']?>"><?=_text('system_frend_add')?></a>&nbsp;<img src="/static/images/mail.gif" /><a href="javascript:show_chat(<?=$user['id']?>)" >&nbsp;<?=_text('user_friend_send_pm');?></a></p><?php endif; ?>
+<?=$user['u2_space_hit']._text('user_space_hit')?><br/>
+<!-- <div class="underline">
+</div> -->
+<center>
+</div>	

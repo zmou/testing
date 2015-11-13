@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <HEAD>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <TITLE><?php if( isset($ci_top_title) ){ echo $ci_top_title; }; ?> - <?php echo c('site_name'); ?></TITLE>
+  
+  <META NAME="Generator" CONTENT="EditPlus">
+  <META NAME="Author" CONTENT="">
+  <META NAME="Keywords" CONTENT="">
+  <META NAME="Description" CONTENT="">
+	<link rel="shortcut icon" href="/static/favicon.ico" >
+	<!-- load css-->
+	<link rel="stylesheet" type="text/css" href="/static/css/reset.css"> 
+	<link rel="stylesheet" type="text/css" href="/static/css/base.css"> 
+	<link rel="stylesheet" type="text/css" href="/static/css/fonts.css"> 
+	<link rel="stylesheet" type="text/css" href="/static/css/grids.css"> 
+	<link rel="stylesheet" type="text/css" href="/static/css/styles.css"> 
+	
+	
+	<!-- load js-->
+	  <SCRIPT LANGUAGE="JavaScript" src="/js/index/moo.js"></SCRIPT>
+	  <SCRIPT LANGUAGE="JavaScript" src="/js/index/core.js"></SCRIPT>
+	  <?php if( is_admin() ):?>
+	   <SCRIPT LANGUAGE="JavaScript" src="/js/index/moodrag.js"></SCRIPT>
+	   <script type="text/javascript" src="/js/fck/fckeditor.js"></script>
+	  <?php endif;?>
+
+ </HEAD>
+
+ <BODY>
+	<INPUT TYPE="hidden" id="num_widgets" value="<?php if( isset($num_widgets) ){ echo $num_widgets; } ?>">
+	<INPUT TYPE="hidden" id="widgets_now" value="0">
+	<INPUT TYPE="hidden" id="tag"  value= "<?php if( isset($tag) ){ echo urlencode($tag); } ?>">
+	<INPUT TYPE="hidden" id="saved"  value= "0">
+	<?php @include(  APPPATH.'views/layout/' . $ci_layout . '/body.tpl.html' ); ?>
+ </BODY>
+</HTML>

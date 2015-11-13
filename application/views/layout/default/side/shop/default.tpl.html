@@ -1,0 +1,64 @@
+
+<div class="boxes">
+	<div class="hd">商品搜索</div>
+	<div class="bd">
+	<form action="/shop/sencode/" method="post">
+	<INPUT TYPE="text" NAME="searchtxt" style="width:80px" id="searchtxt" class="text">&nbsp;&nbsp;<INPUT TYPE="submit" class="button" value=" 搜 ">
+	</form>
+	</div>
+	<?php if( $cates ):?>
+	<div class="bd">
+	<div class="hd">分类列表</div>
+	<?php foreach( $cates as $v ):?>
+		<?php if( $v['root'] ):?>
+		<div class="cate_list" style="padding-left:<?=($v['root']*10 - 1)?>px">└<a href="/shop/cate/<?=$v['id']?>"><?=$v['cate_desc']?></a></div>
+		<?php else:?>
+		<div class="cate_list"><a href="/shop/cate/<?=$v['id']?>"><?=$v['cate_desc']?></a></div>
+		<?php endif;?>
+	<?php endforeach;?>
+	</div>
+	<?php else:?>
+	<div class="notice">
+	暂无分类
+	</div>
+	<?php endif;?>
+	<?php if( $brands ):?>
+	<div class="bd">
+	<div class="hd">品牌列表</div>
+	<?php foreach( $brands as $v ):?>
+	<div class="brand_list"><a href="/shop/brand/<?=$v['id']?>"><?=$v['name']?></a></div>
+	<?php endforeach;?>
+	</div>
+	<?php else:?>
+	<div class="notice">
+	暂无分类
+	</div>
+	<?php endif;?>
+
+
+	<?php if( $views ):?>
+	<div class="bd">
+	<div class="hd">浏览过的</div>
+	<?php foreach( $views as $v ):?>
+	<div class="shop_viewed_list">
+		<div style="width:36px" class="l">
+		<a href="/shop/item/<?=$v['id']?>"><img src="/upload/snap/shop/<?=base64_encode($v['pic'])?>/32" class="icon"></a>
+		</div>
+		<div class="l bd">
+		<a href="/shop/item/<?=$v['id']?>"><?=$v['name']?></a>
+		<br/>
+		&nbsp;<?php if( $v['is_pro'] && $v['pro_price'] ):?>
+			<?=$v['pro_price']?>
+		<?php else:?>
+			<?=$v['price']?>
+		<?php endif;?>元
+		</div>
+	</div>
+	<br clear="all"/>
+	<?php endforeach;?>
+	</div>
+	<?php endif;?>
+
+
+</div>
+

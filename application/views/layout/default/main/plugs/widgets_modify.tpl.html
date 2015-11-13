@@ -1,0 +1,30 @@
+<div class="app_top"><h4>编辑微件</h4>
+<div>编辑微件</div></div>
+<!-- 标题 -->
+<div class="tabs">
+<li class="out"><a href="#">编辑</a></li>
+<li class="link"><a href="#" onclick="javascript:window.history.go(-1)">返回组件</a></li>
+</div>
+<div class="bline"><br/>
+<form action="/plugs/widgets_update/" method="post">
+<INPUT TYPE="hidden" NAME="id" value="<?=$item['id']?>">
+<div class="titles_style"><strong>所属于组件: <?=$item['aname'];?></strong></div>
+<div class="titles_style">组件名称: <br><input type="text" name="name" value="<?=$item['name'];?>" class="text"></div>
+<div class="app_item_div">截图<br/>
+<img border="0" id="plugs_pic" src="<?=( isset( $item['pic'] ) && $item['pic'] )?$item['pic']:'/static/images/plugs/default.png';?>" width="110px" class="icon"> <br/>
+<span id="plugs_txt" onclick="window.open('/upload/pic/plugs/plugs','_blank','scrollbars=no,width=475,height=150,left=75,top=80,status=no,resizable=yes')" class="upload_file_style">点击这里上传图片，也可以直接在下边填写URL</span><br/>
+<input name="plugs_file" id="plugs" onchange="plugs_pic.src=this.value" value="<?=$item['pic'];?>"
+ class="text item_size_small">
+</div>
+
+<div class="app_item_div">效果图<br/>
+<img border="0" id="plugsbig_pic" src="<?=( isset( $item['big_pic'] ) && $item['big_pic'] )?$item['big_pic']:'/static/images/plugs/default.png';?>" class="icon"> <br/>
+<span id="plugsbig_txt" onclick="window.open('/upload/pic/plugs/plugsbig','_blank','scrollbars=no,width=475,height=150,left=75,top=80,status=no,resizable=yes')" class="upload_file_style">点击这里上传图片，也可以直接在下边填写URL</span><br/>
+<input name="plugsbig_file" id="plugsbig" onchange="plugsbig_pic.src=this.value" value="<?=$item['big_pic']?>"
+ class="text item_size_small"  >
+</div>
+
+<div class="titles_style">简介: <br><textarea name="desp" style="width:475px;height:85px" ><?=$item['desp'];?></textarea></div>
+<div class="titles_style"><input type="submit" value="提交" class="button">&nbsp;&nbsp;<input type="reset" value="重写" class="button"></div>
+</form>
+</div>

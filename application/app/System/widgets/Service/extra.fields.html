@@ -1,0 +1,27 @@
+<center>
+<table border="0" cellspacing="0" cellpadding="0" width="450px">
+<tr>
+<td align="left" width="150" valign="top">
+<label>标题:</label>
+</td><td align="left">
+<label><INPUT TYPE="text" NAME="title" class="text" value="<?php if( isset($title) && $title != '' ){ echo $title; }?>"></label><br clear="all"/>
+</td></tr>
+<tr>
+<td align="left" valign="top">
+<label>联系QQ:<br><font color="red">多个QQ号 请以回车隔开</font></label>
+</td><td align="left">
+<label><textarea class="text" name="qq" style="width:150; height:50;"><?php if( isset($qq) && $qq != '' ){ echo $qq; }?></textarea></label><br clear="all"/>
+</td></tr>
+<tr>
+<td align="left" valign="top">
+<label>淘宝旺旺:<br><font color="red">多个旺旺号 请以回车隔开</font></label>
+</td><td align="left">
+<label><textarea class="text" name="wangwang" style="width:150; height:50;"><?php if( isset($wangwang) && $wangwang != '' ){ echo $wangwang; }?></textarea></label><br clear="all"/>
+</td></tr>
+<td align="left" valign="top">
+<label>其他联系方式:<br><font color="red">多个请以回车隔开</font></label>
+</td><td align="left">
+<label><textarea class="text" name="other" style="width:150; height:50;"><?php if( isset($other) && $other != '' ){ echo $other; }?></textarea></label><br clear="all"/>
+</td></tr>
+</table>
+</center>

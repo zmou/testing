@@ -1,0 +1,12 @@
+<?php if( !isset($iinfo) ): ?>
+<strong>默认标题</strong><br/>
+<img border="0" src="/static/images/no_image.gif" width="50px"><br/>&nbsp;<span style="cursor:pointer;padding:5px;border:1px solid #e8e8e8;background:#3785E4;color:white"> 
+点击这里上传图片,支持多张.</span>&nbsp;<span style="cursor:pointer;padding:5px;border:1px solid #e8e8e8;background:#3785E4;color:white">编辑图片</span>
+<?php else: ?>
+<strong><?=$iinfo['label']?></strong><?php if( !empty( $iinfo['instruction'] ) ): ?>&nbsp;<img src="/static/images/comment_left.gif" title="<?php echo $iinfo['instruction']; ?>" class="tips" /><?php endif; ?><br/>
+<img  src="/static/images/no_image.gif" width="50px"> <br/>
+&nbsp;<span style="cursor:pointer;padding:5px;border:1px solid #e8e8e8;background:#3785E4;color:white"> 
+点击这里上传图片,支持多张.</span>&nbsp;<span style="cursor:pointer;padding:5px;border:1px solid #e8e8e8;background:#3785E4;color:white">编辑图片</span>
+<br clear="all"/>
+<?php endif; ?>
+

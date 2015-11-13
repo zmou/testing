@@ -1,0 +1,25 @@
+<div class="boxes">
+<div class="hd">设置应用属性</div>
+<div class="bd">
+<div class="p2">	
+<p>&nbsp;</p>	
+<form action="/design/settings_update" method="POST" >
+<p class="item"><label>英文唯一标示:</label>&nbsp;<input type="text" class="text" name="name" value="<?=$finfo['name']?>" ></p>
+<p class="item"><label>标题:</label>&nbsp;<input type="text" class="text" name="title" value="<?=$finfo['title']?>" /></p>
+<p class="item"><label>子标题:</label>&nbsp;<input type="text" class="text" name="subtitle" value="<?=$finfo['subtitle']?>" /></p>
+<p class="item"><label>产品名称:</label>&nbsp;<input type="text" class="text" name="item_name" value="<?=$finfo['item_name']?>" /></p>
+
+<p class="item"><label>&nbsp;</label>&nbsp;<input type="checkbox" value="1" class="text" name="is_main_app" checked />&nbsp;是否主应用</p>
+<!--
+<p class="item"><label>&nbsp;</label>&nbsp;<input type="checkbox" value="1" class="text" name="has_comment" checked />&nbsp;启用评论组件</p>
+<p class="item"><label>&nbsp;</label>&nbsp;<input type="checkbox" value="1" class="text" name="has_digg" checked />&nbsp;启用Digg组件</p>
+<p class="item"><label>&nbsp;</label>&nbsp;<input type="checkbox" value="1" class="text" name="has_fav" checked />&nbsp;启用收藏组件</p>
+<p class="item"><label>&nbsp;</label>&nbsp;<input type="checkbox" value="1" class="text" name="has_star" checked />&nbsp;启用五星评分</p>
+-->
+<p>&nbsp;</p>
+<p class="act"><input type="submit" class="button" value="下一步:保存并创建应用 >>" style="width:160px;height:30px;cursor:pointer"/></p>
+<input type="hidden" name="fid" value="<?=$finfo['id']?>" />
+</form>	
+</div>
+</div>
+</div>

@@ -1,0 +1,45 @@
+<div class="app_top"><h4>邀请好友</h4>
+邀请朋友加<?=c('site_name');?>
+</div>
+<div class="l">
+	<div id="pm_left">
+		<div class="tabs">
+			
+			<?php foreach( $tab_array  as $key=>$tab ) : ?>
+			<?php if( $tab_type == $key ): ?>
+			<li class="out"><a href="/app/native/<?=$GLOBALS['app']?>/<?php echo $key; ?>"><?php echo $tab; ?></a></li>
+			<?php else: ?>
+			<li ><a href="/app/native/<?=$GLOBALS['app']?>/<?php echo $key; ?>"><?php echo $tab; ?></a></li>
+			<?php endif; ?>		
+			<?php endforeach; ?>	
+
+		</div>
+		<div class="p2">
+		<br/>
+		<TABLE width="100%">
+		<TR>
+			<TD><a href="/app/native/iinvite/import/msn"><b>导入MSN联系人至邀请名单</b></a><br>
+			</TD>
+			<TD><a href="/app/native/iinvite/import/link"><b>通过链接邀请</b></a><br>
+			</TD>
+		</TR>
+		<TR>
+			<TD><a href="/app/native/iinvite/import/email"><b>导入邮箱的通讯录至邀请名单</b></a><br>
+			</TD>
+			<TD><a href="/app/native/iinvite/showmail/"><b>通过Email邀请
+			</b></a><br></TD>
+		</TR>
+		<TR>
+			<TD><a href="/app/native/iinvite/import/upload"><b>导入Foxmail等地址簿至邀请名单</b></a><br>
+			</TD>
+			<TD>&nbsp;</TD>
+		</TR>
+		</TABLE>
+		</div>		
+	</div>
+	<div id="pm_right">
+	<?php @include_once( dirname( __FILE__ ) . '/public.tpl.html' ); ?>
+	</div>
+
+</div>
+		

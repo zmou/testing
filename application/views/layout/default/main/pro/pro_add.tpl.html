@@ -1,0 +1,28 @@
+<script type="text/javascript" src="/js/fck/fckeditor.js"></script>
+<div class="boxes">
+	<div class="hd"><?=_text('pro_add_title');?></div>
+	<div class="bd">
+		<div class="l">
+			<div class="l">
+			<form action="/pro/save/" method="post" enctype="multipart/form-data">
+			<p class="item"><label><?=_text('pro_add_name')?>:</label>&nbsp;<input type="text" class="text" name="u2_title"></p>
+			<p class="item"><label><?=_text('pro_cate_choose')?>:</label>&nbsp;<SELECT NAME="cate" id="cate" class="text" onchange="javascript:load_pro_extra(this.value)">
+			<OPTION VALUE="0"><?=_text('pro_add_no_cate')?>
+			<?php if($cates):?>
+			<?php foreach ($cates as $c ):?>
+			<OPTION VALUE="<?=$c['id'];?>"><?=$c['u2_cate_desc'];?>
+			<?php endforeach;?>
+			<?php endif;?>
+			</SELECT></p>
+			<p class="item"><label><?=_text('pro_add_pic')?>:</label>&nbsp;<input type="file" name="picfile" onchange="show_pro_pic()" id="picfile" class="text"/></p>
+			</div>
+			<div class="pro_pic_dispaly" id="show_pro_pic">
+			</div>
+		</div>
+		<br clear="all">
+		<p class="item"><label><?=_text('pro_add_desp')?>:</label>&nbsp;<textarea name="u2_desp" id="u2_desp" wrap="hard" style="width:480px;height:400px"></textarea></p>
+		<div id="pro_extra"></div>
+		<p class="act"><input type="submit" value="<?=_text('system_submit')?>" class="button"></p>
+		</form>
+	</div>
+</div><script>make_rich('u2_desp' , 'Basic');</script>

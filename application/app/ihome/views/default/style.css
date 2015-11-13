@@ -1,0 +1,65 @@
+#ihome_wait
+{
+	position: absolute; 
+	margin:10px;
+	border:10px solid #eee;
+	width:400px;
+	background:#fff;
+	z-index:99;
+}
+.shop_item
+{
+	margin:5px;
+	/*border:1px solid #ccc;*/
+	padding:5px;
+	float:left;
+	width:115px;
+	line-height:25px;
+	cursor:pointer;
+}
+
+.shop_item .icon
+{
+	margin:3px;
+}
+
+.shop_item span
+{
+	float:right;
+}
+
+.shop_item label
+{
+	float:left;
+}
+.ihome_baggage
+{
+	width:205px;
+	height:273px;
+	background: url(/static/images/irpg/irpg_baggage_bg.png);
+}
+.ihome_baggage_title
+{
+	width:203px;
+	border:1px solid #e8e8e8;
+}
+.ihome_wear
+{
+	margin:2px;
+	float:left;
+	width:32px;
+	height:32px;
+	border:1px solid #e8e8e8;
+}
+.ihome_my_item
+{
+	float:left;
+	width:32px;
+	height:33px;
+	margin:1px;
+	text-align:right;
+	color:green;
+	font-size:9px;
+	line-height:55px;
+	cursor:pointer;
+}

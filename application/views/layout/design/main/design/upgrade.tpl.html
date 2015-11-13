@@ -1,0 +1,9 @@
+<div class="boxes">
+<div class="hd">下载应用数据</div>
+<div class="bd">
+<br/>
+<?php if( isset($error)  && $error  ):?><img src="/static/images/cross.gif" /><?php else:?><img src="/static/images/tick.gif" /><?php endif;?>
+&nbsp;&nbsp;<?=$notice;?><br/><br/>
+<?php if( isset($error)  && $error  ):?><a href="/design/update/<?=$id?>">返回上一步</a><?php else:?><INPUT TYPE="button" class="button" onclick="location='/design/unzip/<?=$id?>'" value="下一步:更新组件代码 >> "><?php endif;?>
+</div>
+</div>

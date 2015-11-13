@@ -1,0 +1,36 @@
+<div class="boxes">
+	<div class="hd" style="text-align:left"><span><a href="javascript:chat_close()"><img src="/static/images/cross.gif" /></a></span><img src="/static/images/movearrow.gif" class="imove" id="imove" style="cursor:pointer">&nbsp;给<?php echo $user['u2_nickname'] ?>发送私信</div>
+	<div class="bd">
+	<div class="chat_history">
+		<?php if( isset( $history[0] ) ): ?>
+		<p>最近记录</p>
+		<?php //$history = array_reverse( $history ); ?>	
+		<?php foreach( $history as $item ): ?>
+			<div class="chat_item"><img src="<?=show_user_icon('small',$item['u2_uid'])?>" class="icon"/>&nbsp;<?php echo $item['u2_pm_info']; ?> <font color="#ccc"><?php echo date( "m-d H:i:s" , strtotime(  $item['time'] ) )?></font></div>
+		<?php endforeach; ?>	
+		<?php else: ?>
+			<p>没有以往的记录</p>
+		<?php endif; ?>	
+	</div>		
+	<div style="margin-bottom:5px"></div>
+	<div class="chat_box">
+	<form action="/ajax/pm_save" method="post" id="form_chat">
+	<textarea name="info" style="width:380px;height:80px" id="chat_editor"></textarea>
+	<table width="100%">
+		<tr>
+			<td align="left">
+				<input type="button" class="button" value="发送" onclick="send_chat(this , $('form_chat'));">
+			</td>	
+			<td align="right">
+				<input type="button" class="button" value="取消" onclick="chat_close();">
+			</td>
+		</tr>	
+	</table>
+	<input name="sid" value="<?php echo $user['id'] ?>" type="hidden" />	
+	<input name="sname" value="<?php echo $user['u2_nickname'] ?>" type="hidden" />	
+	</form>
+	</div>	
+	</div>
+</div>
+
+			

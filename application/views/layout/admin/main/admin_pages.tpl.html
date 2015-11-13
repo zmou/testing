@@ -1,0 +1,100 @@
+<div class="box">
+	<p class="admin_title"><?=_text('admin_pages_title')?></p>
+
+	<div class="appbox2">
+		
+		<ul class="tabs" >
+		<?php if( $type == 1 ): ?>
+		<li  class="out"><?=_text('admin_free_pages');?></li>
+		<li><a href="/admin/pages/0"><?=_text('admin_system_pages');?></a></li>
+		<?php else:?>
+		<li><a href="/admin/pages/1"><?=_text('admin_free_pages');?></a></li>
+		<li  class="out"><?=_text('admin_system_pages');?></li>
+		
+		<?php endif;?>
+		</ul><br clear="all"/>
+	</div>
+		
+	<?php if( is_array( $pages ) && $type == 1  ): ?>
+	<div class="p10 noborder">
+	<!--	<p>
+			<label><?=_text('admin_pages_name')?></label>
+			<label><?=_text('admin_pages_action')?></label>
+			<label><?=_text('admin_pages_link')?></label>
+		</p>
+	-->	
+		<table width="100%" border="0">
+			<tr>
+				<td width="20%"><strong><?=_text('admin_pages_name')?></strong></td>
+				<td width="80px"><strong><?=_text('admin_pages_action')?></strong></td>
+				<td><strong><?=_text('admin_pages_link')?></strong></td>	
+				<td width="100px"><strong><?=_text('admin_pages_display');?></strong></td>
+			</tr>
+		</table>	
+		<ul id="page_list">
+		<?php foreach( $pages as $page ): ?>
+		<li id="page_item_<?php echo $page['id'] ?>" class="nlist">
+				<table width="100%" border="0">
+					<tr>
+						<td width="20%"><img class="m" src="/static/images/movearrow.gif" />&nbsp;<?=$page['u2_tag']?>&nbsp;</td>
+						<td width="80px"><a href="/riki/index/<?php echo $page['id'] ?>" target ="_blank" ><?=_text('admin_pages_modify')?></a>&nbsp;</td>
+						<td><?php if($page['u2_link']):?><INPUT TYPE="text" id="link_<?=$page['id']?>" NAME="link_<?=$page['id']?>" class="text" value="<?=get_page_link($page['u2_link'],'link');?>" onchange="admin_save_link(<?=$page['id']?>,this.value)"><?php endif?>&nbsp;</td>
+						<td width="100px"><span id="page_<?=$page['id']?>_display"><a href="javascript:void(0)" onclick="admin_change_page_display('<?=$page['id']?>','<?=$page['u2_in_tab']?>')"><?php if($page['u2_in_tab']):?><?=_text('system_yes')?><?php else:?><?=_text('system_no')?><?php endif?></a></span></td>
+					</tr>
+				</table>
+			<!-- <label><img class="m" src="/static/images/movearrow.gif" />&nbsp;<?=$page['u2_tag']?>&nbsp;</label>
+			<label><a href="/riki/index/<?php echo $page['id'] ?>" target ="_blank" ><?=_text('admin_pages_modify')?></a>&nbsp;</label>
+			<label><?php if($page['u2_link']):?><INPUT TYPE="text" id="link_<?=$page['id']?>" NAME="link_<?=$page['id']?>" class="text" value="<?=get_page_link($page['u2_link'],'link');?>" onchange="admin_save_link(<?=$page['id']?>,this.value)"><?php endif?>&nbsp;</label>
+			<br clear="all"/>-->
+		</li>
+		<?php endforeach; ?>
+		</ul>
+		
+	</div>	
+	
+		
+	<?php endif; ?>	
+
+	<?php if($system_pages && $type != 1 ):?><div class="p10 noborder">
+		<table width="100%" border="0">
+			<tr>
+				<td width="20%"><strong><?=_text('admin_pages_name')?></strong></td>
+				<td width="80px"><strong><?=_text('admin_pages_action')?></strong></td>
+				<td></td>		
+			</tr>
+		</table>
+		<?php foreach( $system_pages as $page ): ?>
+		<table width="100%" border="0">
+			<tr>
+				<td width="20%"><?=$page['u2_tag']?></td>
+				<td width="80px"><a href="/riki/index/<?php echo $page['id'] ?>" target ="_blank" ><?=_text('admin_pages_modify')?></a></td>
+				<td></td>		
+			</tr>
+		</table>
+		<?php endforeach; ?>
+</div>
+	<?php endif;?>
+	
+	
+	
+	<script>
+	new Sortables($('page_list') , {handles:$('page_list').getElementsByClassName('m') ,  onComplete: 				function()
+	{
+		var order =( this.serialize( function(el)
+			{ 
+				return el.id.replace("page_item_" , "" );
+			} ));
+		var url = '/ajax/save_page_order/'+order ;
+		var myajax = new Ajax(url,
+		{
+			method:'post' ,
+			evalScripts:true,
+			onComplete:function( )
+			{ 
+			}
+		}).request();
+	}}
+	);
+	</script>
+	</div>
+</div>

@@ -1,0 +1,54 @@
+.fav_item
+{
+	border-bottom:1px solid #ccc;
+	padding:5px;
+	padding-bottom:10px;
+	margin-bottom:10px;
+	width:100%;
+}
+
+.fav_item_right
+{
+	float:left;
+	padding-left:10px;
+	margin-left:10px;
+	border-left:1px solid #ccc;
+	line-height:20px;
+	width:350px;
+}
+
+.fav_video_preview
+{
+	display:none;
+	border:1px solid #ccc;
+}
+
+.fav_music_preview
+{
+	display:none;
+}
+
+.reply_layout
+{
+	margin:5px;
+}
+
+.fav_url_width
+{
+	width:140px;
+}
+
+.add_url_width
+{
+	width:300px;
+}
+
+.add_textarea_style
+{
+	width:300px;height:80px;
+}
+
+.add_line_height
+{
+	line-height:200%;
+}

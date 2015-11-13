@@ -1,0 +1,14 @@
+<div class="app_top"><h4>分类修改</h4>
+<div>Feed分类修改</div></div>
+<!-- 标题 -->
+<div class="tabs">
+	<li class="out"><a href="/app/native/<?=$GLOBALS['app']?>/type_modify/<?=$tid?>">修改分类</a></li>
+</div>
+<form action="/app/native/<?=$GLOBALS['app']?>/type_update" method="post">
+<INPUT TYPE="hidden" NAME="tid" VALUE="<?=$tid?>">
+<div  class="feed_bottom">
+<input type="text" value="<?=$fselect[$tid]?>" name="tname" class="text">
+<input type="submit" class="button" value="更新">
+<input type="button" class="button" value="返回" onclick="javascript:window.history.go(-1)">
+</div>
+</form>

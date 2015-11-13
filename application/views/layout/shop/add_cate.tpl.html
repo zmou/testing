@@ -1,0 +1,64 @@
+<SCRIPT LANGUAGE="JavaScript" src="/js/index/set.js"></SCRIPT>
+<div class="box">
+	<p class="admin_title"><?=_text('admin_shop_title')?></p>
+
+	<ul class="tabs">
+	<li><a href="/admin/shop/"><?=_text('admin_shop_situation')?></a></li>
+	<li class="out"><?=_text('admin_shop_item_title')?></li>
+	<li><a href="/admin/shop/list/orders">订单</a></li>
+	</ul>
+	<br/>
+	<?=join(' | ', $nav_links);?>
+	<br/><br/>
+		
+		<form action="/admin/shop/save/cate" method="post" id="shop_add_cate">
+
+		<div class="l"  style="width:200px">
+			<div class="box">分类列表 <a href="JavaScript:void(0)" onclick="shop_cate_list(0);" title="调整主分类顺序"><img src="/static/images/plus.gif"></a></div>
+			<div id="shop_cate">
+			<SCRIPT LANGUAGE="JavaScript">
+			shop_cate_list(0);
+			</SCRIPT>
+			</div>
+			
+		</div>
+		<div class="l leftline">
+		<b>添加分类</b><br/>
+		<div style="margin:10px;">
+		<TABLE>
+		<TR>
+			<TD width="70px">分类名称</TD>
+			<TD><INPUT TYPE="text" NAME="cate_desc" id="cate_desc" class="text"></TD>
+		</TR>
+		<TR>
+			<TD>上级分类</TD>
+			<TD><SELECT NAME="pid">
+				<OPTION VALUE="0" SELECTED>无上级分类
+				<?php if( $cates ):?>
+				<?php foreach( $cates as $v ):?>
+				<OPTION VALUE="<?=$v['id']?>"><?=$v['cate_desc']?>
+				<?php endforeach;?>
+				<?php endif;?>
+			</SELECT></TD>
+		</TR>
+		<TR>
+			<TD>商品类型</TD>
+			<TD><SELECT NAME="cate_type">
+				<OPTION VALUE="0" SELECTED>通用类型
+				<?php if( $types ):?>
+				<?php foreach( $types as $v ):?>
+				<OPTION VALUE="<?=$v['id']?>"><?=$v['name']?>
+				<?php endforeach;?>
+				<?php endif;?>
+				</SELECT>
+			</TD>
+		</TR>
+		<TR>
+			<TD></TD>
+			<TD><INPUT TYPE="button" class="button" value=" 添加 " onclick="if( $('cate_desc').value == '' ){alert('请填写分类名称');return}$('shop_add_cate').submit();"></TD>
+		</TR>
+		</TABLE>
+		</div>
+		<br clear="all"/>
+</form>	
+</div>

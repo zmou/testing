@@ -1,0 +1,61 @@
+<div class="app_top"><h4>Feed修改</h4>
+<div>Feed分类修改</div></div>
+<!-- 标题 -->
+<div class="l">
+<div id="pm_left">
+	<div class="tabs">
+		<li class="out"><a href="/app/native/<?=$GLOBALS['app']?>/feed_modify/<?=$fid?>">Feed修改</a></li>
+	</div>
+	<form action="/app/native/<?=$GLOBALS['app']?>/feed_update" method="post">
+	<INPUT TYPE="hidden" NAME="fid" value="<?=$fid;?>">
+	<div style="margin:10px 5px">
+	<table border="0" width="300">
+		<tr>
+			<td width="70">标题:</td>
+			<td><INPUT TYPE="text" NAME="title" class="text" value="<?=$feed['title']?>"></td>
+		</tr>
+		<tr>
+			<td width="70">Feed:</td>
+			<td><INPUT style="width:200px"  TYPE="text" NAME="feed" class="text" value="<?=$feed['feed']?>"></td>
+		</tr>
+		<tr>
+			<td>图片:</td>
+			<td><INPUT style="width:200px" TYPE="text" NAME="img_add" class="text" value="<?php if($feed['img']==''){echo 'http://';}else{echo $feed['img'];}?>"></td>
+		</tr>
+		<tr>
+			<td>分类:</td>
+			<td>
+			<SELECT NAME="type">
+			<?php foreach( $fselect as $k => $type ):?>
+				<OPTION VALUE="<?=$k;?>" <?php if( $k == $feed['tid'] ){ echo "selected"; }?>><?=$type?></OPTION>
+			<?php endforeach;?>
+			</SELECT>
+			</td>
+		</tr>
+		<tr>
+			<td>Feed状态:</td>
+			<td>
+			<SELECT NAME="state">
+			<?php foreach( $state as $k => $type ):?>
+				<OPTION VALUE="<?=$k;?>" <?php if( $k == $feed['state'] ){ echo "selected"; }?>><?=$type?></OPTION>
+			<?php endforeach;?>
+			</SELECT>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2" align="center">
+			<INPUT TYPE="submit" class="button" value="保存">
+			<INPUT TYPE="button" class="button" value="返回" onclick="history.back(1);">
+			</td>
+		</tr>
+	</table>
+	</div>
+	</form>
+</div>
+<div id="pm_right">
+	<div class="sides_hd"><h4>全部分类</h4></div>
+	<?php foreach( $fselect as $k ):?>
+	<div class="title_right"><?=$k;?></div>
+	<?php endforeach;?>
+</div>
+</div>

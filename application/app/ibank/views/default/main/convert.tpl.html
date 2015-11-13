@@ -1,0 +1,36 @@
+<div class="app_top"><h4>社区银行</h4>
+银行,充值相关	
+</div>
+<div class="l">
+	<div id="pm_left">
+		<div class="tabs">
+			
+			<?php foreach( $tab_array  as $key=>$tab ) : ?>
+			<?php if( $tab_type == $key ): ?>
+			<li class="out"><a href="/app/native/<?=$GLOBALS['app']?>/<?php echo $key; ?>"><?php echo $tab; ?></a></li>
+			<?php else: ?>
+			<li ><a href="/app/native/<?=$GLOBALS['app']?>/<?php echo $key; ?>"><?php echo $tab; ?></a></li>
+			<?php endif; ?>		
+			<?php endforeach; ?>	
+
+		</div>
+		<div class="p2">
+		<h2>社区银行欢迎你前来理财,你不理财,财不理你~</h2>
+		<p class="green">你当前的财务状况</p>
+		银行帐户: 金币 <?php echo intval( $account['gold_count'] ) ?>枚 <!--&nbsp; 金币 <?php echo intval( $account['gold_account'] ) ?>枚--><br/>
+		<br/>
+		<p class="green underline">兑换</p>
+		<p>当前的兑换比例是 1:<?=intval(c('gold_convert_value'))?></p>
+		<form action="/app/native/<?=$GLOBALS['app']?>/consave" method="POST">
+		<input class="text" name="gold" type="text" value="<?php echo intval( $account['gold_count'] ) ; ?>" /> <br/>
+		<br/><input type="submit" value="兑换" class="button" />
+		</form>
+		
+		</div>		
+	</div>
+	<div id="pm_right">
+	<?php @include_once( dirname( __FILE__ ) . '/public.tpl.html' ); ?>
+	</div>
+
+</div>
+		

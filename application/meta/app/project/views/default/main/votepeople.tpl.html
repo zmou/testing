@@ -1,0 +1,20 @@
+<div class="app_top">
+<h4><?=app_config('model_name')?></h4><div><?=app_config('model_subtitle');?></div></div>
+<div class="tabs">
+<li class="out"><a href="/app/native/<?=$GLOBALS['app']?>/votepeople/<?=$id;?>/<?=$text;?>">用户列表</a></li>
+<li class="link"><a href="JavaScript:history.back(1)">返回</a></li>
+<?php if( level_check( app_config('add_level') ) ):?>
+<li class="link"><a href="/app/native/<?=$GLOBALS['app']?>/add/">发布<?=app_config('model_name')?></a></li>
+<?php endif;?>
+<li class="link"><a href="/app/native/<?=$GLOBALS['app']?>/search/">搜索<?=app_config('model_name')?></a></li>
+</div><br clear="all"/>
+<div id="app_left">
+	<h5 class="w2">谁<?=$text?>这<?=app_config('model_name');?></h5><br/>
+	<?php foreach( $names as $v ):?>
+	<div class="app_user_div"><center><a href="/user/space/<?=$v['id']?>" target="_blank"><img src="<?=show_user_icon('normal',$v['id']);?>" class="icon" /><br/><?=$v['u2_nickname']?></a></center></div>
+	<?php endforeach;?>
+	<br clear="all"/>
+	<br/>
+	<?=$pager;?>
+	<br/><br/>
+</div>

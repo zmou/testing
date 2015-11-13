@@ -1,0 +1,34 @@
+<div class="app_top"><h4>我的衣柜</h4>
+放YYKK的地方	
+</div>
+<div class="l">
+	<div id="pm_left">
+		<div class="tabs">
+			
+			<?php foreach( $tab_array  as $key=>$tab ) : ?>
+			<?php if( $tab_type == $key ): ?>
+			<li class="out"><a href="/app/native/<?=$GLOBALS['app']?>/<?php echo $key; ?>"><?php echo $tab; ?></a></li>
+			<?php else: ?>
+			<li ><a href="/app/native/<?=$GLOBALS['app']?>/<?php echo $key; ?>"><?php echo $tab; ?></a></li>
+			<?php endif; ?>		
+			<?php endforeach; ?>	
+
+		</div>
+		<div class="p2">
+			<?php if( is_array( $shop ) ): ?>
+			<p>点击试穿您选中的衣物</p>
+			<?php foreach( $shop as $item ): ?>
+				<a href="JavaScript:void(0)" onclick="javascript:put_on('<?php echo $item['fid'] ?>')"><div class="shop_item"><img src="/static/images/va/<?php echo $item['fid'] ?>.gif" class="icon" /></div></a>
+			<?php endforeach; ?>	
+			<?php endif; ?>
+				
+		</div>
+		<br clear="all">
+		<?php echo $pager;?>
+	</div>
+	<div id="pm_right">
+	<?php @include_once( dirname( __FILE__ ) . '/fav.pub.tpl.html' ); ?>
+	</div>
+
+</div>
+		

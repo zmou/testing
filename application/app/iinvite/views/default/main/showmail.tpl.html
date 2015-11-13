@@ -1,0 +1,64 @@
+<div class="app_top"><h4>邀请好友</h4>
+邀请好友
+</div>
+<div class="l">
+	<div id="pm_left">
+		<div class="tabs">
+			<?php foreach( $tab_array  as $key=>$tab ) : ?>
+			<?php if( $tab_type == $key ): ?>
+			<li class="out"><a href="/app/native/<?=$GLOBALS['app']?>/<?php echo $key; ?>"><?php echo $tab; ?></a></li>
+			<?php else: ?>
+			<li ><a href="/app/native/<?=$GLOBALS['app']?>/<?php echo $key; ?>"><?php echo $tab; ?></a></li>
+			<?php endif; ?>		
+			<?php endforeach; ?>	
+
+		</div>
+		<div class="p2">
+		<form action="/app/native/iinvite/sendmail" method="post" id="mail_list" name="mail_list">
+		<br/><?php if( !c('register_is_open') && c('invite_active') ):?><span class="r by_num"><a href="JavaScript:void(0)" onclick="app_show_invite()">购买邀请码</a></span><?php endif;?>
+		<?php if($emails):?>
+		你有以下好友还没加入<?=c('site_name');?>&nbsp;&nbsp;<a href="JavaScript:void(0)" onclick="select_all('selectAll','emails[]')">全选</a>&nbsp;&nbsp;<a href="JavaScript:void(0)" onclick="select_all('selectOther','emails[]')">反选</a><br/><br/>
+		<div class="emails_div">
+		<?php foreach($emails as $v ):?>
+		<p><INPUT TYPE="checkbox" NAME="emails[]" value="<?=$v['email']?>" checked>&nbsp;&nbsp;&nbsp;<?=$v['email'];?></p>
+		<?php endforeach;?>
+		</div>
+		<br/>
+		<?php endif;?>
+		<?php if($emails):?>你还可以<?php endif;?>填写email发送邀请.多个email请换行填写<br/><br/>
+		<TEXTAREA NAME="extar_mail" NAME="" ROWS="" COLS="" class="email_textarea"></TEXTAREA><br/>
+		<br/>
+		预览:<br/>
+			<div class="yulan_rim">
+			<TABLE>
+			<TR>
+				<TD valign="top"><img src="<?=show_user_icon('big')?>" class="icon"></TD>
+				<TD valign="top" class="yulan_con">
+				
+					<p><strong>亲爱的朋友,我是<?=_sess('u2_nickname')?>～</strong></p>
+					
+					最近我加入了 <?=c('site_name')?> ，每天在这里种仙豆养宠物，感觉还不错哦．你也来和我一起玩，顺便帮我挣点银币吧，呵呵．<br/>
+
+					<br/>点下边的链接就可以了，我会仔细的给你做向导的哦～<br/><br/>
+					<a href="http://<?=$_SERVER['HTTP_HOST'];?>">http://<?=$_SERVER['HTTP_HOST'];?>/xxxx</a>
+					<p>如果点击无效,你可以复制上边的链接,粘贴到地址栏,再按回车就行了</p><br/>
+					<p>邀请函我好不容易才弄到的呢，如果你没兴趣的话，就转发给你的朋友吧～</p>
+					
+				
+				
+				</TD>
+			</TR>
+			</TABLE>
+			</div>
+	
+		<br/>
+		<p><INPUT TYPE="button" class="button" value="发送邀请邮件" onclick="app_ajax_send('mail_list');"></p>
+		<form>
+		</div>		
+	</div>
+	<div id="pm_right">
+	<?php @include_once( dirname( __FILE__ ) . '/public.tpl.html' ); ?>
+	</div>
+
+</div>
+		

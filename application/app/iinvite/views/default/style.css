@@ -1,0 +1,77 @@
+#app_wait
+{
+	position: absolute; 
+	margin:10px;
+	border:10px solid #eee;
+	width:400px;
+	background:#fff;
+	z-index:99;
+}
+
+/*showmail*/
+.by_num
+{
+	padding-right:5px;
+}
+
+.emails_div
+{
+	height:240px;overflow:auto;
+}
+
+.email_textarea
+{
+	width:300px;height:60px;
+}
+
+.yulan_rim
+{
+	border:1px solid #eee;
+}
+
+.yulan_con
+{
+	padding:10px;
+}
+
+/**/
+.email_margin
+{
+	MARGIN-TOP: 10px;
+}
+
+.titles_style
+{
+	FONT-SIZE: 13px; MARGIN: 10px 0px;
+}
+
+.email_address
+{
+	MARGIN: 5px 0px;
+}
+
+.email_font
+{
+	FONT-SIZE: 14px;
+}
+
+.daoru
+{
+	PADDING-LEFT: 60px; PADDING-TOP: 8px;
+}
+
+.msn_t
+{
+	MARGIN: 5px 0px;width:80px;
+}
+
+
+.cardfile_style
+{
+	FONT-FAMILY: Arial;
+}
+
+.uploads
+{
+	PADDING-LEFT: 108px; MARGIN: 10px 0px; PADDING-TOP: 10px
+}

@@ -1,0 +1,20 @@
+<div class="boxes">
+<div class="hd">确认组件设置信息的正确性</div>
+<div class="bd">
+<br/>
+<?php if( isset($error['finfo']) && $error['finfo'] ):?><img src="/static/images/cross.gif" /><?php else:?><img src="/static/images/tick.gif" /><?php endif;?>
+&nbsp;&nbsp;检测组件信息<br/><br/>
+<?php if( isset($error['items']) && $error['items'] ):?><img src="/static/images/cross.gif" /><?php else:?><img src="/static/images/tick.gif" /><?php endif;?>
+&nbsp;&nbsp;检测组件字段信息<br/><br/>
+<?php if( isset($error['bind']) && $error['bind'] ):?><img src="/static/images/cross.gif" /><?php else:?><img src="/static/images/tick.gif" /><?php endif;?>
+&nbsp;&nbsp;检测是否绑定字段<br/><br/>
+<?php if( isset($error['order']) && $error['order'] ):?><img src="/static/images/cross.gif" /><?php else:?><img src="/static/images/tick.gif" /><?php endif;?>
+&nbsp;&nbsp;检测呈现模板<br/><br/>
+<form action="/design/upgrade/<?=$id?>" method="post">
+<INPUT TYPE="hidden" NAME="infos" value='<?=$forminfo?>'>
+<?php $disabled =$update?NULL:'disabled';?>
+<input type="submit" class="button" <?=$disabled;?> value="下一步:下载组件数据 ">
+<br/><br/><a href="/design/form/<?=$finfo['id'];?>">返回上一步</a>
+</form>
+</div>
+</div>

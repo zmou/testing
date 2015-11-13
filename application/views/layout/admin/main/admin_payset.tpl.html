@@ -1,0 +1,23 @@
+<div class="box">
+	<p class="admin_title"><?=_text('admin_setting_title')?></p>
+
+	<ul class="tabs" >
+	<li><a href="/admin/setting/"><?=_text('admin_setting_basc')?></a></li>
+	<li><a href="/admin/invite/"><?=_text('admin_setting_invite')?></a></li>
+	<li class="out"><?=_text('admin_payset_title')?></li>
+	<li><a href="/admin/mailset/"><?=_text('admin_mailset_title')?></a></li>
+	</ul>
+
+	<div class="box">
+	<br/>
+	<form action="/admin/setting/save/payset" method="post">
+	<p class="admin_data"><label><?=_text('admin_pay_type')?></label><INPUT TYPE="radio" NAME="card_paied_gold" value="1" <?php if( c('card_paied_gold') == '1') echo 'checked';?> ><?=_text('system_gold_money')?>&nbsp;<INPUT TYPE="radio" NAME="card_paied_gold" value="0" <?php if( c('card_paied_gold') == '0') echo 'checked';?> ><?=_text('system_silver_money')?></p>
+
+	<p class="admin_data"><label><?=_text('admin_recharge_card_value')?></label><INPUT TYPE="text" NAME="recharge_card_value" class="text" value="<?=c('recharge_card_value');?>"></p>
+
+	<p class="admin_data"><label><?=_text('admin_gold_convert_value')?></label><INPUT TYPE="text" NAME="gold_convert_value" class="text" value="<?=c('gold_convert_value');?>"></p>
+
+	<p class="act"><INPUT TYPE="submit" class="button" value="<?=_text('system_submit')?>"></p>
+	</form>
+	</div>
+</div>

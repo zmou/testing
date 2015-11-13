@@ -1,0 +1,28 @@
+<script type="text/javascript" src="/js/fck/fckeditor.js"></script>
+<div class="box">
+	<p class="admin_title">系统通知</p>
+
+	<div  id="data_extra">
+		<div>
+		<form action="/admin/update_snotice/<?=$line['id'];?>" method="post">
+		<TABLE>
+		<TR>
+			<TD valign="top">内容</TD>
+			<TD><textarea name="desp" id="desp"  style="width:480px;height:120px"><?=$line['desp']?></textarea></TD>
+		</TR>
+		<TR>
+			<TD>有效时间</TD>
+			<TD><INPUT TYPE="text" NAME="start_time" value="<?=$line['start_time']?>">&nbsp;-&nbsp;<INPUT TYPE="text" NAME="end_time" value="<?=$line['end_time']?>"></TD>
+		</TR>
+		<TR>
+			<TD></TD>
+			<TD><INPUT TYPE="submit" value="更新" class="button"></TD>
+		</TR>
+		</TABLE>
+		</form>
+		</div>
+		
+	</div>
+
+</div>
+<script>make_rich('desp' , 'Basic');</script>

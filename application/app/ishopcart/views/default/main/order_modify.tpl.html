@@ -1,0 +1,117 @@
+<body onload="format_num()">
+<div class="app_top"><h4>订单管理 - 修改</h4>
+<div>修改订单</div>
+</div>
+<div class="tabs">
+<li class="out"><a href="/app/native/<?=$GLOBALS['app']?>/order_modify/<?=$id;?>">修改</a></li>
+<li class="link"><a href="/app/native/<?=$GLOBALS['app']?>/">回到购物车</a></li>
+<li class="link"><a href="/app/native/<?=$GLOBALS['app']?>/order_manager/">回到订单管理</a></li>
+</div>
+<div class="small_title"><b><img src="/static/images/icon_arrow_down.gif">物品账单</b></div>
+<form action="/app/native/<?=$GLOBALS['app']?>/order_update/" method="POST">
+<input type="hidden" name="oid" value="<?=$orders['id']?>" />
+<div class="ware_rim ware_width">
+	<div>
+	<table width="100%" align="center" border="0" cellspacing="0" cellpadding="0">
+		<tr height="30" class="shop_ground">
+			<td width="20%">商品</td>
+			<td width="20%" align="center">数量</td>
+			<td width="20%" align="center">单价</td>
+			<td width="20%" align="center">小计</td>
+			<td width="20%" align="center">操作</td>
+		</tr>
+		<?php $i=0;?>
+		<?php foreach( $ware as $k => $line ):?>
+		<?php $i++;?>
+		<tr>
+			<td width="20%"><a href="/app/native/<?=$line['folder']?>/display/<?=$line['cid']?>"><?=$line['name']?></a></td>
+			<td width="20%" align="center"><input type="text" id="num_<?=$i;?>" style="width:30px;" name="num[]" value="<?=$line['num']?>" class="text" maxlength="4" onkeyup="this.value=this.value.replace(/\D/g,'') ; if( this.value == '' || this.value == '0' ){ this.value = <?=$line['num']?>; } ; MoneyModify( <?=$i;?> ) ; format_num();"></td>
+			<td width="20%" align="center">
+			￥<span id="money_<?=$i;?>"><?=$line['money']?></span></td>
+			<td width="20%" align="center">
+			￥<span id="moneys_<?=$i;?>"><?=$line['num']*$line['money']?></span></td>
+			<td width="20%" align="center"><a href="#" onclick="if( confirm('确定取消!')==true ){ window.location = '/app/native/<?=$GLOBALS['app']?>/ware_del/<?=$orders['id']?>/<?=$line['id']?>/'; }">取消订单</a>
+			<a href="/app/native/<?=$GLOBALS['app']?>/pay/">支付</a></td>
+		</tr>
+		<?php endforeach;?>
+	</table>
+	</div>
+	<div class="septa_line agiso_div">
+	<input type="hidden" id="agio" value="<?=$agio?>" >
+	<?php if( $agio != '100' ):?>
+	<span class="agis_span"><b>您共节省:
+	<font class="money">￥<span id="agios"><?=$orders['stint'];?></span></font></b>
+	</span>
+	<?php endif;?>
+	<span class="agis_span"><b>商品金额总计:<font class="money">￥<span id="money_sum"><?=$orders['money'];?></span></font>
+	</span></b>
+	</div>
+</div>
+<br>
+
+<div class="methods">
+<div class="small_title">
+<b><img src="/static/images/icon_arrow_down.gif">请选择您需要的送货方式</b>
+</div>
+<?php foreach( $carrys as $k => $carr):?>
+<div><input type="radio" name="carry" value="<?=$k+1;?>" <?php if( $orders['carry_type'] == $k+1 ){ echo "checked"; }?> /><?=$carr['name']?> <font class="nickname"><?=$carr['desp']?></font></div>
+<?php endforeach;?>
+</div>
+<br>
+<div class="methods">
+<div class="small_title">
+<b><img src="/static/images/icon_arrow_down.gif">请输入收获信息</b>
+</div>
+<div class="methods_height">
+<table width="100%" align="left" border="0" cellspacing="0" cellpadding="0">
+<tr>
+	<td width="20%">收货人 <font color="#ff0000">*</font></td>
+	<td align="left">
+	<select name="username" id="username" onchange="ShowToname(); ShopVote( this.value );">
+	<?php foreach( $names as $list ):?>
+	<option value="<?=$list['id']?>" <?php if( $list['name'] == $orders['toname'] ){ echo "selected"; }?> ><?=$list['name']?></option>
+	<?php endforeach;?>
+	<option value="0" >自定义</option>
+	</select>
+	<span id="Custom" class="custom_style">
+	<input type="text" name="custom_name" maxlength="20" class="text" style="width:150px;" /></span>
+	</td>
+</tr>
+<tr>
+	<td width="20%">收货电话 <font color="#ff0000">*</font></td>
+	<td align="left"><input type="text" id="usertell" name="usertell" maxlength="20" class="text"  style="width:150px;" value=" <?php if( $orders['totell'] ){ echo $orders['totell']; }?> " /></td>
+</tr>
+<tr>
+	<td width="20%">邮编 <font color="#ff0000">*</font></td>
+	<td align="left"><input type="text" id="usercode" name="usercode" class="text" style="width:50px;" maxlength="6" value="<?php if( $orders['tocode'] ){ echo $orders['tocode']; }?>"/></td>
+</tr>
+<tr>
+	<td width="20%">收货地址 <font color="#ff0000">*</font></td>
+	<td align="left"><input type="text" id="userhome" name="userhome" class="text" style="width:250px;" value="<?php if( $orders['tohome'] ){ echo $orders['tohome']; }?>" /></td>
+</tr>
+</table>
+</div>
+</div>
+<br>
+<div class="methods">
+	<div class="small_title">
+	<b><img src="/static/images/icon_arrow_down.gif">免费礼品包装</b>
+	</div>
+	<div style="margin-top:10px">
+	<span><input type="radio" name="pack" value="0" <?php if( $orders['pack_type'] == '0' ){ echo "checked"; }?> />&nbsp;&nbsp;不需要包装</span>
+	<span><input type="radio" name="pack" value="1" <?php if( $orders['pack_type'] == '1' ){ echo "checked"; }?> />&nbsp;&nbsp;需要包装</span>
+	</div>
+</div>
+<br>
+<div class="methods">
+<div class="small_title">
+<b><img src="/static/images/icon_arrow_down.gif">如果您有特殊要求，请在这里注明</b>
+</div>
+<div>
+<textarea class="need_w_h" name="need"><?php if( $orders['need'] ){ echo $orders['need']; }?></textarea>
+</div>
+</div>
+<br>
+<div class="button_margin"><input type="submit" class="button" value="好了,修改完毕"></div>
+</form>
+</body>

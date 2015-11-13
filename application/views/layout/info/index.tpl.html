@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+<head>
+
+<!-- Meta Data -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="keywords" content="">
+<meta name="description" content="">
+
+<!-- Site Title -->
+<title><?=$title;?> - <?php echo c('site_name'); ?></title>
+
+<!-- Link to Style External Sheet -->
+	<!-- load css-->
+	<link rel="stylesheet" type="text/css" href="/static/css/reset.css"> 
+	<link rel="stylesheet" type="text/css" href="/static/css/base.css"> 
+	<link rel="stylesheet" type="text/css" href="/static/css/fonts.css"> 
+	<link rel="stylesheet" type="text/css" href="/static/css/grids.css"> 
+	<link rel="stylesheet" type="text/css" href="/static/css/styles.css"> 
+
+
+<!-- load js-->
+  <SCRIPT LANGUAGE="JavaScript" src="/js/index/moo.js"></SCRIPT>
+  <SCRIPT LANGUAGE="JavaScript" src="/js/index/core.js"></SCRIPT>
+
+
+</head>
+
+<body>
+<div id="doc4" class="yui-t2">
+	<div id="hd">
+		<!--header-->
+		<?php require(  APPPATH.'views/layout/default/header.tpl.html' ); ?>		
+	</div>
+	<div id="bd">
+		<!--main & side-->
+		<div id="ucontainer" >
+	
+<div style="padding:30px">
+<div class="boxes">
+<div class="hd"><?=$top_title?>:</div>
+<div class="bd" style="height:300px;padding:20px;">
+<div><?php if( $img ):?><img src="/static/images/feature_sniffer.gif" style="margin:10px;margin-bottom:0px" />
+<?=$info;?>&nbsp;<?php if( $url == NULL ): ?> | <a href="javascript:history.back(1)"><?php else: ?><a href="<?php echo $url ?>"><?php endif; ?><?php if( $linkword != NULL ): ?><?=$linkword?><?php else: ?>返回之前的页面<?php endif; ?></a>
+<?php else:?>
+<span class="r"><?php if( $url == NULL ): ?>[<a href="javascript:history.back(1)"><?php else: ?>[<a href="<?php echo $url ?>"><?php endif; ?><?php if( $linkword != NULL ): ?><?=$linkword?><?php else: ?>返回之前的页面<?php endif; ?></a>]</span><?=$info;?>
+<?php endif?></div>
+</div>
+
+		</div>
+				
+		
+	</div>
+</div>	
+	<div id="fd">
+	  	<!--footer-->
+		<?php 	require(  APPPATH.'views/layout/default/footer.tpl.html' ); ?>			
+	</div>
+	
+	
+</div>
+</body>
+
+</html>

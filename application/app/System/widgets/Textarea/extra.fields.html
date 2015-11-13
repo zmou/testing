@@ -1,0 +1,13 @@
+<center>
+<TABLE>
+<TR>
+	<TD align="left"><?=_text('widget_title')?>:</TD>
+	<TD align="left"><INPUT TYPE="text" NAME="title" class="text" value="<? if( isset($title)){ echo $title; } ?>"></TD>
+</TR>
+<TR>
+	<TD align="left"><?=_text('system_desp')?>:</TD>
+	<TD align="left"><TEXTAREA id="desp" NAME="desp" ROWS="" COLS="" style="width:450px;height:350px;" class="fck"><? if( isset($desp)){ echo $desp; } ?></TEXTAREA></TD>
+</TR>
+</TABLE>
+</center>
+<script>make_rich('desp' , 'Basic');</script>

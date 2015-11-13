@@ -1,0 +1,32 @@
+<div class="boxes">
+	<div class="hd"><!--{tool bar}--><?=$title;?></div>
+	<div class="bd">
+	<div id="pm_left" style="width:100%;">
+		<?php foreach( $list as $k => $line):?>
+		<table border="0" cellspacing="0" cellpadding="0" width="100%">
+		<tr>
+		<td width="10%" valign="top"><div style="margin-top:7px"><a href="/user/space/<?=$line['uid']?>"><img src="<?=show_user_icon('normal',$line['uid'])?>" class="icon" /></a></div></td>
+		<td align="left" valign="top">
+		<div class="comment_div">
+		<table border="0"  cellspacing="0" cellpadding="0" width="100%">
+		<tr>
+		<td><a href="/app/native/<?=$GLOBALS['app']?>/show/<?=$line['id'];?>"><b><?=$line['title'];?></b></a></td>
+		<td align="right">
+		<div style="float:right;margin-right:5px" align="right"><img src="/static/images/star<?=$line['step'];?>.gif"></div>
+		</td>
+		</tr>
+		</table>
+		<span style="float:right; margin-right:5px;"><?php if($line['dig'] == '0'):?>暂无推荐<?php else:?><?=$line['dig'];?>人推荐该评论<?php endif;?></span><div style="padding-left:6px;float:left"><a href="/user/space/<?=$line['uid']?>" target="_blank"><?=$names[$line['uid']]['u2_nickname'];?></a></div>
+		<div class="post_time" style="float:left"><?=date( "Y-m-d H:i" ,strtotime($line['time']));?></div>
+		<br>
+		<div style="padding-left:6px">
+		<?=short_content( $line['content'] , 180 , '<a href="/app/native/'.$GLOBALS['app'].'/show/'.$line['id'].'">  继续阅读</a>' )?>
+		<span class="post_time"><?php if($line['rcount'] != '0'):?>(<?=$line['rcount'];?>条回复)<?php else:?>(暂无回复)<?php endif;?></span>
+		</div>
+		</div>
+		</td>
+		</tr>
+		</table>
+		<?php endforeach;?>
+	</div>
+</div>

@@ -1,0 +1,115 @@
+<div class="boxes">
+	<div class="hd" style="text-align:left"><span><a href="javascript:design_item_close()"><img src="/static/images/cross.gif" /></a></span><img src="/static/images/movearrow.gif" class="imove" id="imove" style="cursor:move">&nbsp;属性设定</div>
+	<div class="bd">
+	<form action="/design/item_update" method="post" id="item_settings_form">
+	<table width="100%">
+		<tr>
+			<td colspan="2">
+				标题<br/>
+				<input type="text" class="text" name="label" value="<?=$iinfo['label']?>" class="fitem_full" />
+			</td>
+		</tr>
+		<?php 
+		$tag_file = dirname(__FILE__) . '/' . basename( $iinfo['type'] ) .'.tag.html' ; 
+		if( file_exists( $tag_file ) ):?>
+		<tr>
+			<td colspan="2">
+			<?php @include( $tag_file ); ?>
+			</td>
+		</tr>
+		<?php endif; ?>
+		<tr>
+			<td>
+					字段类型<br/>
+					<select name="type" onchange="item_update('item_settings_form',<?=$iinfo['id']?>);" >
+						<option value="line" selected>单行文字</option>
+						<option value="multi-line">多行文字</option>
+						<option value="radio">单选</option>
+						<option value="checkbox">多选</option>
+						<option value="dropdown">下拉框</option>
+						<option value="file">文件上传框</option>
+						<option value="pic">图片上传框</option>
+						<option value="multi-pic">多图上传框</option>
+					</select>	
+			</td>
+			<td>
+				字段规格<br/>
+				<select name="size" >
+					<option value="small" selected>小</option>
+					<option value="middle">中</option>
+					<option value="large">大</option>
+				</select>
+			</td>
+		</tr>
+		
+		<tr>
+			<td >
+				字段选项
+				<div style="background:#eee;padding:5px">
+				<input type="checkbox" id="is_required" name="is_required" value="1" /><label for="is_required">必填</label>
+				&nbsp;
+				<input type="checkbox" id="is_unique" name="is_unique" value="1" /><label for="is_unique">唯一</label>
+				<br/>
+				<input type="checkbox" id="is_searchable" name="is_searchable" value="1"/><label for="is_searchable">搜索</label>
+				&nbsp;
+				<input type="checkbox" id="is_adv" name="is_adv" value="1" onclick="$('advanced_settings').setStyle('display' , 'block');" /><label for="is_adv">更多</label>
+				</div>
+						
+			</td>
+			<td>
+				字段权限
+				<div style="background:#eee;padding:5px">
+				<input type="radio" id="view_level_1" name="view_level" value="1" checked /><label for="view_level_1">所有会员可见</label>
+				<br/>
+				<input type="radio" id="view_level_2" name="view_level" value="2" /><label for="view_level_2">管理员可见</label>
+				</div>
+				
+			</td>
+		</tr>
+		</table>
+		<table width="100%" style="display:none" id="advanced_settings">
+		<tr>
+			<td colspan="2">
+				默认值<br/>
+				<input type="text" class="fitem_full text" name="default_value" value="<?=$iinfo['default_value']?>" />
+			</td>
+		</tr>
+		
+		<tr>
+			<td colspan="2">
+				字段说明<br/>
+				<textarea name="instruction" class="fitem_full"><?=htmlspecialchars($iinfo['instruction'])?></textarea>
+			</td>
+		</tr>
+		
+		<tr>
+			<td colspan="2">
+				自定义CSS<br/>
+				<input type="text" class="fitem_full text" name="custom_css" value="<?=$iinfo['custom_css']?>" />
+			</td>
+		</tr>
+			</table>
+			<table width="100%">
+		<tr>
+			<td>
+				<input class="button" type="button" value="保存" onclick="item_update('item_settings_form');" id="item_settings_submit" />
+			</td>
+			<td align="right">
+				&nbsp;&nbsp;<input class="button" type="button" value="删除" onclick="design_item_delete(<?=$iinfo['id']?>)" />
+			</td>	
+		</tr>
+	</table>
+	<input type="hidden" name="iid" value="<?=$iinfo['id']?>" id="iid">	
+	</form>
+	<script>
+	set_value( 'type' , '<?=$iinfo['type']?>' );
+	set_value( 'size' , '<?=$iinfo['size']?>' );
+	set_value( 'is_required' , '<?=$iinfo['is_required']?>' );
+	set_value( 'is_unique' , '<?=$iinfo['is_unique']?>' );
+	set_value( 'is_searchable' , '<?=$iinfo['is_searchable']?>' );
+	set_value( 'view_level' , '<?=$iinfo['view_level']?>' );
+	</script>
+	
+	</div>
+</div>
+

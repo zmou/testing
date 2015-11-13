@@ -1,0 +1,32 @@
+<html>
+<head>
+<meta http-equiv="Content-Language" content="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>资源上传</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<link rel="stylesheet" type="text/css" href="/static/css/styles.css"> 
+</head>
+
+<body>
+
+<table border="0" width="95%" cellspacing="5" cellpadding="5" height="400px" align="center">
+	<tr>
+		<td class="top">
+		<!-- main -->
+		<fieldset style="padding: 15px ; width:98%">
+		<legend>选择资源</legend>
+		<form action="/upload/save/<?=$folder;?>" method="POST" name="form" enctype="multipart/form-data">
+		<input type="hidden" name="MAX_FILE_SIZE" value="<?=c('max_file_size')?>" />
+		<input type="hidden" name="input_name" value="<?=$field;?>" />
+		<input type="hidden" name="type" value="<?=$type;?>" />
+		<input type="file" class="button" style="width:250px" name="u2_file">&nbsp;&nbsp;&nbsp;&nbsp;<INPUT TYPE="submit" class="button" value="提交">
+		</form>
+		</fieldset>
+		
+		</td>
+	</tr>
+</table>
+</body>
+
+</html>

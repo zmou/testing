@@ -1,0 +1,24 @@
+<?php @include( dirname(__FILE__) .'/header.settings.tpl.html' ); ?>
+<?php if($list):?>
+<TABLE>
+<TR>
+	<TD><?=_text('invite_myinvite_title')?></TD>
+	<TD><?=_text('system_date')?></TD>
+	<TD><?=_text('system_copied_action')?></TD>
+	<TD><?=_text('system_used_action')?></TD>
+	<TD><?=_text('system_copy_action')?></TD>
+</TR>
+<?php foreach( $list as $v ):?>
+<TR>
+	<TD><span id="invite_code_<?=$v['id']?>"><?=$v['u2_invite_code']?></span></TD>
+	<TD><?=$v['u2_date']?></TD>
+	<TD><span id="invite_action_<?=$v['id']?>"><?php if($v['u2_is_copied']) echo _text('system_copied'); else echo _text('system_no_copied');?></span></TD>
+	<TD><?php if($v['u2_is_use']) echo _text('system_used'); else echo _text('system_no_use');?></TD>
+	<td><a href="JavaScript:void(0)" onclick="copyinvite('<?=$v['id']?>')"><?=_text('system_copy')?></a></td>
+</TR>
+<?php endforeach;?>
+</TABLE>
+<?=$pager?>
+<?php else:?>
+<div class="notice"><img src="/static/images/feature_sniffer.gif" />&nbsp;<?=_text('invite_no_invite');?></div>
+<?php endif;?>

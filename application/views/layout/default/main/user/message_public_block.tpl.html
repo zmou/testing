@@ -1,0 +1,28 @@
+<?php if($friends['online']):?>
+<div class="boxes">
+	<div class="hd"><?=_text('user_friend_online');?></div>
+	<?php foreach($friends['online'] as $o):?>
+	<div class="p1 l warp w-normal">
+	<center><a href="/user/space/<?=$o['id']?>"><img src="<?=show_user_icon('',$o['id'])?>" class="icon" /><br/><?=$o['u2_nickname'];?></a><br/>
+	<img src="/static/images/mail.gif" />&nbsp;<a href="javascript:show_chat(<?=$o['id']?>)" title="<?=_text('user_friend_send_pm')?>"><?=_text('user_friend_send_pm');?></a></center>
+	</div>
+	<?php endforeach;?>
+</div>
+<br clear="all">
+<div class="message_public_block_margin"></div>
+<?php endif;?>
+
+<?php if($friends['offline']):?>
+<div class="boxes">
+	<div class="hd"><?=_text('user_friend_offline');?></div>
+	<div class="bd">
+	<?php foreach($friends['offline'] as $o):?>
+		<div class="p1 l warp w-normal">
+		<center><a href="/user/space/<?=$o['id']?>"><img src="<?=show_user_icon('',$o['id'])?>" class="icon" /><br/><?=$o['u2_nickname'];?></a><br/>
+		<img src="/static/images/mail.gif" />&nbsp;<a href="javascript:show_chat(<?=$o['id']?>)" title="<?=_text('user_friend_send_pm')?>"><?=_text('user_friend_send_pm');?></a></center>
+		</div>
+	<?php endforeach;?>
+	</div>
+<br clear="all">
+</div>
+<?php endif;?>

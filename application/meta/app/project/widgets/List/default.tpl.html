@@ -1,0 +1,26 @@
+<div class="boxes">
+	<div class="hd"><!--{tool bar}--><?=$title;?></div>
+	<div class="bd">
+	<?php if( $show_type != '1' ):?>
+	<?php foreach( $coms as $k => $v ):?>
+	<div align="left" style="margin-bottom:10px; padding-left:5px">
+	<a href="/app/native/<?=$GLOBALS['app']?>/display/<?=$v['id'];?>"><?=$v['title'];?></a><br/>
+	<?=short_content( $v['desp'] , 250 , '<a href="/app/native/'.$GLOBALS['app'].'/com_display/">  继续阅读</a>' )?>
+	</div>
+	<?php endforeach;?>
+	<?php else:?>
+
+		<?php $i = 0;?>
+		<?php foreach( $coms as $k => $v ):?>
+		<?php $i++;?>
+		<div align="center" style="float:left;">
+		<a href="/app/native/<?=$GLOBALS['app']?>/display/<?=$v['id'];?>">
+		<img src="/upload/snap/<?=$GLOBALS['app']?>/<?=base64_encode($v['pic']);?>" class="icon" <?=$pic_style?> /><br/>
+		<?=$v['title'];?></a>
+		</div>
+		<?php if( $i % $row_num ==0 ){ echo "<br clear='all'/>"; }?>  
+		<?php endforeach;?>
+		<br clear="all"/>
+	<?php endif;?>
+	</div>
+</div>

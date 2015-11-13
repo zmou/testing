@@ -1,0 +1,53 @@
+<div class="app_top"><h4>论坛设置</h4>	
+</div>
+<div class="l">
+		<div class="tabs">
+			
+			<?php foreach( $tab_array  as $key=>$tab ) : ?>
+			<?php if( $tab_type == $key ): ?>
+			<li class="out"><a href="/app/native/<?=$GLOBALS['app']?>/setting/<?php echo $fid; ?>/<?php echo $key; ?>"><?php echo $tab; ?></a></li>
+			<?php else: ?>
+			<li ><a href="/app/native/<?=$GLOBALS['app']?>/setting/<?php echo $fid; ?>/<?php echo $key; ?>"><?php echo $tab; ?></a></li>
+			<?php endif; ?>		
+			<?php endforeach; ?>	
+			<li class="link"><a href="/app/native/<?=$GLOBALS['app']?>/index/<?php echo $fid; ?>">返回论坛</a></li>
+		</div>
+		<div class="p2">
+		<form action="/app/native/<?=$GLOBALS['app']?>/setting_save/<?php echo $fid; ?>/<?php echo $tab_type ?>" method="post">
+		<?php if( $tab_type =='basic' ):?>
+			<script type="text/javascript" src="/js/fck/fckeditor.js"></script>
+			<TABLE>
+			<TR>
+				<TD>名称</TD>
+				<TD><input type="text" class="text" name="name" value="<?=$forum['name']?>"></TD>
+			</TR>
+			<TR>
+				<TD>描述</TD>
+				<TD><textarea name="desp" id="desp" wrap="hard" class="set_miaoshu"><?=$forum['desp']?></textarea></TD>
+			</TR>
+			<TR>
+				<TD></TD>
+				<TD><input type="submit" value="提交" class="button">&nbsp;&nbsp;<input type="button" value="取消" onclick="location='/app/native/<?=$GLOBALS['app']?>/index/<?php echo $fid; ?>'" class="button"></TD>
+			</TR>
+			</TABLE>
+
+			<script>make_rich('desp' , 'Basic');</script>
+		<?php else:?>
+			<TABLE>
+				<?php for($i=1;$i<7;$i++):?>		
+				<TR>
+					<TD>文章分类<?=$i?>:</TD>
+					<TD><input type="text" class="text" name="cate_<?=$i?>" value="<?=$cates[$i]['desp']?>"></TD>
+				</TR>
+				<?php endfor;?>
+			<TR>
+				<TD></TD>
+				<TD><input type="submit" value="提交" class="button">&nbsp;&nbsp;<input type="button" value="取消" onclick="location='/app/native/<?=$GLOBALS['app']?>/index/<?php echo $fid; ?>'" class="button"></TD>
+			</TR>
+			</TABLE>
+		<?php endif;?>
+		</form>
+		</div>		
+
+</div>
+		

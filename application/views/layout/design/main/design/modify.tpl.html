@@ -1,0 +1,15 @@
+<div class="boxes">
+<div class="hd">修改组件信息</div>
+<div class="bd">
+<div class="p2">	
+<form action="/design/modify_save/<?=$finfo['id']?>" method="POST" >
+<p class="item"><label>英文唯一标示:</label>&nbsp;<?=$finfo['name']?><br/></p>
+<p class="item"><label>组件名称:</label>&nbsp;<input type="text" class="text" name="title" value="<?=$finfo['title']?>"></p>
+<p class="item"><label>组件介绍:</label>&nbsp;<input type="text" class="text" name="subtitle" value="<?=$finfo['subtitle']?>" ></p>
+<p class="item"><label>状态名称:</label><div class="l">&nbsp;<input type="text" class="text" name="state" value="<?=$finfo['state']?>"><br/><span class="gray" style="padding:5px">描述用户对该内容的行为,如想读|在读;建议2-3个,多个行为用&nbsp;|&nbsp;隔开 </span></div></p><br clear="all"><br/>
+<p class="act"><input type="submit" class="button" value=" 修改 "></p>
+<p class="item"><label>&nbsp;</label>&nbsp;</p>
+</form>	
+</div>
+</div>
+</div>

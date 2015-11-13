@@ -1,0 +1,51 @@
+<div class="app_top"><h4>微件列表</h4>
+<div>微件列表</div></div>
+<!-- 标题 -->
+<div class="tabs">
+<li class="out"><a href="#">搜索结果</a></li>
+<li class="link"><a href="/riki/index/4">返回组件</a></li>
+</div>
+<div class="bline"><br/>
+<form action="/plugs/index/" method="post">
+<input type="text" class="text" name="search" value="<?=$search?>">
+<!-- <SELECT NAME="type">
+	<OPTION VALUE="0">全部范围</OPTION>
+	<?php foreach( $plugs_name as $k => $list ):?>
+	<OPTION VALUE="<?=$list['id']?>" <?php if( $list['name'] == $name ){ echo "selected"; }?>><?=$list['name']?></OPTION>
+	<?php endforeach;?>
+</SELECT> -->
+<input type="submit" value="搜索" class="button">
+</form>
+<?php if( $item ):?>
+	<div class="list_dig_rim">
+		<?php foreach( $item as $k => $line ):?>
+		<div class="list_item_rim" >	
+			<div class="list_item_right_rim">
+				<div class="r">
+				<?php if( isset($domain) && isset($is_admin)):?>
+				<input type="button" value="安装<?=$line['aname']?>组件" class="button" onclick="window.open('http://<?=$domain?>/admin/plugs/<?=$line['mid']?>')">
+				<?php else:?>
+				<input type="button" value="安装<?=$line['aname']?>组件" class="button" disabled>
+				<?php endif;?>
+				</div>
+				<a href="#"><strong><?=$line['name']?></strong></a> 
+				[<a href="<?=$line['big_pic']?>" target="_blank">预览</a>]
+				<?php if( is_admin() ):?>
+				[<a href="/plugs/widgets_modify/<?=$line['id']?>">编辑</a>]
+				[<a href="#" onclick="if( confirm('确定删除!?')==true ){ window.location='/plugs/widgets_del/<?=$line['id']?>' }">删除</a>]
+				<?php endif;?>
+				<div class="list_item_small_title"><strong>所属:<?=$line['aname']?></strong></div>
+				<div class="list_item_small_title"><?=$line['desp']?></div>
+				<div class="r list_item_update_time">更新时间:<?=$line['time']?></div>
+			</div>
+			<div style="width:100px">
+			<?php if( $line['pic'] == '' ):?><img src="/static/images/plugs/default.png" class="icon"><?php else:?><img src="<?=$line['pic']?>" class="icon"  width="110px"><?php endif;?>
+			</div>
+		</div>	
+		<?php endforeach;?>
+	</div>
+	<div class="list_pager" align="center"><?=$pager;?></div>
+<?php else:?>
+	<div class="list_nothing">没有找到符合你要求的内容!</div>
+<?php endif;?>
+</div>

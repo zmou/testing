@@ -1,0 +1,133 @@
+<SCRIPT LANGUAGE="JavaScript" src="/js/index/moodrag.js"></SCRIPT>
+<div class="boxes">
+<div class="hd">设置呈现页面布局</div>
+<div class="bd">
+<br/>
+<?php if($first):?>
+选择布局<br/><br/>
+	<div class="desgin_layout">
+	<TABLE width="100px">
+			<TR>
+				<TD width="100px" height="100px">		
+				</TD>
+			</TR>
+			<TR>
+				<TD width="100px" height="30px">
+				</TD>
+			</TR>
+		</TABLE>
+	</div>
+	<div  class="desgin_layout">
+		<TABLE>
+		<TR>
+			<TD width="80px" height="100px"></TD>
+			<TD width="20px" height="100px"></TD>
+		</TR>
+		<TR>
+			<TD colspan="2" height="30px"></TD>
+		</TR>
+		</TABLE>
+	</div>
+	<div  class="desgin_layout">
+		<TABLE>
+		<TR>
+			<TD width="20px" height="100px"></TD>
+			<TD width="80px" height="100px"></TD>
+		</TR>
+		<TR>
+			<TD colspan="2" height="30px"></TD>
+		</TR>
+		</TABLE>
+	</div>
+		<div  class="desgin_layout">
+		<TABLE>
+		<TR>
+			<TD width="20px" height="100px"></TD>
+			<TD width="60px" height="100px"></TD>
+			<TD width="20px" height="100px"></TD>
+		</TR>
+		<TR>
+			<TD colspan="3" height="30px"></TD>
+		</TR>
+		</TABLE>
+	</div>
+	<br clear="all"/>
+	<br />
+	<form action="/design/save_location/<?=$finfo['id']?>" method="post">
+	<div  class="desgin_layout">
+		<INPUT TYPE="radio" NAME="layout" value="1">布局1
+	</div>
+	<div  class="desgin_layout">
+		<INPUT TYPE="radio" NAME="layout" value="2">布局2
+	</div>
+	<div  class="desgin_layout">
+		<INPUT TYPE="radio" NAME="layout" value="3">布局3
+	</div>
+	<div  class="desgin_layout">
+		<INPUT TYPE="radio" NAME="layout" value="4" checked>布局4
+	</div>
+	<br clear="all"/>
+	<br />
+	<INPUT style="margin-left:220px;" TYPE="submit" value="下一步:设置页面组件布局" class="button">
+	</form>
+<?php else:?>
+<span class="r"><a href="/design/init_order/<?=$finfo['id']?>/">初始化页面</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/design/display/<?=$finfo['id']?>/1">重新选择布局</a></span><br clear="all">
+	<form action="/design/save_location/<?=$finfo['id']?>" method="post" name="location" id="location" >
+	<INPUT TYPE="hidden" NAME="order" id="order" value="">
+	</form>
+	<div id="ulist">
+	<?php if( $finfo['order']['layout'] == 2 ):?>
+		<ul class="uitem" style="width:510px;height:auto!important;height:200px;">
+		<?=format_design_row( $rows[0] ,  $finfo )?>
+		</ul>
+		<ul class="uitem" style="width:160px;height:auto!important;height:200px;">
+		<?=format_design_row( $rows[1],  $finfo )?>
+		</ul><br clear="all">
+		<ul class="uitem" style="width:680px;height:auto!important;height:200px;">
+		<?=format_design_row( $rows[2],  $finfo )?>
+		</ul><br clear="all">
+	<?php elseif($finfo['order']['layout'] == 3 ):?>
+		<ul class="uitem" style="width:160px;height:auto!important;height:200px;">
+		<?=format_design_row( $rows[0],  $finfo )?>
+		</ul>
+		<ul class="uitem" style="width:510px;height:auto!important;height:200px;">
+		<?=format_design_row( $rows[1] ,  $finfo)?>
+		</ul><br clear="all">
+		<ul class="uitem" style="width:680px;height:auto!important;height:200px;">
+		<?=format_design_row( $rows[2],  $finfo )?>
+		</ul><br clear="all">
+	<?php elseif($finfo['order']['layout'] == 4 ):?>
+		<ul class="uitem" style="width:160px;height:auto!important;height:200px;">
+		<?=format_design_row( $rows[0],  $finfo )?>
+		</ul>
+		<ul class="uitem" style="width:330px;height:auto!important;height:200px;">
+		<?=format_design_row( $rows[1] ,  $finfo)?>
+		</ul>
+		<ul class="uitem" style="width:160px;height:auto!important;height:200px;">
+		<?=format_design_row( $rows[2],  $finfo )?>
+		</ul><br clear="all">
+		<ul class="uitem" style="width:680px;height:auto!important;height:200px;">
+		<?=format_design_row( $rows[3],  $finfo )?>
+		</ul><br clear="all">
+	<?php else:?>
+		<ul class="uitem" style="width:680px;height:auto!important;height:200px;">
+		<?=format_design_row( $rows[0],  $finfo )?>
+		</ul>
+		<br clear="all">
+		<ul class="uitem" style="width:680px;height:auto!important;height:200px;">
+		<?=format_design_row( $rows[1],  $finfo )?>
+		</ul><br clear="all">
+	<?php endif;?>
+	</div>
+	<INPUT TYPE="button"  onclick="$('location').submit();" value="下一步:确认组件设置信息 >>" class="button">
+	<br/><br/><a href="/design/form/<?=$finfo['id'];?>">返回上一步</a>	
+<SCRIPT LANGUAGE="JavaScript">
+MyDrag = new MooDrag( 'ulist' , {handles:'.Drag',onComplete:function( el )
+		{ 
+			var order = this.serialize();
+			$('order').value =order;
+		}} );
+</SCRIPT>
+<?php endif;?>
+</div>
+</div>

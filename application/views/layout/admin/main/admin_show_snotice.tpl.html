@@ -1,0 +1,25 @@
+
+<div class="box">
+	<p class="admin_title">系统通知</p>
+
+	<div  id="data_extra">
+		<div>
+		<TABLE>
+		<TR>
+			<TD valign="top">内容</TD>
+			<TD><?=$line['desp']?></TD>
+		</TR>
+		<TR>
+			<TD>有效时间</TD>
+			<TD><?=$line['start_time']?>&nbsp;-&nbsp;<?=$line['end_time']?></TD>
+		</TR>
+		<TR>
+			<TD></TD>
+			<TD><INPUT TYPE="button" value="关闭窗口" onclick="window.close();" class="button">&nbsp;&nbsp;&nbsp;&nbsp;<INPUT TYPE="button" value="修改内容" class="button" onclick="location='/admin/modify_snotice/<?=$line['id']?>' "></TD>
+		</TR>
+		</TABLE>
+		</div>
+		
+	</div>
+
+</div>

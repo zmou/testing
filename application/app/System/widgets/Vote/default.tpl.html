@@ -1,0 +1,46 @@
+<div class="boxes">
+	<div class="hd"><!--{tool bar}--><?=$title;?></div>
+	<div class="bd">
+	<?php if( !$vote ):?>
+	<div>你还没有设置选项</div>
+	<?php elseif( $vote && count($vote) < 2 ):?>
+	<div>选项总数不得小于2条</div>
+	<?php else:?>
+	<div id="widget_info_<?=$wid;?>">
+	<form action="/ajax/votesave" method="post" name="widget_form_<?=$wid;?>" id="widget_form_<?=$wid;?>">
+	<INPUT TYPE="hidden" NAME="wid" value="<?=$wid;?>">
+	<table width="100%" cellspacing="0" cellpadding="0">
+	<tr><td colspan="2" align="left"><?=$vote_name;?></td></tr>
+	<?php $i=0;?>
+	<?php foreach( $vote as $k => $v ):?>
+	<?php $i++;?>
+	<?php if( $types == 2 ):?>
+	<tr><td width="5%" align="right"><input type="checkbox" name="radios[]" value="<?=$k+1;?>"></td>
+	<td width="95%" align="left">
+	<?php if( empty($v) ):?>
+	选项<?=$i;?>号
+	<?php else:?>
+	<?=$v;?>
+	<?php endif;?>
+	</td></tr>
+	<?php else:?>
+	<tr><td width="5px" align="right"><input type="radio" name="radios[]" value="<?=$k+1;?>"></td>
+	<td width="95%" align="left">
+	<?php if( empty($v) ):?>
+	选项<?=$i;?>号
+	<?php else:?>
+	<?=$v;?>
+	<?php endif;?>
+	</td></tr>
+	<?php endif;?>
+	<?php endforeach;?>
+	<tr><td colspan="2">
+	<INPUT class=button type=button value=投票 onclick="ajax_vote_send('widget_form_<?=$wid;?>')">&nbsp;&nbsp;
+	<INPUT class=button type=button value=查看 onclick="ajax_show_vote('<?=$wid?>')"></td></tr>
+	</table>
+	</form>
+	</div>
+	<?php endif;?>
+
+	</div>
+</div>

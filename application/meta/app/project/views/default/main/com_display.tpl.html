@@ -1,0 +1,117 @@
+<div class="app_top">
+<h4><?=app_config('model_name')?></h4><div><?=app_config('model_subtitle');?></div></div>
+<div class="tabs">
+<li class="out"><a href="/app/native/<?=$GLOBALS['app']?>/display/<?=$tid?>">查看<?=app_config('model_name')?>评论</a></li>
+<li class="link"><a href="/app/native/<?=$GLOBALS['app']?>/display/<?=$tid?>">返回</a></li>
+<?php if( level_check( app_config('add_level') ) ):?>
+<li class="link"><a href="/app/native/<?=$GLOBALS['app']?>/add/">发布<?=app_config('model_name')?></a></li>
+<?php endif;?>
+<li class="link"><a href="/app/native/<?=$GLOBALS['app']?>/search/">搜索<?=app_config('model_name')?></a></li>
+</div>
+<br clear="all"/>
+<script type="text/javascript" src="/js/fck/fckeditor.js"></script>
+<div style="float:left;width:75%;">
+	<div style="width:100%;border-right:1px solid #DDDDDD">
+		<div class="app_top_vote" style="float:left"><h4><?=$com['title']?></h4></div>
+		<?php if( $userid == $com['uid'] ):?>
+		<div style="float:right;" align="right">
+		<a href="/app/native/<?=$GLOBALS['app']?>/com_modify/<?=$id;?>">修改</a> 
+		<a href="/app/native/<?=$GLOBALS['app']?>/com_del/<?=$id;?>">删除</a>
+		</div>
+		<?php endif;?><br>
+		<div align="left">
+		<span class="post_time" style="padding-left:0px"><?=date( "Y-m-d H:i" ,strtotime($com['time']));?></span>&nbsp;&nbsp;&nbsp;
+		<img src="/static/images/star<?=$com['step'];?>.gif">
+		</div>
+		<div style="width:98%">
+			<table border="0" cellspacing="0" cellpadding="0" width="100%">
+			<tr>
+			<td align="left" valign="top" width="10%"><a href="/user/space/<?=$com['uid']?>"><img src="<?=show_user_icon('normal',$com['uid'])?>" class="icon" /></a></td>
+			<td align="left" valign="top" width="90%">
+			<div><a href="/user/space/<?=$com['uid']?>" target="_blank"><?=$unames[$com['uid']]['u2_nickname'];?></a>
+			<span class="post_time">|</span>&nbsp;&nbsp;&nbsp;<a href="#text_root" onclick="show_c('')">回复</a></div>
+			<div style="width:98%;margin-top:7px;line-height:150%;padding-bottom:15px;"><?=$com['content'];?></div>
+			</td>
+			</tr>
+			</table>
+		</div>
+		<div class="comment_div" style="margin-top:15px;height:25px;border-top:1px solid #dddddd; width:98%">
+		<span style="margin:5px; float:right;">
+		<?php if($votes == '0'):?>
+		<a href="/app/native/<?=$GLOBALS['app']?>/vote_save/<?=$com['id'];?>">推荐</a>
+		<?php else:?>
+		你已经推荐过了
+		<?php endif;?>
+		</span>
+		<span style="margin:5px; float:left;">
+		<?php if( $com['dig'] != '0' ):?>
+		谁推荐了这个评论(共<?=$com['dig'];?>个推荐)
+		<?php else:?>
+		还不曾有人推荐,你来第一个推荐吧!
+		<?php endif;?>
+		</span>
+	</div>
+	<div align="left" style="height:80px;border-bottom:1px solid #dddddd">
+	<?php foreach( $vote_user as $k => $v ):?>
+		<table align="left" border="0" cellspacing="0" cellpadding="0" >
+		<tr>
+		<td align="center">
+		<a href="/user/space/<?=$v['uid']?>" target="_blank">
+		<img src="<?=show_user_icon('normal',$v['uid'])?>" class="icon" /></a><br/>
+		<a href="/user/space/<?=$v['uid']?>" target="_blank"><?=$unames[$v['uid']]['u2_nickname'];?></a>
+		</td>
+		</tr>
+		</table>
+	<?php endforeach;?>
+	</div>
+
+	<div style="width:100%">
+	<?php if( $coms ):?>
+	<?php $i=0;?>
+		<?php foreach( $coms as $k => $v ):?>
+		<?php $i++;?>
+		<div class="comment_div" style="height:80px">
+			<table border="0" align="left" cellspacing="0" cellpadding="0" width="98%">
+			<tr>
+			<td valign="top" align="left" width="10%"><a href="/user/space/<?=$v['uid']?>"><img src="<?=show_user_icon('normal',$v['uid'])?>" class="icon" /></a></td>
+			<td valign="top" align="left" width="80%">
+			<div><a href="/user/space/<?=$v['uid']?>"><?=$unames[$v['uid']]['u2_nickname'];?></a>
+			<span class="post_time"><?=$v['time'];?></span>&nbsp;&nbsp;
+			<span><a href="#text_root" onclick="show_c('回复<?=$unames[$v['uid']]['u2_nickname'];?>*_~：')">回复</a></span>
+			<?php if( $userid == $v['uid'] ):?>
+			<a href="/app/native/<?=$GLOBALS['app']?>/reply_del/<?=$v['id'];?>/<?=$id;?>">删除</a>
+			<?php endif;?>
+			</div>
+			<div><?=$v['content'];?></div>
+			</td>
+			<td valign="top" align="right" width="10%"><?=$start+$i;?>楼</td>
+			</tr>
+			</table>
+		</div>
+		<?php endforeach;?>
+	<?php else:?>
+		<div class="comment_div" style="padding:10px">暂无回复</div>
+	<?php endif;?>
+	</div>
+		<div align="center"><?=$pager;?></div>
+		<div>
+		<h4>回复</h4>
+		<form action="/app/native/<?=$GLOBALS['app']?>/reply_save" method="post">
+		<INPUT TYPE="hidden" NAME="cid" value="<?=$com['id'];?>">
+		<textarea style="width:430px;height:80px;overflow:hidden"  name="con" id="text_con"></textarea><br/><br/><a name="text_root"></a>
+		<input class="button"  type="submit" value="提交">&nbsp;&nbsp;<input class="button" type="reset" value="取消">
+		</form><br>
+		</div>
+	</div>
+</div>
+
+<div style="float:right;padding:20px;width:15%">
+<div>
+	<a href="/app/native/<?=$GLOBALS['app']?>/display/<?=$tid?>">
+	<img src="/upload/snap/<?=$GLOBALS['app']?>/<?=base64_encode($item['pic']);?>" class="icon" <?=$pic_style;?> /></a>
+	</a>
+</div>
+<div style="margin-top:10px;"><b><?=$item['title']?></b></div>
+<div style="margin-top:10px;">内容:<br/><?=short_content( $item['desp'] , 10 , '<a href="/app/native/'.$GLOBALS['app'].'/display/'.$tid.'">  继续阅读</a>' )?></div>
+</div>
+<br clear="all"/>

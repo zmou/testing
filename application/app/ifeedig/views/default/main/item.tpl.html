@@ -1,0 +1,123 @@
+<div class="app_top">
+<h4>悦读文章管理</h4>
+<?php if( $num != 0 ):?>
+<?php if( isset($item_s) && $item_s != 'all' ):?>
+<div class="item_pass_all"><a href="/app/native/<?=$GLOBALS['app']?>/item_save">全部通过</a>
+<!-- <SELECT NAME="">
+	<OPTION VALUE="">通过</OPTION>
+</SELECT>
+<INPUT TYPE="submit" value="确认" class="button"> -->
+</div>
+<?php endif?>
+<?php endif;?>
+<div>审核、编辑文章</div>
+</div>
+<!-- 标题 -->
+<div class="tabs">
+<?php foreach( $titles as $k => $ltitle ):?>
+<?php if( $titleid == $k ): ?>
+	<?php if( $k == '1' ):?>
+	<li class="out"><a href="/app/native/<?=$GLOBALS['app']?>/item/<?php echo $k; ?>/<?=$item_s?>">文章列表</a></li>
+	<?php else:?>
+	<li class="out"><a href="/app/native/<?=$GLOBALS['app']?>/item/<?php echo $k; ?>/<?=$item_s?>"><?php echo $ltitle; ?></a></li>
+	<?php endif;?>
+<?php else: ?>
+	<?php if( $k == '1' ):?>
+	<li ><a href="/app/native/<?=$GLOBALS['app']?>/item/<?php echo $k; ?>/<?=$item_s?>">文章列表</a></li>
+	<?php else:?>
+	<li ><a href="/app/native/<?=$GLOBALS['app']?>/item/<?php echo $k; ?>/<?=$item_s?>"><?php echo $ltitle; ?></a></li>
+	<?php endif;?>
+
+<?php endif; ?>	
+<?php endforeach;?>
+<?php if( is_admin() ):?>
+<li class="link"><a href="/app/native/<?=$GLOBALS['app']?>/feed">返回管理</a></li>
+<?php endif;?>
+<?php if( isset($item_s) && $item_s != 'all' ):?>
+<li class="link"><a href="/app/native/<?=$GLOBALS['app']?>/item/<?php echo $titleid;?>/all">全部文章</a></li>
+<?php else:?>
+<li class="link"><a href="/app/native/<?=$GLOBALS['app']?>/item/<?php echo $titleid;?>/parts">未处理文章</a></li>
+<?php endif?>
+</div>
+
+<!-- 查看日期 -->
+<!-- <div class="dashed_line">查看:
+<?php foreach( $days as $k => $d ):?>
+<?php if( $day == $k ):?>
+&nbsp;&nbsp;<?=$d?>&nbsp;&nbsp;
+<?php else:?>
+<a href="/app/native/<?=$GLOBALS['app']?>/item/<?=$titleid?>/<?=$k?>"><?=$d?></a> 
+<?php endif;?>
+<?php endforeach;?>
+</div> -->
+<!-- list -->
+<?php if( $item ):?>
+<div class="lists"></div>
+<?php foreach( $item as $k => $line ):?>
+<table>
+<tr><td>
+	
+<!-- 	<div style="width:660px;"> -->
+	<!-- right -->
+	<div class="item_title">
+		<div class="item_top_line"><!-- padding:4px 2px 8px 2px; -->
+			<div class="item_open_close" id="desp_open_<?=$line['id']?>"><a href="javascript:void(0)" onclick="show_desp_all(<?=$line['id']?>)">展开全文</a></div>
+			<div style="display:none;" class="item_open_close" id="desp_closeTOP_<?=$line['id']?>"><a href="javascript:void(0)" onclick="show_desp_all(<?=$line['id']?>)">收起全文</a></div>
+			<!-- <div style="float:right;margin-bottom:5px;border:1px solid blue;padding-bottom:5px">
+			"
+			-->
+			<span id="state-<?=$line['id']?>">
+				<span class="item_pass_all">
+				<span id="state_<?=$line['id']?>"></span>
+				<?php if( $line['state'] == '1' ):?>
+				<INPUT TYPE="checkbox" NAME="" onclick="Change_state( <?=$line['id']?> , 2)">通过
+				<?php else:?>
+				<INPUT TYPE="checkbox" NAME="" onclick="Change_state( <?=$line['id']?> , 1)" checked>通过
+				<?php endif;?>
+				</span>
+			</span>
+			<!-- </div> -->
+			<div><a href="<?=$line['link']?>" target="_black"><img src="/static/images/document.gif">&nbsp;<?=$line['title']?></a>来自:<?=$by[$line['fid']]?>&nbsp;&nbsp;<img src="/static/images/clock.gif" alt="">&nbsp;<?=$times[$line['id']]?></div>
+		</div>
+	</div>
+	<div class="item_title">
+		<div class="item_pass_all item_margin_top" ><span id="type-<?=$line['id']?>"></span>&nbsp;
+		<SELECT NAME=""  onchange="Change_type( <?=$line['id']?> , this.value )">
+				<?php foreach( $ts as $k => $v ):?>
+					<OPTION VALUE="<?=$k?>" <?php if( $k == $line['tid']){ echo "selected"; }?>><?=$v?></OPTION>
+				<?php endforeach;?>
+		</SELECT>
+		</div>
+		<div class="feed_content_width" class="item_margin_top">
+			<div style="display:''" class="dig_contents" id="desp_breviary_<?=$line['id'];?>"><?php echo f_desp( $line['desp'] , 100 , $line['id']);?></div>
+			<div style="display:none" class="dig_contents" id="desp_all_<?=$line['id'];?>"><?php echo $line['desp'];?></div>
+		</div>
+		<div align="right" id="desp_close_<?=$line['id']?>" style="display:none;" class="dig_close"><a href="javascript:void(0)" onclick="show_desp_all(<?=$line['id']?>)">收起全文</a></div>
+	</div>
+	<!-- left -->
+	<!-- <div align="center" style="width:80px;height:100%;margin:5px">
+		<div style="width:80px"  class="diggvote">
+		<FONT color="green"><SPAN id="digs_<?=$line['id']?>"><?=$line['dig']?></SPAN></FONT>
+		</div>
+		<DIV class="diggding" id="dig_show_<?=$line['id']?>">
+		<?php if(  in_array($line['id']  , $diged ) ):?>
+		已推荐
+		<?php else:?>
+		<A href="javascript:void(0)" onclick="ding( <?=$line['id']?> )">顶一下</A> 
+		<?php endif;?>
+		</DIV>
+	</div>
+</div> -->
+</td></tr>
+<tr><td>
+<!-- <div class="dline">&nbsp;</div> -->&nbsp;
+</td></tr>
+</table>
+<?php endforeach;?>
+<div align="center" class="pages"><?=$pager;?></div>
+<?php else:?>
+<div class="lists" align="center">暂无文章</div>
+<?php endif;?>
+<SCRIPT LANGUAGE="JavaScript">
+setInterval("lock_img()", 10000);
+</SCRIPT>

@@ -1,0 +1,59 @@
+<div class="app_top">
+<h4><?=app_config('model_name')?></h4><div><?=app_config('model_subtitle');?></div></div>
+<div class="tabs">
+<li class="out"><a href="/app/native/<?=$GLOBALS['app']?>/display/<?php echo $item['id']; ?>">添加<?=app_config('model_name')?>评论</a></li>
+<li class="link"><a href="JavaScript:history.back(1)">返回</a></li>
+<?php if( level_check( app_config('add_level') ) ):?>
+<li class="link"><a href="/app/native/<?=$GLOBALS['app']?>/add/">发布<?=app_config('model_name')?></a></li>
+<?php endif;?>
+<li class="link"><a href="/app/native/<?=$GLOBALS['app']?>/search/">搜索<?=app_config('model_name')?></a></li>
+</div>
+<script type="text/javascript" src="/js/fck/fckeditor.js"></script>
+<div class="l">
+		<div class="p2">
+		<form action="/app/native/<?=$GLOBALS['app']?>/com_save/" method="post">
+		<INPUT TYPE="hidden" NAME="id" value="<?php echo $id; ?>">
+		<TABLE>
+			<tr>
+			<td>打分:</td>
+			<td><INPUT TYPE="hidden" NAME="step" id="step" value="3"><ul class="rating star3">
+			  <li id="1" class="rate s1"><a href="#" title="1 Star">1</a></li>
+			  <li id="2" class="rate s2"><a href="#" title="2 Stars">2</a></li>
+			  <li id="3" class="rate s3"><a href="#" title="3 Stars">3</a></li>
+			  <li id="4" class="rate s4"><a href="#" title="4 Stars">4</a></li>
+			  <li id="5" class="rate s5"><a href="#" title="5 Stars">5</a></li>
+			</ul></td>
+		</tr>
+		<TR>
+			<TD>标题:</TD>
+			<TD><input type="text" class="text" name="title"></TD>
+		</TR>
+
+		</TABLE>
+		<textarea name="desp" id="desp" wrap="hard" style="width:650px;height:300px"></textarea>
+		<br/><br/>
+		<input type="submit" value="发布" class="button">&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="取消" onclick="JavaScript:history.back(1)" class="button">
+		</form>
+		</div>		
+</div>
+<script>make_rich('desp' , 'Basic');
+$$('.rate').each(function(element,i){
+	element.addEvent('click', function(){
+		var myStyles = ['star0', 'star1', 'star2', 'star3', 'star4', 'star5'];
+		myStyles.each(function(myStyle){
+			if(element.getParent().hasClass(myStyle)){
+				element.getParent().removeClass(myStyle)
+			}
+		});		
+		myStyles.each(function(myStyle, index){
+			if(index == element.id){
+				element.getParent().toggleClass(myStyle);
+				var star_num = parseInt( element.id , 10 );
+				$("step").value = star_num;
+			}
+		});		
+		
+	});
+});
+</script>
+		

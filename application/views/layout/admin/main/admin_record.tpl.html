@@ -1,0 +1,33 @@
+<div class="box">
+	<p class="admin_title"><?=_text('admin_record_title')?></p>
+	<p><b><?=_text('admin_record_desp')?></b></p><br/>
+	<div class="l">
+	<form action="/admin/record_save/" method="post">
+		<p>积分操作可以鼓励用户参与度、修正用户违规行为而使每个成员受益。</p>
+		<p>为<a href="/user/space/<?=$tuid?>" target="_blank"><?=$name?></a>添加的内容 <?php if($karma < 0 ):?>减少<?php else:?>增加<?php endif;?> <font color="red"><?=abs($karma)?></font> 
+		<SELECT NAME="type">
+			<OPTION VALUE="sliver" SELECTED>银币
+			<OPTION VALUE="gold">金币</SELECT></p>
+		<p>相关页面为:<a href="<?=$link?>"><?=$link?></a></p>
+		<TEXTAREA id="reason" name="reason" style="width:500px;height:100px;overflow:hidden;">请填写详细的理由</TEXTAREA><br/><br/>
+		奖励 <SELECT onchange="$('reason').value=this.value"> 
+			<OPTION value="自定义" selected>自定义</OPTION> 
+			<OPTION value="我很赞同">我很赞同</OPTION> 
+			<OPTION value="精品文章">精品文章</OPTION> 
+			<OPTION value="原创内容">原创内容</OPTION></SELECT>&nbsp;&nbsp;&nbsp;
+		惩罚 <SELECT onchange="$('reason').value=this.value"> 
+			<OPTION value="自定义 "selected>自定义</OPTION> 
+			<OPTION value="垃圾广告">垃圾广告</OPTION>
+			<OPTION value="恶意灌水">恶意灌水</OPTION> 
+			<OPTION value="违规内容">违规内容</OPTION> 
+			<OPTION value="文不对题">文不对题</OPTION> 
+			<OPTION value="重复发帖">重复发帖</OPTION></SELECT>
+			<INPUT TYPE="hidden" NAME="app" value="<?=$app;?>">
+			<INPUT TYPE="hidden" NAME="tuid" value="<?=$tuid;?>">
+			<INPUT TYPE="hidden" NAME="cid" value="<?=$cid;?>">
+			<INPUT TYPE="hidden" NAME="karma" value="<?=$karma;?>">
+			<INPUT TYPE="hidden" NAME="link" value="<?=$link;?>">
+	<br/><br/><INPUT class="button" type="submit" value="确认操作"> 
+	</form>
+	</div>
+</div>

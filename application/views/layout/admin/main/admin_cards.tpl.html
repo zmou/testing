@@ -1,0 +1,39 @@
+<div class="box">
+	<p class="admin_title"><?=_text('admin_moneycard_title')?></p>
+	<ul class="tabs" >
+	<li  class="out"><?=_text('admin_moneycard_title')?></li>
+	<li><a href="/admin/makecard/"><?=_text('admin_makecard_title')?></a></li>
+
+	</ul>
+	<div class="box">
+		<?php if($list):?>
+		<TABLE>
+		<TR>
+			<TD><?=_text('admin_recharge_card_no')?></TD>
+			<TD><?=_text('system_date')?></TD>
+			<TD><?=_text('system_copied_action')?></TD>
+			<TD><?=_text('system_used_action')?></TD>
+			<TD><?=_text('system_copy_action')?></TD>
+		</TR>
+		<?php foreach( $list as $v ):?>
+		<TR>
+			<TD><span id="card_code_<?=$v['id']?>"><?=$v['u2_card_no']?></span></TD>
+			<TD><?=$v['u2_date']?></TD>
+			<TD><span id="card_action_<?=$v['id']?>"><?php if($v['u2_is_copied']) echo _text('system_copied'); else echo _text('system_no_copied');?></span></TD>
+			<TD><?php if($v['u2_is_use']) echo _text('system_used'); else echo _text('system_no_use');?></TD>
+			<td><a href="JavaScript:void(0)" onclick="copycard('<?=$v['id']?>')"><?=_text('system_copy')?></a></td>
+		</TR>
+		<?php endforeach;?>
+		</TABLE><br/>
+		<?=$pager?>
+		<?php else:?>
+		<div class="notice"><img src="/static/images/feature_sniffer.gif" />&nbsp;<?=_text('admin_recharge_no_card');?></div>
+		<?php endif;?>
+	</div>
+</div>
+
+
+
+
+
+

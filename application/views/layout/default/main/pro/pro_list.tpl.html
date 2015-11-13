@@ -1,0 +1,15 @@
+<div class="boxes">
+	<div class="hd"><?=_text('pro_list_title');?></div>
+	<div class="bd">
+		<?php if($pros):?>
+			<?php foreach($pros as $p):?>
+				<a href="/pro/display/<?=$p['id']?>"><?=$p['u2_title']?></a><br/>
+				&nbsp;<img src="<?=show_user_icon('small',$p['u2_uid'])?>"><?=_text('pro_add_information', $p['u2_nickname'])?><br/>
+				<p></p>
+			<?php endforeach;?>
+		<?php else:?>
+			<p></p>
+			<p class="item"><?=_text('pro_list_no_item');?></p>
+		<?php endif;?>
+	</div>
+</div>

@@ -1,0 +1,47 @@
+<?php 
+$config['per_page'] = '10';
+$config['site_name'] = 'EasySNS';
+$config['site_url'] = 'http://easysns.com';
+$config['site_domain'] = 'easysns.com';
+$config['site_logo'] = '/static/images/logo.gif';
+$config['user_init_gold'] = '10';
+$config['user_init_silver'] = '100';
+$config['user_invite_g'] = '500';
+$config['can_guest_view_space'] = '1';
+$config['space_minifeed_per_page'] = '15';
+$config['online_seconds'] = '600';
+$config['user_per_page'] = '9';
+$config['pro_no_check_level'] = '5';
+$config['invite_active'] = '0';
+$config['invite_price'] = '0';
+$config['invite_limit'] = '0';
+$config['invite_use_gold'] = '0';
+$config['gold_convert_value'] = '10';
+$config['card_paied_gold'] = '1';
+$config['recharge_card_value'] = '100';
+$config['register_is_open'] = '0';
+$config['stmp_is_used'] = '0';
+$config['stmp_host'] = '';
+$config['stmp_mail'] = '';
+$config['stmp_user'] = '';
+$config['stmp_psw'] = '';
+$config['website_mail'] = 'no-replay@easysns.com';
+$config['level_0'] = '已冻结';
+$config['level_1'] = '注册用户';
+$config['level_3'] = '高级用户';
+$config['level_5'] = '网站编辑';
+$config['level_7'] = '管理员';
+$config['level_9'] = '高级管理员';
+$config['user'] = '';
+$config['password'] = '';
+$config['max_file_size'] = '1111111';
+$config['web_site_upload_file_type'] = 'zip';
+$config['version'] = 'beta';
+$config['domain'] = 'easysns.com';
+$config['exp_date'] = '2009-02-11';
+$config['statistics_open'] = '1';
+$config['login_ajax'] = '1';
+$config['logout_ajax'] = '1';
+$config['secret_key'] = 'MzEyYQ==WQxYzIwNGEyYjViOGI0ZDJmNWJhN2U0YmZjZjg=5Mj';
+
+?>

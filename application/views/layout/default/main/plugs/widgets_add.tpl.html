@@ -1,0 +1,29 @@
+<div class="app_top"><h4>添加微件</h4>
+<div>添加微件</div></div>
+<!-- 标题 -->
+<div class="tabs">
+<li class="out"><a href="#">添加</a></li>
+<li class="link"><a href="#">返回组件</a></li>
+</div>
+<div class="bline"><br/>
+<form action="/plugs/widgets_save/" method="post">
+<INPUT TYPE="hidden" NAME="pid" value="<?=$pid?>">
+<div class="titles_style"><strong>所属于组件: <?=$name;?></strong></div>
+<div class="titles_style">名称: <br><input type="text" name="name" class="text"></div>
+<div class="app_item_div">截图<br/>
+<img border="0" id="plugs_pic" src="/static/images/plugs/default.png" width="110px" class="icon"> <br/>
+<span id="plugs_txt" onclick="window.open('/upload/pic/plugs/plugs','_blank','scrollbars=no,width=475,height=150,left=75,top=80,status=no,resizable=yes')" class="upload_file_style">点击这里上传图片，也可以直接在下边填写URL</span><br/>
+<input name="plugs_file" id="plugs" onchange="plugs_pic.src=this.value" class="text item_size_small">
+</div>
+
+<div class="app_item_div">效果图<br/>
+<img border="0" id="plugsbig_pic" src="/static/images/plugs/default.png" class="icon"> <br/>
+<span id="plugsbig_txt" onclick="window.open('/upload/pic/plugs/plugsbig','_blank','scrollbars=no,width=475,height=150,left=75,top=80,status=no,resizable=yes')" class="upload_file_style">点击这里上传图片，也可以直接在下边填写URL</span><br/>
+<input name="plugsbig_file" id="plugsbig" onchange="plugsbig_pic.src=this.value" value="<?=htmlspecialchars('')?>"
+ class="text item_size_small"  >
+</div>
+
+<div class="titles_style">简介: <br><textarea name="desp" style="width:475px;height:85px"><?=$plugs['desp'];?></textarea></div>
+<div class="titles_style"><input type="submit" value="提交" class="button">&nbsp;&nbsp;<input type="reset" value="重写" class="button"></div>
+</form>
+</div>

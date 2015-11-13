@@ -1,0 +1,118 @@
+.float_r
+{
+	float:right;
+}
+.left_padding
+{
+	padding-left:8%;
+}
+
+.cart_rim
+{
+	border:1px solid #cccccc; 
+	width:100%
+}
+
+.septa_line
+{
+	BORDER-TOP: #dddddd 1px solid;
+	width:98%;	
+}
+
+.padding_money
+{
+	padding:5px;
+	padding-left:30px;
+}
+
+.small_title
+{
+	width:98%; 
+	padding:5px;
+	height:18px;
+}
+
+.ware_rim
+{
+	border:1px #dddddd solid;
+}
+
+.custom_style
+{
+	display:none;
+	height:20px;
+	margin-top:2px
+}
+
+.vertical_line
+{
+	float:right;
+	width:30%;
+	border-left:1px solid #dddddd;
+	height:600px;
+	padding-left:30px;
+}
+
+
+/*----------*/
+.index_input_width
+{
+	width:30px
+}
+
+.ware_width
+{
+	width:100%;
+}
+
+.margin_agios
+{
+	margin-right:10px;
+}
+
+.agiso_div
+{
+	height:25px;
+	padding-top:10px;
+}
+
+.agis_span
+{
+	margin:50px;
+}
+
+.methods
+{
+	width:60%;margin-top:10px;
+}
+
+.methods_height
+{
+	height:150px;
+}
+
+.need_w_h
+{
+	width:100%; 
+	height:100px;
+}
+
+.button_margin
+{
+	margin-bottom:40px;
+}
+
+.clearing_money
+{
+	padding-left:40px;
+}
+
+.order_manager_money
+{
+	padding-left:60px;
+}
+
+.pay_style
+{
+	line-height:20px;width:90%;margin:20px;text-align:left;
+}

@@ -1,0 +1,66 @@
+<div class="boxes">
+<div class="hd">绑定字段</div>
+<div class="bd">
+<br/>
+<form action="/design/bindsave/<?=$finfo['id'];?>" method="post" name="bindkey_form" id="bindkey_form" >
+<TABLE>
+	<TR>
+		<TD>标题:</TD>
+		<TD>
+		<SELECT NAME="title">
+		<?php foreach( $fitems as $v ):?>
+			<?php $checked=$v['key'] == 'title'?'selected':NULL;?>
+			<?php if( $v['type'] == 'line' ):?>
+			<OPTION VALUE="<?=$v['id']?>" <?=$checked?> ><?=$v['label']?$v['label']:'默认标题';?>
+			<?php endif;?>
+		<?php endforeach;?>
+		</SELECT>
+		</TD>
+	</TR>
+	<TR>
+		<TD>图片:</TD>
+		<TD>
+				<SELECT NAME="pic">
+				<OPTION VALUE="0">无图片
+				<?php foreach( $fitems as $v ):?>
+				<?php $checked=$v['key'] == 'pic'?'selected':NULL;?>
+					<?php if( $v['type'] == 'pic' || $v['type'] == 'multi-pic' ):?>
+					<OPTION VALUE="<?=$v['id']?>" <?=$checked?> ><?=$v['label']?$v['label']:'默认标题';?>
+					<?php endif;?>
+				<?php endforeach;?>
+				</SELECT>
+		</TD>
+	</TR>
+	<TR>
+		<TD>简介:</TD>
+		<TD>
+				<SELECT NAME="desp">
+				<?php foreach( $fitems as $v ):?>
+					<?php $checked= $v['key'] == 'desp'?'selected':NULL;?>
+					<?php if( $v['type'] == 'line' || $v['type'] == 'multi-line' ):?>
+					<OPTION VALUE="<?=$v['id']?>" <?=$checked?> ><?=$v['label']?$v['label']:'默认标题';?>
+					<?php endif;?>
+				<?php endforeach;?>
+				</SELECT>
+		</TD>
+	</TR>
+	<TR>
+		<TD>价格:</TD>
+		<TD>
+				<SELECT NAME="price">
+				<OPTION VALUE="0">无
+				<?php foreach( $fitems as $v ):?>
+				<?php $checked=$v['key'] == 'price'?'selected':NULL;?>
+					<?php if( $v['type'] == 'line' ):?>
+					<OPTION VALUE="<?=$v['id']?>" <?=$checked?> ><?=$v['label']?$v['label']:'默认标题';?>
+					<?php endif;?>
+				<?php endforeach;?>
+				</SELECT>
+		</TD>
+	</TR>
+	</TABLE>
+	<br/>
+	<input type="submit" class="button" onclick="$('bindkey_form').submit()" value="下一步:设置呈现页面布局 >>"><br/><br/><a href="/design/form/<?=$finfo['id'];?>">返回上一步</a>&nbsp;&nbsp;
+	</form>
+</div>
+</div>

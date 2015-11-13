@@ -1,0 +1,59 @@
+<div class="app_top"><h4>邀请好友</h4>
+邀请好友	
+</div>
+<div class="l">
+	<div id="pm_left">
+		<div class="tabs">
+			
+			<?php foreach( $tab_array  as $key=>$tab ) : ?>
+			<?php if( $tab_type == $key ): ?>
+			<li class="out"><a href="/app/native/<?=$GLOBALS['app']?>/<?php echo $key; ?>"><?php echo $tab; ?></a></li>
+			<?php else: ?>
+			<li ><a href="/app/native/<?=$GLOBALS['app']?>/<?php echo $key; ?>"><?php echo $tab; ?></a></li>
+			<?php endif; ?>		
+			<?php endforeach; ?>	
+
+		</div>
+		<div class="p2">
+		<INPUT TYPE="hidden" NAME="type" id="type" value="<?=$type;?>" >
+			<DIV class="email_margin">
+			<?php if( $type == 'email' ):?>
+			<P class="titles_style"><B>导入邮箱的通讯录至您的好友邀请名单</B></P>
+			<P class="email_address">邮箱地址：<INPUT name="email"  id="email" value="" class="text"> <SPAN 
+			class="email_font">&nbsp;@&nbsp;</SPAN> <SELECT id="domain" name="domain" > <OPTION 
+			value='@sina.com' selected>sina.com</OPTION> <OPTION 
+			value='@sohu.com'>sohu.com</OPTION> <OPTION value='@163.com'>163.com</OPTION> <OPTION 
+			value='@126.com'>126.com</OPTION> <OPTION value='@tom.com'>tom.com</OPTION> <OPTION 
+			value='@gmail.com'>gmail.com</OPTION> <OPTION value='@yahoo.cn'>yahoo.cn</OPTION> 
+			<OPTION value='@yahoo.com'>yahoo.com</OPTION> <OPTION 
+			value='@yahoo.com.cn'>yahoo.com.cn</OPTION></SELECT> </P>
+			<P class="email_address">邮箱密码：<INPUT name="psw" id="psw" type="password" value="" class="text"></P>
+			<P class="daoru"><INPUT class="button" onclick="app_ajax_send_account()" type="button" value="导入"></P>
+			<?php elseif($type == 'msn' ):?>	
+			<INPUT TYPE="hidden" NAME="domain" id="domain" value="">
+			<P class="titles_style"><B>导入MSN联系人至您的好友邀请名单</B></P>
+			<P class="msn_t">MSN帐号：<INPUT  name="email"  id="email" size="30" class="text"></P>
+			<P class="msn_t">MSN密码：<INPUT  name="psw" id="psw" type="password" value="" class="text"></P>
+			<P class="daoru"><INPUT class="button" onclick="app_ajax_send_account()" type="button" value="导入"></P>
+			<?php elseif($type == 'link' ):?>
+			<?php if( !c('register_is_open') && c('invite_active') ):?><span class="r by_num"><a href="JavaScript:void(0)" onclick="app_show_invite()">购买邀请码</a></span><?php endif;?><P style="FONT-SIZE: 13px; MARGIN: 10px 0px"><B>通过链接邀请好友</B></P>
+			<div class="email_address">
+			您可以通过QQ、MSN等IM工具，或者发送邮件，把下面的链接告诉你的好友。<br/><br/>
+			<?=$show;?>
+			</div>
+			<?php else:?>
+			<form action="/app/native/iinvite/uploadcheck/" method="post" encType="multipart/form-data" name="cardfile">
+			<P class="titles_style"><B>上传邮件地址簿文件(*.CSV、*.VCF)，选择邀请名单并发送邀请邮件</B></P>
+			<P>请选择地址簿文件：<INPUT class="text cardfile_style" type="file" size="33" name="cardfile"></P>
+			<P class="uploads"><INPUT class="text" title="上传" type="submit" value=" 上传 "></P>
+			<form>
+			<?php endif;?>
+			</DIV>
+		</div>		
+	</div>
+	<div id="pm_right">
+	<?php @include_once( dirname( __FILE__ ) . '/public.tpl.html' ); ?>
+	</div>
+
+</div>
+		

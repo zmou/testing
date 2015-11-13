@@ -1,0 +1,31 @@
+<div class="app_top"><h4>创建箱子</h4>
+创建用于存放图片的箱子	
+</div>
+<div class="l">
+	<div id="pm_left">
+		<div class="tabs">
+					<li class="out">创建箱子</li>
+					<li class="link"><img src="/static/images/arrow_collapse.gif" />&nbsp;<a href="/app/native/<?=$GLOBALS['app']?>/index/self">我的箱子</a></li>
+					<li class="link"><img src="/static/images/arrow_collapse.gif" />&nbsp;<a href="/app/native/<?=$GLOBALS['app']?>/index/new">全部箱子</a></li>
+		</div>	
+		<div class="p2" >
+		<form action="/app/native/<?=$GLOBALS['app']?>/save" method="post">	
+		<p>设置箱子的相关信息</p>
+		<p class="item"><label>用途:</label>&nbsp;<select name="type">
+		<option value="0">请选择</option>	
+		<?php foreach( $GLOBALS['case_type_list'] as $value=>$option ): ?>	
+		<option value="<?=$value;?>"><?=$option;?></option>	
+		<?php endforeach; ?>
+		</select></p>	
+		<p class="item"><label>名称:</label>&nbsp;<input type="text" class="text" name="name" style="width:200px" /></p>	
+		<p class="item"><label>简介:</label>&nbsp;<textarea name="desp" style="width:200px;height:100px"></textarea></p>	
+		<p class="act"><input type="submit" value="创建" class="button"></p>
+		</form>
+		</div>	
+	</div>
+	<div id="pm_right">
+	<?php @include_once( dirname( __FILE__ ) . '/fav.pub.tpl.html' ); ?>
+	</div>
+
+</div>
+		

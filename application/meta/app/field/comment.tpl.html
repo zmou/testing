@@ -1,0 +1,39 @@
+<div class="app_top"><h4>所有评论</h4></div>
+<div class="l" style="width:100%;">
+	<div id="pm_left" style="width:100%;">
+		<?php if( $coms ):?>
+		<?php foreach( $coms as $k => $line):?>
+		<table border="0" cellspacing="0" cellpadding="0" width="100%">
+		<tr>
+		<td width="10%" valign="top"><div style="margin-top:6px"><a href="/user/space/<?=$line['uid']?>" target="_blank"><img src="<?=show_user_icon('normal',$line['uid'])?>" class="icon" /></a></div></td>
+		<td align="left" valign="top">
+		<div class="comment_div">
+		<table border="0"  cellspacing="0" cellpadding="0" width="100%">
+		<tr>
+		<td><a href="/app/native/<?=$GLOBALS['app']?>/com_display/<?=$line['id'];?>"><b><?=$line['title'];?></b></a></td>
+		<td align="right">
+		<div style="padding:5px">
+		<img src="/static/images/star<?=$line['step'];?>.gif">
+		</div>
+		</td>
+		</tr>
+		</table>
+		<div style="float:right; padding-right:15px;"><?php if($line['dig'] == '0'):?>暂无推荐<?php else:?><?=$line['dig'];?>人推荐该评论<?php endif;?></div><div style="padding-left:6px; height:16px"><a href="/user/space/<?=$line['uid']?>" target="_blank"><?=$names[$line['uid']]['u2_nickname'];?></a>
+		<span class="post_time"><?=date( "Y-m-d H:i" ,strtotime($line['time']));?></span>
+		</div>
+		<div style="padding-left:6px;width:98%">
+		<?=short_content( $line['content'] , 180 , '<a href="/app/native/'.$GLOBALS['app'].'/com_display/'.$line['id'].'">  继续阅读</a>' )?>
+		<span class="post_time"><?php if($line['rcount'] != '0'):?>(<?=$line['rcount'];?>条回复)<?php else:?>(暂无回复)<?php endif;?></span>
+		</div>
+		</div>
+		</td>
+		</tr>
+		</table>
+		<?php endforeach;?>
+		<div align="center"><?=$pager;?></div>
+		<?php else:?>
+		<div align="right" style="width:98%;"><a href="/app/native/<?=$GLOBALS['app']?>/com_add/<?=$id;?>">我来第一个点评</a></div>
+		<center><div>还没有人做出评论!</div></center>
+		<?php endif;?>
+	</div>
+</div>

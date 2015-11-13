@@ -1,0 +1,264 @@
+<center><div class="gray"><small><?=c('site_domain')?> <?=date("Y")?></small></div></center>
+<?php if( is_login() && (_sess('u2_first_time') == 1)   && ($GLOBALS['method'] == 'miniblog')) :?>
+<div id="guide_box">
+	<h2 class="imove" id="iguide"><img src="/static/images/movearrow.gif" />&nbsp;第一站 - 我的小屋</h2>
+	<table>
+		<tr>
+			<td valign="top">
+				<center>
+				<img src="<?=show_user_icon('', _sess('u2_inviter_uid') )?>" class="icon l p1" style="margin-right:5px;" /><br/>
+				<?=_sess('u2_inviter_nickname') ?>
+				</center>
+			</td>
+			<td valign="top">这里就是你的小屋了，左边是导航,中间是你和好友的最新动态，右边是你的虚拟形象和财务状况.<br/><br/>
+			<p>点下边的"去衣柜看看",我们来换件好看点的衣服</p>	
+			<p><input class="button" type="button" value="去衣柜看看" onclick="location='/user/guide/2';void(0);" />&nbsp;&nbsp;<input class="button" value="关闭导航" onclick="location='/user/guide/9';void(0);" type="button" /></p></td>
+			
+		</tr>
+			
+	</table>	
+</div>	
+<script>
+center_it('guide_box');
+new Drag.Move('guide_box', { 'handle': $('iguide')});
+</script>	
+<?php endif; ?>	
+<?php if( is_login() && (_sess('u2_first_time') == 2)   && ( isset($GLOBALS['app']) && $GLOBALS['app'] == 'ihome') && ( isset($GLOBALS['action']) && $GLOBALS['action'] == 'cloth' ) ) :?>
+<div id="guide_box">
+	<h2 class="imove" id="iguide"><img src="/static/images/movearrow.gif" />&nbsp;第二站 - 我的衣柜</h2>
+	<table>
+		<tr>
+			<td valign="top">
+				<center>
+				<img src="<?=show_user_icon('', _sess('u2_inviter_uid') )?>" class="icon l p1" style="margin-right:5px;" /><br/>
+				<?=_sess('u2_inviter_nickname') ?>
+				</center>
+			</td>
+			<td valign="top">
+				<p>衣柜当然是放衣服的地方了,不过被我挡住了,不好意思,按住我头像上方的&nbsp;<img src="/static/images/movearrow.gif" />&nbsp;帮我往下挪点:)</p>
+				<p>点击衣柜的衣服就可以穿上，再点一次就是脱下了．你可以试穿下衣柜里的衣服.</p>
+				<p>感觉不错吧,要更多的漂亮的衣服?那我带你看看商店街去吧．点下边的按钮出发</p>
+					
+			<p><input class="button" type="button" value=" 去商店街 " onclick="location='/user/guide/3';void(0);" />&nbsp;&nbsp;<input class="button" value="关闭导航" onclick="location='/user/guide/9';void(0);" type="button" /></p></td>
+			
+		</tr>
+			
+	</table>	
+</div>	
+<script>
+center_it('guide_box');
+new Drag.Move('guide_box', { 'handle': $('iguide')});
+</script>	
+<?php endif; ?>
+<?php if( is_login() && (_sess('u2_first_time') == 3)   && ( isset($GLOBALS['app']) && $GLOBALS['app'] == 'ishop') && ( !isset($GLOBALS['action']) || (isset($GLOBALS['action'])&&$GLOBALS['action'] == 'index') ) ) :?>
+<div id="guide_box">
+	<h2 class="imove" id="iguide"><img src="/static/images/movearrow.gif" />&nbsp;第三站 - 商店街</h2>
+	<table>
+		<tr>
+			<td valign="top">
+				<center>
+				<img src="<?=show_user_icon('', _sess('u2_inviter_uid') )?>" class="icon l p1" style="margin-right:5px;" /><br/>
+				<?=_sess('u2_inviter_nickname') ?>
+				</center>
+			</td>
+			<td valign="top">
+				<p>商店街什么都有啦,除了服装店,还有美容厅,种子店,道具店和二手市场.</p>
+				<p>我们先去服装店看看衣服</p>
+					
+			<p><input class="button" type="button" value=" 去服装店 " onclick="location='/user/guide/4';void(0);" />&nbsp;&nbsp;<input class="button" value="关闭导航" onclick="location='/user/guide/9';void(0);" type="button" /></p></td>
+			
+		</tr>
+			
+	</table>	
+</div>	
+<script>
+center_it('guide_box');
+new Drag.Move('guide_box', { 'handle': $('iguide')});
+</script>	
+<?php endif; ?>
+<?php if( is_login() && (_sess('u2_first_time') == 4)   && ( isset($GLOBALS['app']) && $GLOBALS['app'] == 'ishop') && ( isset($GLOBALS['action']) && $GLOBALS['action'] == 'toggery' ) ) :?>
+<div id="guide_box">
+	<h2 class="imove" id="iguide"><img src="/static/images/movearrow.gif" />&nbsp;第四站 - 服装店</h2>
+	<table>
+		<tr>
+			<td valign="top">
+				<center>
+				<img src="<?=show_user_icon('', _sess('u2_inviter_uid') )?>" class="icon l p1" style="margin-right:5px;" /><br/>
+				<?=_sess('u2_inviter_nickname') ?>
+				</center>
+			</td>
+			<td valign="top">
+				<p>点击图片右下角的购买,就算买下啦，店家会把衣服直接送到家里</p>
+				<p>回到小屋,打开衣柜就能看见了</p>
+				<p>没钱了?</p>
+				<p>哦,对了,这里买衣服都是用银币的,去银行取点吧,国王会给新来的居民发金币的哦</p>
+					
+			<p><input class="button" type="button" value=" 去银行兑换处 " onclick="location='/user/guide/5';void(0);" />&nbsp;&nbsp;<input class="button" value="关闭导航" onclick="location='/user/guide/9';void(0);" type="button" /></p></td>
+			
+		</tr>
+			
+	</table>	
+</div>	
+<script>
+center_it('guide_box');
+new Drag.Move('guide_box', { 'handle': $('iguide')});
+</script>	
+<?php endif; ?>
+<?php if( is_login() && (_sess('u2_first_time') == 5)   && ( isset($GLOBALS['app']) && $GLOBALS['app'] == 'ibank') && ( isset($GLOBALS['action']) && $GLOBALS['action'] == 'convert' ) ) :?>
+<div id="guide_box">
+	<h2 class="imove" id="iguide"><img src="/static/images/movearrow.gif" />&nbsp;第五站 - 银行兑换处</h2>
+	<table>
+		<tr>
+			<td valign="top">
+				<center>
+				<img src="<?=show_user_icon('', _sess('u2_inviter_uid') )?>" class="icon l p1" style="margin-right:5px;" /><br/>
+				<?=_sess('u2_inviter_nickname') ?>
+				</center>
+			</td>
+			<td valign="top">
+				<p>就像你看到的,国王已经给你发金币啦</p>
+				<p>不过因为金币比较贵重,一般并不直接使用,你可以把它兑换成银币</p>
+				<p>试试吧,记得留2枚金币备用哦,呵呵</p>
+				<p>兑换完的银币直接存入了你的帐户,我们去大厅取点到身上吧</p>
+					
+			<p><input class="button" type="button" value=" 去银行大厅 " onclick="location='/user/guide/6';void(0);" />&nbsp;&nbsp;<input class="button" value="关闭导航" onclick="location='/user/guide/9';void(0);" type="button" /></p></td>
+			
+		</tr>
+			
+	</table>	
+</div>	
+<script>
+center_it('guide_box');
+new Drag.Move('guide_box', { 'handle': $('iguide')});
+</script>	
+<?php endif; ?>
+
+<?php if( is_login() && (_sess('u2_first_time') == 6)   && ( isset($GLOBALS['app']) && $GLOBALS['app'] == 'ibank') && ( (isset($GLOBALS['action']) && $GLOBALS['action'] == 'index') || !isset($GLOBALS['action']) )  ) :?>
+<div id="guide_box">
+	<h2 class="imove" id="iguide"><img src="/static/images/movearrow.gif" />&nbsp;第六站 - 银行大厅</h2>
+	<table>
+		<tr>
+			<td valign="top">
+				<center>
+				<img src="<?=show_user_icon('', _sess('u2_inviter_uid') )?>" class="icon l p1" style="margin-right:5px;" /><br/>
+				<?=_sess('u2_inviter_nickname') ?>
+				</center>
+			</td>
+			<td valign="top">
+				<p>这里就是大厅了</p>
+				<p>大厅接受存款和取款的业务,取款是不需要手续费的,存款的话,会扣10%的手续费哦</p>
+				<p>赶紧取钱吧</p>
+				<p>取好了就点下边的按钮,带你见识下超可爱的多多</p>
+					
+			<p><input class="button" type="button" value=" 领养多多 " onclick="location='/user/guide/7';void(0);" />&nbsp;&nbsp;<input class="button" value="关闭导航" onclick="location='/user/guide/9';void(0);" type="button" /></p></td>
+			
+		</tr>
+			
+	</table>	
+</div>	
+<script>
+center_it('guide_box');
+new Drag.Move('guide_box', { 'handle': $('iguide')});
+</script>	
+<?php endif; ?>
+
+<?php if( is_login() && (_sess('u2_first_time') == 7)   && ( isset($GLOBALS['app']) && $GLOBALS['app'] == 'iduoduo') ) :?>
+<div id="guide_box">
+	<h2 class="imove" id="iguide"><img src="/static/images/movearrow.gif" />&nbsp;第七站 - 领养多多</h2>
+	<table>
+		<tr>
+			<td valign="top">
+				<center>
+				<img src="<?=show_user_icon('', _sess('u2_inviter_uid') )?>" class="icon l p1" style="margin-right:5px;" /><br/>
+				<?=_sess('u2_inviter_nickname') ?>
+				</center>
+			</td>
+			<td valign="top">
+				<p>多多是仙豆王国特有的生物,胖胖的脸蛋+上无辜的大眼睛</p>
+				<p>哇~好可爱好可爱~</p>
+				<p>填好资料就能领养了</p>
+				<p>领养了就赶紧抱回家吧,点下边的按钮我给你看看地图</p>
+					
+			<p><input class="button" type="button" value=" 查看地图 " onclick="location='/user/guide/8';void(0);" />&nbsp;&nbsp;<input class="button" value="关闭导航" onclick="location='/user/guide/9';void(0);" type="button" /></p></td>
+			
+		</tr>
+			
+	</table>	
+</div>	
+<script>
+center_it('guide_box');
+new Drag.Move('guide_box', { 'handle': $('iguide')});
+</script>	
+<?php endif; ?>
+
+<?php if( is_login() && (_sess('u2_first_time') == 8)   && ( isset($GLOBALS['app']) && $GLOBALS['app'] == 'imap') ) :?>
+<div id="guide_box">
+	<h2 class="imove" id="iguide"><img src="/static/images/movearrow.gif" />&nbsp;第八站 - 地图</h2>
+	<table>
+		<tr>
+			<td valign="top">
+				<center>
+				<img src="<?=show_user_icon('', _sess('u2_inviter_uid') )?>" class="icon l p1" style="margin-right:5px;" /><br/>
+				<?=_sess('u2_inviter_nickname') ?>
+				</center>
+			</td>
+			<td valign="top">
+				<p>这里就是整个王国的地图了</p>
+				<p>点图片上的名字可以直接到达~网站常用的功能也都写到图片下方了</p>
+				<p>王国很大,朋友挺多,剩下的乐趣自己去发掘吧</p>
+				<p>有问题可以在好友列表里给我发站内短信,也可以到我家给我留言</p>
+				<p>要是我不在的话,就去讨论区看看吧,那里也有很多朋友哦</p>
+					
+			<p><input class="button" type="button" value=" 知道了 " onclick="location='/user/guide/9';void(0);" /></p></td>
+			
+		</tr>
+			
+	</table>	
+</div>	
+<script>
+center_it('guide_box');
+new Drag.Move('guide_box', { 'handle': $('iguide')});
+</script>	
+<?php endif; ?>
+
+<script>
+if( $('w2-main') && $('yui-side') )
+{
+	$('yui-side').setStyle( 'height' , $('w2-main').getStyle( 'height' ) );
+}
+
+if (window.XMLHttpRequest) 
+{ //Mozilla, Safari,...IE7 
+	if(!window.ActiveXObject)
+	{ // Mozilla, Safari,...
+  	} 
+	else
+	{
+  		// ie7
+ 	}
+}
+else
+{
+	// ie6
+	if( $('w2-main') )
+	$('w2-main').setStyle('width','680px');
+	
+	if( $('friend_right') )
+		$('friend_right').setStyle('width','180px');
+	
+	if( $('miniblog_right') )
+		$('miniblog_right').setStyle('width','180px');
+	
+	if( $('pm_right') )
+		$('pm_right').setStyle('width','180px');
+	
+	if( $('space_right') )
+		$('space_right').setStyle('width','180px');
+}
+
+<?php if( is_login() ):?>
+cron_jobs('<?php echo module() ?>');
+var cron = setInterval(  function(){ cron_jobs('<?php echo module() ?>'); }  , '60000' );
+<?php endif;?>
+save_statistics( '<?=isset(  $_SERVER['HTTP_REFERER'] )?base64_encode($_SERVER['HTTP_REFERER']):NULL;?>' );
+</script>

@@ -1,0 +1,78 @@
+<div class="app_top"><strong class="green">商城</strong>&nbsp;»&nbsp;<?=join('&nbsp;»&nbsp;', $nav )?>
+<?=_text('user_ulist_'.$action)?></div>
+<div class="bd">		
+
+	<div class="boxes">
+	<form action="/shop/sencode/" method="post">
+		<div class="shop_search_div">
+		<INPUT TYPE="text" NAME="searchtxt" class="text">&nbsp;&nbsp;<INPUT TYPE="submit" class="button" value=" 搜 ">&nbsp;&nbsp;&nbsp;&nbsp;分类 <SELECT NAME="cate">
+			<OPTION VALUE="0" SELECTED>全部
+			<?php if($cates):?>
+			<?php foreach( $cates as $v ):?>
+			<OPTION VALUE="<?=$v['id']?>"><?=$v['cate_desc']?>
+			<?php endforeach;?>
+			<?php endif;?>
+		</SELECT>
+		&nbsp;&nbsp;&nbsp;&nbsp;品牌 
+		 <SELECT NAME="brands">
+			<OPTION VALUE="0" SELECTED>全部
+			<?php if($brands):?>
+			<?php foreach( $brands as $v ):?>
+			<OPTION VALUE="<?=$v['id']?>"><?=$v['name']?>
+			<?php endforeach;?>
+			<?php endif;?>
+		</SELECT>
+		&nbsp;&nbsp;&nbsp;&nbsp;价格区间 <INPUT TYPE="text" NAME="price_start"  class="text" style="width:30px" > 元~<INPUT TYPE="text" NAME="price_end" class="text" style="width:30px"> 元<br/>
+		<INPUT TYPE="checkbox" NAME="is_pro" value="1">促销&nbsp;&nbsp;&nbsp;<INPUT TYPE="checkbox" NAME="new" value="1">新品
+		</form>
+		</div>
+		<?php if( $list ):?>
+			<div class="bd">	
+				<?php foreach( $list as $v ):?>
+				<TABLE width="100%">
+				<TR>
+					<TD width="100px"  valign="top">
+					<a href="/shop/item/<?=$v['id']?>">
+					<?php if( $v['snap'] ):?>
+					<img src="<?=$v['snap']?>">
+					<?php else:?>
+					<img src="/upload/snap/shop/<?=base64_encode($v['pic']);?>/80" class="icon">
+					<?php endif;?>
+					</a>
+					</TD>
+					<TD  valign="top"><div class="shop_item"><strong class="green"><a href="/shop/item/<?=$v['id']?>"><?=$v['name']?></a></strong><br/><br/>
+					<strong style="color:orange;">
+					<?php if( $v['is_pro'] && $v['pro_price'] ):?>
+						<?=$v['pro_price']?>
+					<?php else:?>
+						<?=$v['price']?>
+					<?php endif;?></strong>元
+					<span class="wishlist_button">
+					<?php if( in_array( $v['id'] , $keeps ) ):?>
+					已收藏
+					<?php else:?>
+					<a href="JavaScript:void(0)" onclick="add_to_wishlist( <?=$v['id']?> , 1 , this)">加入收藏</a>
+					<?php endif;?>
+					</span><span class="wishlist_button">
+					<?php if( in_array( $v['id'] , $wishes ) ):?>
+					已加入Wishlist
+					<?php else:?>
+					<a href="JavaScript:void(0)" onclick="add_to_wishlist( <?=$v['id']?> , 2 , this)">加入Wishlist</a>
+					<?php endif;?>
+					</span>
+					</div></TD>
+					<TD width="100px" valign="top" align="right"><a href="/shop/item/<?=$v['id']?>">>> 详细信息</a><br/><br/><a href="#">>> 加入购物车</a></TD>
+				</TR>
+				</TABLE>
+				<?php endforeach;?>
+			</div>	
+			<br clear="all">
+			<?=$pager;?>
+			<br/><br/>
+		<?php else:?>
+			<div class="notice">
+				暂无内容
+			</div>
+		<?php endif;?>
+	</div>
+</div>

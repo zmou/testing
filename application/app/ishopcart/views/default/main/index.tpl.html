@@ -1,0 +1,57 @@
+<?php if( $record_num == '0' ):?>
+<body>
+<?php else:?>
+<body onload="format_num()">
+<?php endif;?>
+<?php if( $orders != '0' ):?>
+<?php endif;?>
+<div class="app_top" onload="num()"><h4>购物车</h4>
+<div>购买你喜欢的所有物品</div></div>
+
+<div>
+<div class="tabs">
+	<li class="out"><a href="/app/native/<?=$GLOBALS['app']?>/">选购商品</a></li>
+	<?php if($orders > '0'):?>
+	<li class="link"><a href="/app/native/<?php echo $GLOBALS['app'] ?>/order_manager/">您有 <?=$orders?> 个订单(<?=$order_rest;?>个未处理)</a></li>
+	<?php endif;?>
+<?php if( $record_num == '0' ):?>
+	</div><br>
+	<div align="center"><b>您还没有挑选商品</b></div>
+<?php else:?>
+	<li class="link"><a href="#" onclick="if( confirm('确定清空购物车?')==true ){ window.location = '/app/native/<?=$GLOBALS['app']?>/del/'; }">清空购物车</a></li>
+	</div>
+	<br>
+	<div class="cart_rim">
+	<table width="100%" align="center" border="0" cellspacing="0" cellpadding="0">
+		<tr class="shop_ground"><td align="center" width="40%">商品名</td>
+		<td align="center" width="20%">价格</td>
+		<td align="center" width="20%">数量</td>
+		<td align="center" width="20%">操作</td></tr>
+		<?php $i=0;?>
+		<?php foreach( $record as $k => $line ):?>
+		<?php $i++;?>
+		<tr height="20"><td width="40%"><a href="/app/native/<?=$line['folder']?>/display/<?=$line['cid']?>"><?=$line['name']?></a></td>
+		<td align="left" class="left_padding"><b>￥</b><span id="money_<?=$i;?>" value="<?=$line['money']?>"><?=$line['money']?></span></td>
+		<td align="left" class="left_padding">
+		<input type="hidden" id="agio" value="<?=$agio?>">
+		<input type="text" name="num[]" id="num_<?=$i?>" value="<?=$line['num']?>" style="width:30px" class="text" maxlength="4" onkeyup="this.value=this.value.replace(/\D/g,'') ; if( this.value == '' || this.value == '0' ){ this.value = <?=$line['num']?>; } ; format_num(); clearing( <?=$line['id']?> , this.value , this.id );"/></td>
+		<td align="center"><a href="#" onclick="if( confirm('确定删除此件物品?')==true ){ window.location = '/app/native/<?=$GLOBALS['app']?>/del/<?=$line['id']?>'; }"><img src="/static/images/cross.gif"></a></td></tr>
+		<!-- <tr height="1"><td colspan="4"><DIV style="BORDER-TOP: #cccccc 1px dashed;width:100%"></DIV></DIV></td></tr> -->
+		<?php endforeach;?>
+		<tr height="1"><td colspan="4"><DIV class="septa_line"></DIV></DIV></td></tr>
+		<tr>
+		<td colspan="3" align="right">
+			<?php if( $agio != '100' ):?>
+			<span class="margin_agios">
+			<b>您共节省:<font class="money">￥<span id="agios" ><?=$orders['stint'];?></span></font></span>
+			<?php endif;?>
+			商品金额总计:<font class="money">￥<span id="money_sum"></span></font></b>
+		</td>
+		<td>
+		<input type="button" class="button" value="结算" onclick="window.location='/app/native/<?php echo $GLOBALS['app'] ?>/clearing/'"></td>
+		</tr>
+	</table>
+	</div>
+<?php endif;?>
+</div>
+</body>

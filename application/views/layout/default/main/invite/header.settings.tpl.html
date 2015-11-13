@@ -1,0 +1,11 @@
+<div class="app_top"><h4>邀请码</h4>
+我的邀请码和购买邀请码.	
+</div>
+<?php $header = array( 'myinvite' , 'buy'); ?>
+<ul class="tabs" >
+	<?php foreach( $header as $h ): ?>
+	<?php if( method() == $h ): ?><li  class="out"><?=_text('invite_' . $h . '_title')?></li><?php else: ?>
+	<li><a href="/invite/<?=$h?>"><?=_text('invite_' . $h . '_title')?></a></li>
+	<?php endif; ?>	
+	<?php endforeach; ?>
+</ul>

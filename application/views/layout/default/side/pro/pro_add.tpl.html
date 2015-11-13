@@ -1,0 +1,9 @@
+<div class="boxes">
+	<div class="hd"><?=_text('pro_cate_list')?></b></div>
+	<p></p>
+	<?php if($cates):?>
+	<?php foreach ($cates as $c ):?>
+	<p><?=str_repeat('&nbsp;&nbsp;', ceil( strlen($c['u2_cate_num']) /4) );?>--&nbsp;<a href="javascript:pro_choose_cate(<?=$c['id']?>);"><?=$c['u2_cate_desc']?></a></p>
+	<?php endforeach;?>
+	<?php endif;?>
+</div>

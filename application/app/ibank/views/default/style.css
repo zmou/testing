@@ -1,0 +1,9 @@
+#ibank_wait
+{
+	position: absolute; 
+	margin:10px;
+	border:10px solid #eee;
+	width:400px;
+	background:#fff;
+	z-index:99;
+}

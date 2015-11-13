@@ -1,0 +1,91 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>EasySNS安装页面</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<link rel="stylesheet" type="text/css" href="/static/css/reset.css"> 
+<link rel="stylesheet" type="text/css" href="/static/css/base.css"> 
+<link rel="stylesheet" type="text/css" href="/static/css/fonts.css"> 
+<link rel="stylesheet" type="text/css" href="/static/css/grids.css"> 
+<link rel="stylesheet" type="text/css" href="/static/css/styles.css"> 
+</head>
+
+<body style="padding:40px;">
+<form action="./install_save.php" method="POST">
+<div style="text-align:left;line-height:150%;background:url(/static/images/bg_logo.gif) right top no-repeat">
+	<table border="0" width="98%" id="table1" cellspacing="0" cellpadding="0" height="40" align="center">
+		<tr>
+			<td valign="top"><br/><img src="/static/images/logo.gif" / >
+			<h2 class="green" style="padding-left:36px">快速安装页面</h2>
+			</td>
+			<td rowspan="2">
+			<p align="right">
+			<a href="http://EasySNS.cn/" target="_blank">→EasySNS官方网站</a><br/>
+					</td>
+		</tr>
+		</table>
+	<table border="0" width="760px" id="table1" cellspacing="5" cellpadding="5" align="center">
+		<tr>
+			<td class="top">
+			<!-- main -->
+			<h3>数据库信息<a href="http://techblog.moneysns.com/?p=36" target="_blank">?</a>设置</h3>
+			<table style="width:100%">
+			<tr>
+				<td width="120px" >数据库host</td>
+				<td><input name="db_host" type="text" style="width:300px" value="localhost" class="text"></td>
+			</tr>
+			<tr>
+				<td width="120px">数据库用户名</td>
+				<td><input name="db_user" type="text" style="width:300px" value="root" class="text"></td>
+			</tr>
+			<tr>
+				<td width="120px">数据库密码</td>
+				<td><input name="db_password" type="password" style="width:300px" class="text"></td>
+			</tr>
+			<tr>
+				<td width="120px" valign="top">数据库名</td>
+				<td><input name="db_name" type="text" style="width:300px" value="EasySNS" class="text"><br/><input type="checkbox" name="force_charset" value="1" checked>&nbsp;强制转换字符集为utf8<a href="http://techblog.moneysns.com/?p=38" target="_blank">?</a></td>
+			</tr>
+			</table>
+			<h3>管理帐号<a href="http://techblog.moneysns.com/?p=37" target="_blank">?</a>设置</h3>
+			<table style="width:100%">
+			<tr>
+				<td width="120px">用户名</td>
+				<td><input name="admin_username" type="text" style="width:300px" value="admin" class="text"></td>
+			</tr>
+			<tr>
+				<td width="120px">邮箱</td>
+				<td><input name="admin_email" type="text" style="width:300px" value="admin@admin.com" class="text"></td>
+			</tr>
+			<tr>
+				<td width="120px">密码</td>
+				<td><input name="admin_password" type="text" style="width:300px" value="admin" class="text"></td>
+			</tr>
+			</table>
+			<!--
+			<h3>初始化设置</h3>
+			<table style="width:100%">
+			<tr>
+				<td width="100px">是否提供默认数据</td>
+				<td><input name="config_sample" type="radio" value="1" checked>是&nbsp;&nbsp;<input name="config_sample" type="radio" value="0">否</td>
+			</tr>
+			</table>
+			-->
+			</td>
+			<td width="300px" valign="top">
+			<!-- right -->
+			<h3>用户协议</h3>
+			<textarea style="width:250px;height:310px;color:#B0B0B0"><?php echo file_get_contents( ROOT . 'install/license.txt' ); ?>
+			</textarea>
+			</td>
+		</tr>
+	</table><br/>
+	<p align="center"><input type="button" value="同意协议并安装" onclick="this.value='安装中，请稍候';form.submit();this.disabled=true" class="button"></p>
+</div>	
+</form>
+</body>
+
+</html>

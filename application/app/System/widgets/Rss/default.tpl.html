@@ -1,0 +1,17 @@
+<div class="boxes">
+	<div class="hd"><!--{tool bar}--><?=$title;?></div>
+	<div class="bd textarea_style">
+		<?php if(isset($con)):?>
+		<?php $n = 0;?>
+		<?php foreach( $con as $k => $list ):?>
+		<?php $n++;?>
+		<h3><a href="<?php print_r($con[$n]['feed_url'])?>"><?php print_r($con[$n]['feed_title'])?></a></h3>
+		<?php if($show == 2):?>
+		<div><?php print_r($con[$n]['feed_con'])?></div>
+		<?php endif;?>
+		<?php endforeach;?>
+		<?php else:?>
+		<div>请添加博客地址</div>
+		<?php endif;?>
+	</div>
+</div>

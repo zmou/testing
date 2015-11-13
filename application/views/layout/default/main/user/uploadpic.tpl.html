@@ -1,0 +1,35 @@
+<?php @include( dirname(__FILE__) .'/header.settings.tpl.html' ); ?>
+
+<br/>
+<br/>
+
+<div id="face_box">
+<div id="face_left"><center>
+<img src="<?=show_user_icon('big')?>" class="icon" /><br/><?=_text('user_uploadpic_mypic')?></center>
+</div>
+
+<div id="face_right_top" ><?php if( is_array($pics[0])  ):?>
+		<?=_text('user_uploadpic_use_before')?><br/>
+	  <?php foreach($pics as $p):?>
+	  <div class="old_pic_list">
+		<a href="/user/resetpic/<?=$p['u2_pic_name']?>"><img src="<?=get_user_old_url($p)?>" class="icon" /></a><br/>
+		<a href="#" onclick="link_del_confirm('/user/del_user_pic/<?=$p['id'];?>')"><img src="/static/images/cross.gif" /></a>
+		</div>
+	  <?php endforeach;?>
+	  <?php else:?>
+	  <?=_text('user_uploadpic_no_pic')?><br/>
+	  <?php endif;?></div>
+	<div class="face_right"><p></p><br/>
+		<?=_text('user_uploadpic_upload')?><br/> 
+		<form action="/user/uploadpic/save" method="POST" name="user_icon_form" enctype="multipart/form-data">
+			<input type="file" name="picfile" class="text"/>
+			<p></p>
+			<p class="act"><input type="submit" value="<?=_text('system_submit')?>" class="button"></p>
+		</form>
+	</div>
+
+</div>
+
+
+
+

@@ -1,0 +1,35 @@
+<center>
+<table>
+<tr><td align="left">
+<label>模块标题:</label>
+</td><td align="left">
+<label><INPUT TYPE="text" NAME="title" class="text" value="<? if( isset($title)){ echo $title; } ?>"></label><br clear="all"/>
+</td></tr>
+<tr><td align="left">
+<label>活跃天数:</label>
+</td><td align="left">
+<label><INPUT TYPE="text" NAME="days" class="text" value="<? if( isset($days)){ echo $days; } ?>"></label><br clear="all"/>
+</td></tr>
+<tr><td align="left">
+<label>每行显示数:</label>
+</td><td align="left">
+<label><INPUT TYPE="text" NAME="linenum" class="text" value="<? if( isset($linenum)){ echo $linenum; } ?>"></label><br clear="all"/>
+</td></tr>
+<tr><td align="left">
+<label>类型:</label>
+</td><td align="left">
+<?php $act = lazy_get_data( "SELECT `u2_folder`,`u2_title` FROM `u2_app`" );?>
+<label>
+<SELECT NAME="aid">
+	<option value="all" if( $aid == 'all' ){ echo "selected"; }>全部</option>
+	<?php foreach( $act as $k => $v ):?>
+	<?php if( strtolower($v['u2_folder']) == 'system' ):?>
+	<?php continue;?>
+	<?php endif;?>
+	<OPTION VALUE="<?=$v['u2_folder'];?>" <?php  if( isset( $aid ) && $aid == $v['u2_folder'] ){ echo "SELECTED"; };?> ><?=$v['u2_title'];?></option>
+	<?php endforeach;?>
+</SELECT>
+</label><br clear="all"/>
+</td></tr>
+</table>
+</center>

@@ -1,0 +1,6 @@
+<?php @include( dirname(__FILE__) .'/header.settings.tpl.html' ); ?>
+<p class="buy_invite_notice"><?=_text('invite_buy_notice',$limit,$price )?></p>
+<FORM action="/invite/add/" method="post">
+<P class="item"><LABEL><?=_text('invite_buy_number')?></LABEL>&nbsp;<INPUT class="text" value="" name="number"></P>
+<P class="act"><INPUT class="button" type="submit" value="<?=_text('system_submit')?>"></P>
+</form>

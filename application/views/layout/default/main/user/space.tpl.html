@@ -1,0 +1,133 @@
+<div class="app_top"><h4><?=$user['u2_nickname']?>的个人空间</h4>
+<?=$user['u2_nickname']?>的小家,<?=$user['u2_nickname']?>的活动信息会汇总到这里.	
+</div>
+<div class="l bd">
+	<div id="space_left">
+	<ul class="tabs" >
+	<li  class="out"><a href="/user/space/<?=$user['id']?>"><?=_text('user_space_action')?></a></li>
+	</ul>
+	<br/>
+		<div class="boxes">
+			<div class="bd">
+			
+				<?php if($minifeeds):?>
+					<?php foreach($minifeeds as $b):?>
+						<div class="minifeed_item" id="minifeed_item_<?php echo $b['id']; ?>"><?php if($b['u2_uid'] == format_uid() ): ?>
+<div class="r"><a href="javascript:minifeed_remove(<?php echo $b['id']; ?>);void(0)"><img src="/static/images/cross.gif" /></a></div>
+<?php endif; ?>
+						<img src="/static/icon/<?=$b['u2_app_aid']?>.gif" />&nbsp;<?=$b['u2_action']?>&nbsp;&nbsp;<img src="/static/images/clock.gif">&nbsp;<font color="#aaa"><?=related_time($b['u2_time']);?></font>
+						<?php if($b['u2_img']):?>
+		<TABLE>
+		<TR>
+			<TD><img src="<?=$b['u2_img']?>" class="icon " style="margin:10px"/></TD>
+			<TD><?php if($b['u2_desp'] != NULL):?><IMG src="/static/images/quote_left.gif">&nbsp;<?=$b['u2_desp']?>&nbsp;<IMG 
+src="/static/images/quote_right.gif"><?php endif;?><br clear="all"/></TD>
+		</TR>
+		</TABLE>
+		<?php else:?>
+		<?php if($b['u2_desp'] != NULL):?><div class="space_img_padding"><IMG src="/static/images/quote_left.gif">&nbsp;<?=$b['u2_desp']?>&nbsp;<IMG 
+src="/static/images/quote_right.gif"></div><?php endif;?>
+		<?php endif;?>
+						</div>
+					<?php endforeach;?>
+				<?php else:?>
+				<p><?=_text('user_space_no_action')?></p>
+				<?php endif;?>	
+			</div>
+		</div>
+		<div class="space_news_bottom"></div>	
+		<!-- wall -->
+		
+		<a name="wall"></a>
+		<div class="boxes" id="wall">
+
+		<div class="hd"><?=_text('user_space_wall_title')?></div>
+		<div class="bd">
+
+		<form action="/user/wall" method="post" />
+		<textarea style="width:430px;height:80px" name="content"></textarea><br/><br/>
+		<input type="hidden" name="uid" value="<?php echo $user['id']; ?>" >
+		<input type="submit" value="<?=_text('user_space_words')?>" class="button" >	
+		</form>
+		<p></p>
+		
+		<?php if( isset( $wall['wall'][0] ) ): ?>
+		<?php foreach( $wall['wall'] as $w ): ?>
+
+			<div id="wall_item_<?php echo $w['id']; ?>">
+
+			<div class="space_wall_bbs_top"></div>	
+			<table>
+				<tr>
+					<td valign="top"><?php $o = $wall['user'][$w['u2_guest_uid']]; ?>
+						<center>
+						<a href="/user/space/<?=$o['id']?>"><img src="<?=show_user_icon('',$o['id'])?>" class="icon" /><br/><?=$o['u2_nickname'];?></a>
+						</center>
+					</td>
+					<td valign="top">
+						<div class="space_bbs_fengeline">
+							<?php if( $w['u2_uid'] == format_uid() ): ?><div class="r"><a href="javascript:wall_remove(<?php echo $w['id']; ?>);void(0)"><img src="/static/images/cross.gif" /></a></div><?php endif; ?>
+						<p><font color="#aaa"><?php echo related_time( $w['u2_time'] ); ?></font></p>
+						<?php echo $w['u2_content']; ?>
+					<br/><br/><input class="button" type="button" value="回复" onclick="location='/user/space/<?php echo $o['id']; ?>#wall'">
+						</div>
+					</td>
+				</tr>
+			</table>
+			</div>		
+			<?php endforeach; ?>
+
+			<?php  else: ?>	
+			<?php endif; ?>	
+
+		</div><!-- bd	-->
+		</div><!-- boxes	-->
+		
+		
+		
+	</div>
+
+	<div id="space_right">
+		<div class="boxes">
+			<div class="hd"><?=_text('system_friend')?></div>
+			<div class="bd">
+			
+				<?php if($friends):?>
+					<?php foreach($friends as $o):?>
+					<div class="l p1 warp w-normal">
+					<center>
+					<a href="/user/space/<?=$o['id']?>"><img src="<?=show_user_icon('',$o['id'])?>" class="icon" /><br/><?=$o['u2_nickname'];?></a><br/>
+				
+					<a href="javascript:show_chat(<?=$o['id']?>)" title="<?=_text('user_friend_send_pm')?>"><img src="/static/images/mail.gif" />&nbsp;<?=_text('user_friend_send_pm')?></a>
+					</center>
+					</div>
+					<?php endforeach;?>
+				<?php else:?>
+					<p><?=_text('system_no_friends')?></p>
+				<?php endif;?>
+				<br clear="all"/>
+			</div>
+		</div>		
+		<div style="margin-bottom:5px"></div>
+		<div class="boxes">
+			<div class="hd"><span><a href="/user/ulist/vistors/1/<?=$o['id']?>">全部</a></span><?=_text('system_last_view')?></div>
+			<div class="bd">
+				<?php if($vistors):?>
+					<?php foreach($vistors as $o):?>
+					<div class="l p1  warp w-normal">
+							<center>
+							<a href="/user/space/<?=$o['id']?>"><img src="<?=show_user_icon('',$o['id'])?>" class="icon" /><br/><?=$o['u2_nickname'];?></a><br/>
+							<a href="/user/frienddo/add/<?=$o['id']?>" title="<?=_text('system_frend_add')?>"><img src="/static/images/plus.gif"  /></a>
+							|
+							<a href="javascript:show_chat(<?=$o['id']?>)" title="<?=_text('user_friend_send_pm')?>"><img src="/static/images/mail.gif" /></a>
+							</center>
+					</div>
+					<?php endforeach;?>
+				<?php else:?>
+					<p><?=_text('system_no_last_view')?></p>
+				<?php endif;?>
+				<br clear="all"/>
+			</div>
+		</div>	
+	</div>
+</div>

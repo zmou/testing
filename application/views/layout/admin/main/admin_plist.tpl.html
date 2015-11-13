@@ -1,0 +1,40 @@
+<div class="box">
+	<p class="admin_title"><?=_text('admin_data_title')?></p>
+
+	<ul class="tabs" >
+	<li class="out"><?=_text('admin_plist_title')?></li>
+	<li><a href="/admin/data/"><?=_text('admin_data_pro_meta')?></a></li>
+	<li><a href="/admin/cates/"><?=_text('admin_data_pro_cate')?></a></li>
+	<li class="link"><img src="/static/images/plus.gif">&nbsp;<a href="/pro/add/" target="_blank"><?=_text('admin_plist_add');?></a></li>
+	</ul>
+
+	<p></p>
+	<div  id="data_extra">
+		<?php if( $list ):?>
+		<TABLE width="100%">
+		<TR>
+			<TD width="60px;"><?=_text('admin_plist_cate');?></TD>
+			<TD><?=_text('admin_plist_content_title');?></TD>		
+			<TD width="100px;"><?=_text('admin_plist_time');?></TD>
+			<TD width="80px;"><?=_text('admin_plist_action');?></TD>
+		</TR>
+		<?php foreach($list as $v):?>
+		<TR>
+			<TD width="60px;"><?php echo show_pro_cate($v['u2_cate']) ?></TD>
+			<TD><a href="/riki/display/<?=$v['id']?>" title="<?=_text('pro_add_information', $v['u2_nickname'])?>" target="_blank"><?=$v['u2_title']?></a></TD>
+			<TD width="100px;"><?=related_time($v['u2_addtime']);?></TD>
+			<TD width="80px;"><a href="/pro/modify/<?=$v['id']?>" target="_blank"><?=_text('system_modify')?></a>&nbsp;&nbsp;<a href="JavaScript:void(0);" onclick="javascript:ajax_del_confirm('/pro/del/<?=$v['id']?>');"><img src="/static/images/cross.gif"></a></TD>
+		</TR>
+		<?php endforeach;?>
+		</TABLE>
+		<br clear="all">
+		<?=$pager;?>
+		<?php else:?>
+		<div class="notice">
+		<p><?=_text('admin_plist_no_data')?></p>
+		</div>
+		<?php endif;?>
+		
+	</div>
+
+</div>
